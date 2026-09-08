@@ -1,0 +1,8 @@
+# Files that live in the git repo but should NOT ship in the plugin ZIP.
+# `git archive` honours `export-ignore`, so building the WP.org submission
+# ZIP with `git archive --format=zip HEAD -o menucraft.zip` produces a
+# clean plugin package without any of the developer-only files below.
+
+/.gitignore      export-ignore
+/.gitattributes  export-ignore
+/README.md       export-ignore
