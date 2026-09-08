@@ -10,6 +10,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Table and column identifiers in this file come from our own constants
+// (wpdb prefix + literal suffix), never from user input. Interpolation
+// into DDL/DML is safe and unavoidable — wpdb::prepare cannot placeholder
+// table or column identifiers.
+// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+// phpcs:disable PluginCheck.Security.DirectDB.UnescapedDBParameter
+
 /**
  * Schema definitions and migrations.
  */

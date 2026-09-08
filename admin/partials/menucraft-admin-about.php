@@ -11,6 +11,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// This file is `require`d from MenuCraft_Admin::render_about_page(), so
+// every variable declared below is a local of that method scope, not a
+// PHP global — the prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $version = defined( 'MENUCRAFT_VERSION' ) ? MENUCRAFT_VERSION : '';
 
 $help_url    = admin_url( 'admin.php?page=menucraft-help' );

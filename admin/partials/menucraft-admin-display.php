@@ -12,6 +12,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// This file is `require`d from MenuCraft_Admin::render_admin_page(), so
+// every variable declared below is a local of that method scope, not a
+// PHP global — the prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 // ---- Load raw data ---------------------------------------------------
 
 $items      = MenuCraft_Item_Repository::all();

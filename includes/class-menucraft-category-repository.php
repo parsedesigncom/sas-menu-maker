@@ -10,6 +10,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// Table names in this file are derived from MenuCraft_Schema::tables()
+// (wpdb prefix + literal suffix), never from user input. Interpolation
+// into SQL is safe and unavoidable — wpdb::prepare cannot placeholder
+// table or column identifiers.
+// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+// phpcs:disable PluginCheck.Security.DirectDB.UnescapedDBParameter
+
 /**
  * Category repository.
  */

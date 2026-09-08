@@ -16,6 +16,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// This template is `include`d from MenuCraft_Public::render_offers_shortcode(),
+// so every variable declared below is a local of that method scope, not a
+// PHP global — the prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $instance_id  = isset( $config['instance_id'] ) ? $config['instance_id'] : 'menucraft-offers';
 $image_pos    = isset( $config['image_pos'] ) ? $config['image_pos'] : 'left';
 $grid_class   = ! empty( $config['grid_enabled'] ) ? ' menucraft-offers--grid' : ' menucraft-offers--rows';

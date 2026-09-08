@@ -9,17 +9,19 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Responsible for loading the plugin text domain.
+ *
+ * Since WordPress 4.6, translations for plugins hosted on WordPress.org
+ * are loaded automatically from translate.wordpress.org — no manual
+ * `load_plugin_textdomain()` call is needed and one would be flagged by
+ * Plugin Check. The method is kept as a no-op so the loader hook wiring
+ * stays intact.
  */
 class MenuCraft_I18n {
 
 	/**
-	 * Load the plugin text domain for translations.
+	 * No-op placeholder; translations load automatically on WP.org.
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			MENUCRAFT_TEXT_DOMAIN,
-			false,
-			dirname( MENUCRAFT_PLUGIN_BASENAME ) . '/languages/'
-		);
+		// Intentionally left blank.
 	}
 }

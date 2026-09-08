@@ -17,6 +17,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 require_once __DIR__ . '/includes/class-menucraft-schema.php';
 require_once __DIR__ . '/includes/class-menucraft-options.php';
 
+// This file runs once at plugin uninstall in a short-lived isolated
+// process — `$delete` is a local flag, not a persistent global.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $delete = MenuCraft_Options::get( 'delete_data_on_uninstall', '0' );
 
 if ( '1' === (string) $delete ) {

@@ -113,25 +113,32 @@ class MenuCraft_Admin {
 					'from'            => __( 'from', 'menucraft' ),
 					'noPrice'         => __( 'no price', 'menucraft' ),
 					'variantsNone'    => __( 'None', 'menucraft' ),
+					/* translators: %d: number of variants on an item. */
 					'variantsCount'   => __( '%d variant(s)', 'menucraft' ),
 					'variantLabel'    => __( 'Label', 'menucraft' ),
 					'variantPrice'    => __( 'Price', 'menucraft' ),
 					'variantRemove'   => __( 'Remove', 'menucraft' ),
 					'variantLabelHint' => __( 'e.g. Small, Medium, Large', 'menucraft' ),
+					/* translators: %d: number of items the bulk-edit was applied to. */
 					'bulkApplied'     => __( 'Applied to %d item(s).', 'menucraft' ),
 					'bulkNoOps'       => __( 'Nothing to apply — pick at least one operation.', 'menucraft' ),
 					'bulkNoSelection' => __( 'Select at least one item first.', 'menucraft' ),
+					/* translators: %d: number of currently active filters. */
 					'filtersActive'   => __( '%d filter(s) active', 'menucraft' ),
 					'noMatches'       => __( 'No items match the current filters.', 'menucraft' ),
 					'offerLinesNone'  => __( 'None', 'menucraft' ),
+					/* translators: %d: number of line items in an offer. */
 					'offerLinesCount' => __( '%d line(s)', 'menucraft' ),
 					'offerQuantity'   => __( 'Qty', 'menucraft' ),
 					'offerPickVariant' => __( '— pick variant —', 'menucraft' ),
 					'offerNoVariant'  => __( '(no variant)', 'menucraft' ),
 					'offerRemoveLine' => __( 'Remove line', 'menucraft' ),
 					'offerAlways'     => __( 'Always', 'menucraft' ),
+					/* translators: %s: start date of the offer validity. */
 					'offerFrom'       => __( 'From %s', 'menucraft' ),
+					/* translators: %s: end date of the offer validity. */
 					'offerUntil'      => __( 'Until %s', 'menucraft' ),
+					/* translators: 1: start date, 2: end date of the offer validity. */
 					'offerBetween'    => __( '%1$s – %2$s', 'menucraft' ),
 					'offerCurrent'    => __( 'Currently valid', 'menucraft' ),
 					'offerUpcoming'   => __( 'Upcoming', 'menucraft' ),

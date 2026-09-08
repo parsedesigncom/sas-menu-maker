@@ -1,6 +1,6 @@
 === MenuCraft ===
 Contributors: saeidsamani
-Tags: menu, restaurant, cafe, food, drinks, offers, gutenberg, shortcode, block
+Tags: menu, restaurant, cafe, food, drinks
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4

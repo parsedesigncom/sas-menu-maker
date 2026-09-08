@@ -15,6 +15,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
+// This template is `include`d from MenuCraft_Public::render_offer(), so
+// every variable declared below is a local of that method scope, not a
+// PHP global — the prefix rule does not apply.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $image_pos       = isset( $config['image_pos'] ) ? $config['image_pos'] : 'left';
 $show_items_mode = isset( $config['show_items'] ) ? $config['show_items'] : 'inline';
 $show_desc_mode  = isset( $config['show_desc'] ) ? $config['show_desc'] : 'inline';
