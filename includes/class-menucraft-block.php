@@ -76,6 +76,16 @@ class MenuCraft_Block {
 			)
 		);
 
+		// Wire up JSON translations for the editor script so the sidebar
+		// panels (Layout, Colors, etc.) speak the site's language.
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations(
+				'menucraft-menu-editor-script',
+				'menucraft',
+				MENUCRAFT_PLUGIN_DIR . 'languages'
+			);
+		}
+
 		add_filter( 'block_categories_all', array( __CLASS__, 'inject_category' ), 10, 1 );
 	}
 
