@@ -2,7 +2,7 @@
 Contributors: saeidsamani
 Tags: menu, restaurant, cafe, food, drinks, offers, gutenberg, shortcode, block
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 0.1.1
 License: GPLv2 or later
