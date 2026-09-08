@@ -1,5 +1,5 @@
 === MenuCraft ===
-Contributors: parsedesign
+Contributors: saeidsamani
 Tags: menu, restaurant, cafe, food, drinks, offers, gutenberg, shortcode, block
 Requires at least: 6.0
 Tested up to: 6.6

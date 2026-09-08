@@ -3,11 +3,11 @@
  * Plugin Name:       MenuCraft
  * Plugin URI:        https://wordpress.org/plugins/menucraft/
  * Description:       Display beautiful restaurant and cafe menus for food and drinks.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            Parse Design
- * Author URI:        https://parsedesign.com
+ * Author:            Saeid Samani
+ * Author URI:        https://saeidsamani.de
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       menucraft

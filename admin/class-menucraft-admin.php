@@ -254,7 +254,7 @@ class MenuCraft_Admin {
 			__( 'About', 'menucraft' ),
 			'manage_options',
 			'menucraft-about',
-			array( $this, 'render_placeholder' )
+			array( $this, 'render_about_page' )
 		);
 
 		// add_menu_page / add_submenu_page return false when the current user
@@ -359,6 +359,17 @@ class MenuCraft_Admin {
 		}
 
 		require MENUCRAFT_PLUGIN_DIR . 'admin/partials/menucraft-admin-help.php';
+	}
+
+	/**
+	 * Render the About admin screen.
+	 */
+	public function render_about_page() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		require MENUCRAFT_PLUGIN_DIR . 'admin/partials/menucraft-admin-about.php';
 	}
 
 	/**

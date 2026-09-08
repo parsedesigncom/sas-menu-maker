@@ -1855,3 +1855,207 @@ body.menucraft-offcanvas-open {
 	padding: 10px 12px;
 	white-space: pre;
 }
+
+/* About page */
+
+.menucraft-about-version {
+	background: #eef2ff;
+	border-radius: 999px;
+	color: #3730a3;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 3px 10px;
+	white-space: nowrap;
+}
+
+.menucraft-about-intro {
+	color: #374151;
+	font-size: 15px;
+	line-height: 1.6;
+	margin: 0 0 28px;
+	max-width: 780px;
+}
+
+.menucraft-about-intro p {
+	margin: 0 0 12px;
+}
+
+.menucraft-about-section-title {
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 14px;
+	text-transform: uppercase;
+}
+
+.menucraft-about-features {
+	margin: 0 0 40px;
+}
+
+/* Each feature is a full-width row: big icon on the left, title +
+ * description stacked on the right. */
+.menucraft-about-feature {
+	align-items: flex-start;
+	display: flex;
+	gap: 18px;
+	padding: 4px 0;
+}
+
+.menucraft-about-feature-icon {
+	color: #3858e9;
+	flex-shrink: 0;
+	font-size: 28px;
+	height: 28px;
+	line-height: 1;
+	margin-top: 2px;
+	width: 28px;
+}
+
+.menucraft-about-feature-body {
+	flex: 1;
+	min-width: 0;
+}
+
+.menucraft-about-feature-title {
+	color: #1d2327;
+	font-size: 15px;
+	font-weight: 700;
+	margin: 0 0 4px;
+}
+
+.menucraft-about-feature-desc {
+	color: #4b5563;
+	font-size: 13px;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Airy separator between features. */
+.menucraft-about-sep {
+	background: transparent;
+	border: 0;
+	border-top: 1px solid #e5e7eb;
+	height: 0;
+	margin: 22px 0;
+}
+
+/* Get help & get involved — simple list, one link per row. */
+
+.menucraft-about-links {
+	margin: 0 0 40px;
+}
+
+.menucraft-about-link-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menucraft-about-link-list li {
+	align-items: baseline;
+	color: #4b5563;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 13px;
+	gap: 8px;
+	line-height: 1.55;
+	padding: 8px 0;
+}
+
+.menucraft-about-link-list li + li {
+	border-top: 1px solid #f1f5f9;
+}
+
+.menucraft-about-link-list .dashicons {
+	color: #3858e9;
+	flex-shrink: 0;
+	font-size: 18px;
+	height: 18px;
+	position: relative;
+	top: 3px;
+	width: 18px;
+}
+
+.menucraft-about-link-list a {
+	color: #3858e9;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.menucraft-about-link-list a:hover,
+.menucraft-about-link-list a:focus-visible {
+	text-decoration: underline;
+}
+
+.menucraft-about-link-desc {
+	color: #6b7280;
+}
+
+.menucraft-about-credits {
+	color: #4b5563;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.menucraft-about-credits a {
+	color: #3858e9;
+}
+
+.menucraft-about-credits-block {
+	align-items: flex-start;
+	display: flex;
+	gap: 20px;
+}
+
+/* Brand portrait next to the credit text. Rounded, subtle ring, gentle
+ * hover-lift because the whole thing links to saeidsamani.de. */
+.menucraft-about-brand {
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+	overflow: hidden;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menucraft-about-brand img {
+	border-radius: 50%;
+	display: block;
+	height: 96px;
+	object-fit: cover;
+	width: 96px;
+}
+
+.menucraft-about-brand:hover,
+.menucraft-about-brand:focus-visible {
+	box-shadow: 0 0 0 3px rgba( 56, 88, 233, 0.25 );
+	outline: none;
+	transform: translateY( -1px );
+}
+
+.menucraft-about-credits-body {
+	flex: 1;
+	min-width: 0;
+}
+
+.menucraft-about-credits-body p {
+	margin: 0 0 8px;
+}
+
+.menucraft-about-credits-body p:last-child {
+	margin-bottom: 0;
+}
+
+.menucraft-about-thanks {
+	color: #6b7280;
+	font-style: italic;
+	margin-top: 12px;
+}
+
+@media ( max-width: 600px ) {
+	.menucraft-about-credits-block {
+		flex-direction: column;
+		gap: 14px;
+	}
+}
