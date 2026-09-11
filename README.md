@@ -352,7 +352,7 @@ Custom tables (`$wpdb->prefix . 'sas_menu_maker_*'`):
 - `item_categories`, `item_tags`, `item_allergens` — M2M junctions.
 - `sas_menu_maker_options` — plugin-owned key/value store, independent of `wp_options`.
 
-Schema is versioned (`SAS_MENU_MAKER_DB_VERSION`) with idempotent migrations in `SAS_Menu_Maker_Schema::run_migrations()`. Latest is 1.6.
+Schema is versioned (`SAS_MENU_MAKER_DB_VERSION`) with idempotent migrations in `SAS_Menu_Maker_Schema::run_migrations()`. Latest is 1.5.
 
 ## Front-end DOM contract
 

@@ -23,7 +23,7 @@ defined( 'ABSPATH' ) || exit;
  * Plugin constants.
  */
 define( 'SAS_MENU_MAKER_VERSION', '0.1.2' );
-define( 'SAS_MENU_MAKER_DB_VERSION', '1.6' );
+define( 'SAS_MENU_MAKER_DB_VERSION', '1.5' );
 define( 'SAS_MENU_MAKER_PLUGIN_FILE', __FILE__ );
 define( 'SAS_MENU_MAKER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SAS_MENU_MAKER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

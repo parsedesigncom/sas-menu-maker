@@ -116,7 +116,7 @@ The **SAS Menu Maker → Help & Docs** page inside your WordPress admin has shor
 == Changelog ==
 
 = 0.1.2 =
-* Internal rename: class prefix `SAS_Menu_Maker_`, constant prefix `SAS_MENU_MAKER_`, hook/function prefix `sas_menu_maker_`, CSS class prefix `.sas-menu-maker-`, DB table prefix `wp_sas_menu_maker_*` (existing tables are renamed automatically on first admin load).
+* Internal rename: class prefix `SAS_Menu_Maker_`, constant prefix `SAS_MENU_MAKER_`, hook/function prefix `sas_menu_maker_`, CSS class prefix `.sas-menu-maker-`, DB table prefix `wp_sas_menu_maker_*`.
 * All code comments translated to English.
 
 = 0.1.1 =
@@ -137,7 +137,7 @@ The **SAS Menu Maker → Help & Docs** page inside your WordPress admin has shor
 == Upgrade Notice ==
 
 = 0.1.2 =
-Internal rename to `sas_menu_maker` prefix across classes, hooks, CSS and database tables. Existing tables are renamed automatically on first admin load — no manual steps needed.
+Internal rename to `sas_menu_maker` prefix across classes, hooks, CSS and database tables.
 
 = 0.1.1 =
 Adds the new group shortcode/block, multi-select for item relations, default-category flag, and fixes multi-tag rendering. No manual steps needed.

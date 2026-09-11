@@ -258,63 +258,12 @@ class SAS_Menu_Maker_Schema {
 	 * removed columns are handled by explicit migrations in run_migrations().
 	 */
 	public static function maybe_upgrade() {
-		// Legacy-table rename must run first: on installs upgrading from the
-		// former MenuCraft slug, all tables (including the options table that
-		// stores db_version) still live under the `wp_menucraft_*` prefix. If
-		// we read db_version through Options::get() before renaming, we'd hit
-		// the new-empty options table, get 0, run every migration from
-		// scratch — and every migration would target tables that don't exist
-		// yet under the new prefix.
-		self::rename_legacy_tables();
-
 		$current = SAS_Menu_Maker_Options::get( 'db_version', '0' );
 
 		if ( version_compare( $current, SAS_MENU_MAKER_DB_VERSION, '<' ) ) {
 			self::create_tables();
 			self::run_migrations( (string) $current );
 			SAS_Menu_Maker_Options::update( 'db_version', SAS_MENU_MAKER_DB_VERSION );
-		}
-	}
-
-	/**
-	 * Rename every `wp_menucraft_*` table to `wp_sas_menu_maker_*` if the
-	 * old-prefixed table still exists. No-op on fresh installs. Runs before
-	 * db_version is read so existing data survives the slug change.
-	 */
-	private static function rename_legacy_tables() {
-		global $wpdb;
-
-		$renames = array(
-			'menucraft_categories'      => 'sas_menu_maker_categories',
-			'menucraft_tags'            => 'sas_menu_maker_tags',
-			'menucraft_allergens'       => 'sas_menu_maker_allergens',
-			'menucraft_items'           => 'sas_menu_maker_items',
-			'menucraft_item_variants'   => 'sas_menu_maker_item_variants',
-			'menucraft_offers'          => 'sas_menu_maker_offers',
-			'menucraft_item_categories' => 'sas_menu_maker_item_categories',
-			'menucraft_item_tags'       => 'sas_menu_maker_item_tags',
-			'menucraft_item_allergens'  => 'sas_menu_maker_item_allergens',
-			'menucraft_offer_items'     => 'sas_menu_maker_offer_items',
-			'menucraft_options'         => 'sas_menu_maker_options',
-		);
-
-		foreach ( $renames as $old_suffix => $new_suffix ) {
-			$old_table = $wpdb->prefix . $old_suffix;
-			$new_table = $wpdb->prefix . $new_suffix;
-
-			$found = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $old_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-			if ( $found !== $old_table ) {
-				continue;
-			}
-
-			$new_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $new_table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-			if ( $new_exists === $new_table ) {
-				// Target already exists (partial migration or re-run) — leave both alone
-				// and let create_tables()/dbDelta reconcile any structural differences.
-				continue;
-			}
-
-			$wpdb->query( "RENAME TABLE `{$old_table}` TO `{$new_table}`" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		}
 	}
 
