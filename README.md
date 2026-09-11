@@ -32,11 +32,11 @@ Requires WordPress 6.0+, PHP 7.4+. GPL-2.0-or-later.
 
 ## Install & activate
 
-Clone or copy into `wp-content/plugins/sas-menu-maker/`, then activate through **Plugins** in WordPress admin. On activation the plugin creates its own tables (`wp_menucraft_*`) via `dbDelta` and stamps the current DB version.
+Clone or copy into `wp-content/plugins/sas-menu-maker/`, then activate through **Plugins** in WordPress admin. On activation the plugin creates its own tables (`wp_sas_menu_maker_*`) via `dbDelta` and stamps the current DB version.
 
 ```bash
 cd wp-content/plugins
-git clone https://github.com/saeidsamani/sas-menu-maker.git menucraft
+git clone https://github.com/parsedesigncom/sas-menu-maker.git sas-menu-maker
 ```
 
 No `composer install`, no `npm install`, no build step — everything ships ready to run.
@@ -167,7 +167,7 @@ Filter hooks are `apply_filters()` calls — the developer returns a modified va
 Every shortcode has an "html" filter that short-circuits the entire render. Return a non-empty string to replace the whole output.
 
 ```php
-add_filter( 'menucraft_shortcode_html', function ( $html, $context ) {
+add_filter( 'sas_menu_maker_shortcode_html', function ( $html, $context ) {
     // $context = [ 'atts', 'config', 'items', 'categories', 'tags', 'allergens' ]
     if ( isset( $context['atts']['class'] ) && 'drinks-page' === $context['atts']['class'] ) {
         return '<div class="my-drinks-list">…custom HTML…</div>';
@@ -176,7 +176,7 @@ add_filter( 'menucraft_shortcode_html', function ( $html, $context ) {
 }, 10, 2 );
 ```
 
-The offers and group shortcodes have parallel filters: `menucraft_offers_shortcode_html`, `menucraft_group_shortcode_html`.
+The offers and group shortcodes have parallel filters: `sas_menu_maker_offers_shortcode_html`, `sas_menu_maker_group_shortcode_html`.
 
 ### Data-level filters
 
@@ -184,14 +184,14 @@ Modify the underlying data arrays before they hit the template.
 
 ```php
 // Menu shortcode: hide items with an "internal" tag from the front end.
-add_filter( 'menucraft_shortcode_items', function ( $items ) {
+add_filter( 'sas_menu_maker_shortcode_items', function ( $items ) {
     return array_values( array_filter( $items, function ( $item ) {
         return ! in_array( 999, $item['tag_ids'], true ); // 999 = "internal" tag id
     } ) );
 } );
 
 // Group shortcode: replace the resolved source with a custom-loaded row.
-add_filter( 'menucraft_group_shortcode_source', function ( $source, $type, $ref ) {
+add_filter( 'sas_menu_maker_group_shortcode_source', function ( $source, $type, $ref ) {
     if ( 'category' === $type && 'featured' === $ref ) {
         return [ 'id' => 0, 'name' => 'Featured today', 'description' => 'Chef selection.', 'media_id' => 42 ];
     }
@@ -199,7 +199,7 @@ add_filter( 'menucraft_group_shortcode_source', function ( $source, $type, $ref 
 }, 10, 3 );
 
 // Offers shortcode: reorder or slice offers.
-add_filter( 'menucraft_offers_shortcode_offers', function ( $offers, $config ) {
+add_filter( 'sas_menu_maker_offers_shortcode_offers', function ( $offers, $config ) {
     // Show newest first.
     usort( $offers, function ( $a, $b ) { return strcmp( $b['created_at'], $a['created_at'] ); } );
     return $offers;
@@ -212,22 +212,22 @@ Replace or wrap a specific HTML region. Return `''` to keep the default.
 
 | Filter | Signature | Where it fires |
 | --- | --- | --- |
-| `menucraft_shortcode_filters_html` | `($html, $categories, $tags)` | Menu shortcode filter bar. |
-| `menucraft_shortcode_categories_html` | `($html, $categories)` | Category chip group. |
-| `menucraft_shortcode_tags_html` | `($html, $tags)` | Tag chip group. |
-| `menucraft_shortcode_items_html` | `($html, $items)` | Items list wrapper (menu). |
-| `menucraft_shortcode_item_html` | `($html, $item, $allergens, $tags, $config)` | Every single item card (shared across all three shortcodes). |
-| `menucraft_shortcode_allergens_legend_html` | `($html, $allergens)` | End-of-menu legend. |
-| `menucraft_offers_shortcode_items_html` | `($html, $offers)` | Offers list wrapper. |
-| `menucraft_offers_shortcode_item_html` | `($html, $offer, $items_map, $config)` | Every single offer card. |
-| `menucraft_group_shortcode_header_html` | `($html, $source, $config)` | Group hero header. |
-| `menucraft_group_shortcode_items_html` | `($html, $items)` | Group items list wrapper. |
-| `menucraft_group_shortcode_allergens_legend_html` | `($html, $allergens)` | Group legend. |
+| `sas_menu_maker_shortcode_filters_html` | `($html, $categories, $tags)` | Menu shortcode filter bar. |
+| `sas_menu_maker_shortcode_categories_html` | `($html, $categories)` | Category chip group. |
+| `sas_menu_maker_shortcode_tags_html` | `($html, $tags)` | Tag chip group. |
+| `sas_menu_maker_shortcode_items_html` | `($html, $items)` | Items list wrapper (menu). |
+| `sas_menu_maker_shortcode_item_html` | `($html, $item, $allergens, $tags, $config)` | Every single item card (shared across all three shortcodes). |
+| `sas_menu_maker_shortcode_allergens_legend_html` | `($html, $allergens)` | End-of-menu legend. |
+| `sas_menu_maker_offers_shortcode_items_html` | `($html, $offers)` | Offers list wrapper. |
+| `sas_menu_maker_offers_shortcode_item_html` | `($html, $offer, $items_map, $config)` | Every single offer card. |
+| `sas_menu_maker_group_shortcode_header_html` | `($html, $source, $config)` | Group hero header. |
+| `sas_menu_maker_group_shortcode_items_html` | `($html, $items)` | Group items list wrapper. |
+| `sas_menu_maker_group_shortcode_allergens_legend_html` | `($html, $allergens)` | Group legend. |
 
 Example — brand the filter bar:
 
 ```php
-add_filter( 'menucraft_shortcode_filters_html', function ( $html, $categories, $tags ) {
+add_filter( 'sas_menu_maker_shortcode_filters_html', function ( $html, $categories, $tags ) {
     ob_start();
     ?>
     <nav class="restaurant-filter-nav">
@@ -243,7 +243,7 @@ add_filter( 'menucraft_shortcode_filters_html', function ( $html, $categories, $
 Example — add a "chef's badge" to specific items:
 
 ```php
-add_filter( 'menucraft_shortcode_item_html', function ( $html, $item ) {
+add_filter( 'sas_menu_maker_shortcode_item_html', function ( $html, $item ) {
     if ( in_array( 5, $item['tag_ids'], true ) ) { // 5 = "chef's pick" tag id
         $html = '<span class="chef-badge">Chef\'s pick</span>' . $html;
     }
@@ -261,14 +261,14 @@ Fire before / after the whole shortcode render.
 
 | Action | Fired by | Args |
 | --- | --- | --- |
-| `menucraft_before_shortcode` / `menucraft_after_shortcode` | `[sas_menu]` | `$context` |
-| `menucraft_before_offers_shortcode` / `menucraft_after_offers_shortcode` | `[sas_menu_offers]` | `$context` |
-| `menucraft_before_group_shortcode` / `menucraft_after_group_shortcode` | `[sas_menu_group]` | `$context` |
+| `sas_menu_maker_before_shortcode` / `sas_menu_maker_after_shortcode` | `[sas_menu]` | `$context` |
+| `sas_menu_maker_before_offers_shortcode` / `sas_menu_maker_after_offers_shortcode` | `[sas_menu_offers]` | `$context` |
+| `sas_menu_maker_before_group_shortcode` / `sas_menu_maker_after_group_shortcode` | `[sas_menu_group]` | `$context` |
 
 Example — insert a Google-schema JSON-LD block before every menu render:
 
 ```php
-add_action( 'menucraft_before_shortcode', function ( $context ) {
+add_action( 'sas_menu_maker_before_shortcode', function ( $context ) {
     echo '<script type="application/ld+json">' . wp_json_encode( [
         '@context' => 'https://schema.org',
         '@type'    => 'Menu',
@@ -286,18 +286,18 @@ Fire at strategic points inside the template — inject a heading, a note, a pro
 
 | Action | Args | Fired by |
 | --- | --- | --- |
-| `menucraft_before_filters` / `menucraft_after_filters` | `$categories, $tags` | Menu |
-| `menucraft_before_items` / `menucraft_after_items` | `$items` | Menu, Group |
-| `menucraft_before_item` / `menucraft_after_item` | `$item, $config` | Every item (all shortcodes) |
-| `menucraft_before_offers` / `menucraft_after_offers` | `$offers` | Offers |
-| `menucraft_before_offer` / `menucraft_after_offer` | `$offer, $config` | Every offer card |
-| `menucraft_before_group_header` / `menucraft_after_group_header` | `$source, $config` | Group hero header |
-| `menucraft_before_allergens_legend` / `menucraft_after_allergens_legend` | `$allergens` | Legend (Menu, Group) |
+| `sas_menu_maker_before_filters` / `sas_menu_maker_after_filters` | `$categories, $tags` | Menu |
+| `sas_menu_maker_before_items` / `sas_menu_maker_after_items` | `$items` | Menu, Group |
+| `sas_menu_maker_before_item` / `sas_menu_maker_after_item` | `$item, $config` | Every item (all shortcodes) |
+| `sas_menu_maker_before_offers` / `sas_menu_maker_after_offers` | `$offers` | Offers |
+| `sas_menu_maker_before_offer` / `sas_menu_maker_after_offer` | `$offer, $config` | Every offer card |
+| `sas_menu_maker_before_group_header` / `sas_menu_maker_after_group_header` | `$source, $config` | Group hero header |
+| `sas_menu_maker_before_allergens_legend` / `sas_menu_maker_after_allergens_legend` | `$allergens` | Legend (Menu, Group) |
 
 Example — add a "New" ribbon to items created in the last 7 days:
 
 ```php
-add_action( 'menucraft_before_item', function ( $item ) {
+add_action( 'sas_menu_maker_before_item', function ( $item ) {
     $created = strtotime( $item['created_at'] );
     if ( $created && ( time() - $created ) < 7 * DAY_IN_SECONDS ) {
         echo '<span class="mc-new-ribbon">NEW</span>';
@@ -308,7 +308,7 @@ add_action( 'menucraft_before_item', function ( $item ) {
 Example — inject a promo box after the filter bar:
 
 ```php
-add_action( 'menucraft_after_filters', function () {
+add_action( 'sas_menu_maker_after_filters', function () {
     echo '<div class="promo-box">Ask about today\'s dessert special!</div>';
 } );
 ```
@@ -342,7 +342,7 @@ POST /wp-json/sas-menu-maker/v1/items/bulk-edit
 
 ## Data model
 
-Custom tables (`$wpdb->prefix . 'menucraft_*'`):
+Custom tables (`$wpdb->prefix . 'sas_menu_maker_*'`):
 
 - `categories`, `tags`, `allergens` — flat taxonomies.
 - `items` — with a nullable base `price`; when null the item is priced from its variants.
@@ -350,45 +350,45 @@ Custom tables (`$wpdb->prefix . 'menucraft_*'`):
 - `offers` — total-price bundles with optional `valid_from` / `valid_until` and free-form `conditions_text`.
 - `offer_items` — the composition; `variant_id` is nullable so a line can pin either the whole item or one specific variant. Same item may appear multiple times with different variants.
 - `item_categories`, `item_tags`, `item_allergens` — M2M junctions.
-- `menucraft_options` — plugin-owned key/value store, independent of `wp_options`.
+- `sas_menu_maker_options` — plugin-owned key/value store, independent of `wp_options`.
 
-Schema is versioned (`SAS_MENU_MAKER_DB_VERSION`) with idempotent migrations in `SAS_Menu_Maker_Schema::run_migrations()`. Latest is 1.5.
+Schema is versioned (`SAS_MENU_MAKER_DB_VERSION`) with idempotent migrations in `SAS_Menu_Maker_Schema::run_migrations()`. Latest is 1.6.
 
 ## Front-end DOM contract
 
 If you're writing custom CSS or JS against SAS Menu Maker's front-end output, these are the stable selectors:
 
-- Wrapper: `[data-menucraft-root]` (all three shortcodes). Also carries `data-menucraft-menu` for backwards compat when it's the menu shortcode.
-- Filter chip: `.menucraft-filter-chip[data-menucraft-filter="category|tag"]`. Active state: `.is-active`.
-- Item card: `.menucraft-item[data-menucraft-item="{id}"]`. When clickable (long description or variants-in-modal): also `.menucraft-item-has-details` + `[data-menucraft-open-details="item-{id}"]`.
-- Offer card: `.menucraft-offer[data-menucraft-offer="{id}"]` + optional `.menucraft-offer-has-details` + `[data-menucraft-open-details="offer-{id}"]`.
-- Modal: `[data-menucraft-modal]` inside the wrapper. Body populated via `[data-menucraft-modal-body]` from JSON in `[data-menucraft-details="{prefix-id}"]` (`prefix` = `item` or `offer`).
+- Wrapper: `[data-sas-menu-maker-root]` (all three shortcodes). Also carries `data-sas-menu-maker-menu` for backwards compat when it's the menu shortcode.
+- Filter chip: `.sas-menu-maker-filter-chip[data-sas-menu-maker-filter="category|tag"]`. Active state: `.is-active`.
+- Item card: `.sas-menu-maker-item[data-sas-menu-maker-item="{id}"]`. When clickable (long description or variants-in-modal): also `.sas-menu-maker-item-has-details` + `[data-sas-menu-maker-open-details="item-{id}"]`.
+- Offer card: `.sas-menu-maker-offer[data-sas-menu-maker-offer="{id}"]` + optional `.sas-menu-maker-offer-has-details` + `[data-sas-menu-maker-open-details="offer-{id}"]`.
+- Modal: `[data-sas-menu-maker-modal]` inside the wrapper. Body populated via `[data-sas-menu-maker-modal-body]` from JSON in `[data-sas-menu-maker-details="{prefix-id}"]` (`prefix` = `item` or `offer`).
 
 ## Development
 
 **Structure**:
 
 ```
-menucraft.php                      Plugin bootstrap (constants + activation hook).
+sas-menu-maker.php                      Plugin bootstrap (constants + activation hook).
 uninstall.php                      Opt-in table drop.
 includes/                          Core PHP: schema, repositories, REST, blocks, main class.
 admin/                             Admin controller + settings screens (partials/).
-public/class-menucraft-public.php  Front-end controller (shortcodes, asset registration).
+public/class-sas-menu-maker-public.php  Front-end controller (shortcodes, asset registration).
 templates/                         Overridable shortcode templates.
 blocks/{menu,offers,group}/        Gutenberg block metadata + editor JS (vanilla, no build).
-assets/css/menucraft-admin.css     Single admin CSS.
-assets/css/menucraft-public.css    Single front-end CSS.
-assets/js/menucraft-admin.js       Single admin JS.
-assets/js/menucraft-public.js      Single front-end JS.
-languages/                         Translation files (menucraft.pot + menucraft-{locale}.po/.mo).
+assets/css/sas-menu-maker-admin.css     Single admin CSS.
+assets/css/sas-menu-maker-public.css    Single front-end CSS.
+assets/js/sas-menu-maker-admin.js       Single admin JS.
+assets/js/sas-menu-maker-public.js      Single front-end JS.
+languages/                         Translation files (sas-menu-maker.pot + sas-menu-maker-{locale}.po/.mo).
 ```
 
 **Coding standards**: WordPress PHP Coding Standards. Prefixes:
 
 - Constants: `SAS_MENU_MAKER_`
 - Classes:   `SAS_Menu_Maker_`
-- Functions: `menucraft_`
-- Options / meta keys: `menucraft_`
+- Functions: `sas_menu_maker_`
+- Options / meta keys: `sas_menu_maker_`
 
 **No build step**: JavaScript is hand-written and committed as-is. That's a deliberate choice — the plugin ships and installs without `node_modules` or a bundler.
 
