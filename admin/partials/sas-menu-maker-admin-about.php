@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 $version = defined( 'SAS_MENU_MAKER_VERSION' ) ? SAS_MENU_MAKER_VERSION : '';
 
 $help_url    = admin_url( 'admin.php?page=sas-menu-maker-help' );
-$github_url  = 'https://github.com/saeidsamani/sas-menu-maker';
+$github_url  = 'https://github.com/parsedesigncom/sas-menu-maker';
 $wporg_url   = 'https://wordpress.org/plugins/sas-menu-maker/';
 
 /**
