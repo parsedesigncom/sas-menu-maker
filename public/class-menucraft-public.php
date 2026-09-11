@@ -49,9 +49,9 @@ class MenuCraft_Public {
 	 * Register the shortcodes. Called from the main loader.
 	 */
 	public function register_shortcodes() {
-		add_shortcode( 'menucraft', array( $this, 'render_shortcode' ) );
-		add_shortcode( 'menucraft_offers', array( $this, 'render_offers_shortcode' ) );
-		add_shortcode( 'menucraft_group', array( $this, 'render_group_shortcode' ) );
+		add_shortcode( 'sas_menu', array( $this, 'render_shortcode' ) );
+		add_shortcode( 'sas_menu_offers', array( $this, 'render_offers_shortcode' ) );
+		add_shortcode( 'sas_menu_group', array( $this, 'render_group_shortcode' ) );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class MenuCraft_Public {
 	 */
 	public static function locate_template( $name ) {
 		$name  = sanitize_file_name( $name );
-		$theme = locate_template( array( 'menucraft/' . $name . '.php' ) );
+		$theme = locate_template( array( 'sas-menu-maker/' . $name . '.php' ) );
 		if ( $theme ) {
 			return $theme;
 		}
@@ -149,7 +149,7 @@ class MenuCraft_Public {
 				'allergens_legend' => 'show',
 			),
 			is_array( $atts ) ? $atts : array(),
-			'menucraft'
+			'sas_menu'
 		);
 
 		// Enqueue at render time — safe mid-content because WP prints the
@@ -161,6 +161,13 @@ class MenuCraft_Public {
 		$instance_id = 'menucraft-menu-' . self::$instance_counter;
 
 		$config = self::normalise_atts( $atts, $instance_id );
+
+		// Attach the per-instance grid CSS to the public stylesheet handle
+		// instead of echoing a raw <style> block in the template, per WP.org
+		// "enqueue all CSS" guideline.
+		if ( ! empty( $config['grid_css'] ) ) {
+			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+		}
 
 		$items      = $this->collect_items();
 		$categories = $this->collect_categories( $items );
@@ -187,7 +194,10 @@ class MenuCraft_Public {
 		 */
 		$override = apply_filters( 'menucraft_shortcode_html', '', $context );
 		if ( is_string( $override ) && '' !== $override ) {
-			return $override;
+			// Filter returns arbitrary HTML from third-party code — pass it
+			// through wp_kses_post so scripts and other unsafe tags can't
+			// slip in through a rogue override.
+			return wp_kses_post( $override );
 		}
 
 		$template = self::locate_template( 'shortcode' );
@@ -238,9 +248,9 @@ class MenuCraft_Public {
 			'tags'       => trim( (string) $atts['tags_title'] ),
 			'allergens'  => trim( (string) $atts['allergens_title'] ),
 		);
-		if ( '' === $titles['categories'] ) { $titles['categories'] = __( 'Categories', 'menucraft' ); }
-		if ( '' === $titles['tags'] )       { $titles['tags']       = __( 'Tags', 'menucraft' ); }
-		if ( '' === $titles['allergens'] )  { $titles['allergens']  = __( 'Allergens', 'menucraft' ); }
+		if ( '' === $titles['categories'] ) { $titles['categories'] = __( 'Categories', 'sas-menu-maker' ); }
+		if ( '' === $titles['tags'] )       { $titles['tags']       = __( 'Tags', 'sas-menu-maker' ); }
+		if ( '' === $titles['allergens'] )  { $titles['allergens']  = __( 'Allergens', 'sas-menu-maker' ); }
 
 		// Split, sanitize, dedupe: an empty result is fine — the template
 		// simply omits the class token.
@@ -555,7 +565,7 @@ class MenuCraft_Public {
 				'conditions'     => 'modal',
 			),
 			is_array( $atts ) ? $atts : array(),
-			'menucraft_offers'
+			'sas_menu_offers'
 		);
 
 		wp_enqueue_style( $this->plugin_name . '-public' );
@@ -565,6 +575,10 @@ class MenuCraft_Public {
 		$instance_id = 'menucraft-offers-' . self::$instance_counter;
 
 		$config = self::normalise_offers_atts( $atts, $instance_id );
+
+		if ( ! empty( $config['grid_css'] ) ) {
+			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+		}
 
 		$offers    = $this->collect_offers( $config );
 		$items_map = $this->collect_items_map( $offers );
@@ -584,7 +598,7 @@ class MenuCraft_Public {
 		 */
 		$override = apply_filters( 'menucraft_offers_shortcode_html', '', $context );
 		if ( is_string( $override ) && '' !== $override ) {
-			return $override;
+			return wp_kses_post( $override );
 		}
 
 		$template = self::locate_template( 'shortcode-offers' );
@@ -866,7 +880,7 @@ class MenuCraft_Public {
 		if ( '' !== $from_h && '' !== $until_h ) {
 			return sprintf(
 				/* translators: 1: from-date, 2: until-date */
-				__( 'Valid %1$s – %2$s', 'menucraft' ),
+				__( 'Valid %1$s – %2$s', 'sas-menu-maker' ),
 				$from_h,
 				$until_h
 			);
@@ -874,13 +888,13 @@ class MenuCraft_Public {
 		if ( '' !== $from_h ) {
 			return sprintf(
 				/* translators: %s: date */
-				__( 'Valid from %s', 'menucraft' ),
+				__( 'Valid from %s', 'sas-menu-maker' ),
 				$from_h
 			);
 		}
 		return sprintf(
 			/* translators: %s: date */
-			__( 'Valid until %s', 'menucraft' ),
+			__( 'Valid until %s', 'sas-menu-maker' ),
 			$until_h
 		);
 	}
@@ -928,7 +942,7 @@ class MenuCraft_Public {
 				'collapsed'        => 'no',
 			),
 			is_array( $atts ) ? $atts : array(),
-			'menucraft_group'
+			'sas_menu_group'
 		);
 
 		// category takes precedence when both are set — one source per instance.
@@ -964,6 +978,10 @@ class MenuCraft_Public {
 
 		$config = self::normalise_group_atts( $atts, $instance_id );
 
+		if ( ! empty( $config['grid_css'] ) ) {
+			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+		}
+
 		$items     = $source ? self::collect_group_items( $source_type, (int) $source['id'] ) : array();
 		$allergens = $this->collect_allergens( $items );
 		$tags      = $this->collect_tags( $items );
@@ -986,7 +1004,7 @@ class MenuCraft_Public {
 		 */
 		$override = apply_filters( 'menucraft_group_shortcode_html', '', $context );
 		if ( is_string( $override ) && '' !== $override ) {
-			return $override;
+			return wp_kses_post( $override );
 		}
 
 		$template = self::locate_template( 'shortcode-group' );

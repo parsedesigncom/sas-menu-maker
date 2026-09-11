@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 			<hr class="menucraft-page-sep">
 		</header>
 		<div class="menucraft-page-body">
-			<p><?php esc_html_e( 'This screen is coming soon.', 'menucraft' ); ?></p>
+			<p><?php esc_html_e( 'This screen is coming soon.', 'sas-menu-maker' ); ?></p>
 		</div>
 		<footer class="menucraft-page-footer">
 			<hr class="menucraft-page-sep">

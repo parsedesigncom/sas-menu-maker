@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       MenuCraft
- * Plugin URI:        https://wordpress.org/plugins/menucraft/
+ * Plugin Name:       SAS Menu Maker
+ * Plugin URI:        https://wordpress.org/plugins/sas-menu-maker/
  * Description:       Display beautiful restaurant and cafe menus for food and drinks.
  * Version:           0.1.1
  * Requires at least: 6.0
@@ -10,10 +10,10 @@
  * Author URI:        https://saeidsamani.de
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       menucraft
+ * Text Domain:       sas-menu-maker
  * Domain Path:       /languages
  *
- * @package MenuCraft
+ * @package SAS_Menu_Maker
  */
 
 // Prevent direct access.
@@ -28,7 +28,7 @@ define( 'MENUCRAFT_PLUGIN_FILE', __FILE__ );
 define( 'MENUCRAFT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MENUCRAFT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'MENUCRAFT_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'MENUCRAFT_TEXT_DOMAIN', 'menucraft' );
+define( 'MENUCRAFT_TEXT_DOMAIN', 'sas-menu-maker' );
 
 /**
  * Activation hook.

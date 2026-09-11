@@ -20,11 +20,11 @@ defined( 'ABSPATH' ) || exit;
 					data-menucraft-panel-open="menucraft-panel-tag-form"
 					data-menucraft-panel-mode="create">
 					<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
-					<?php esc_html_e( 'New Tag', 'menucraft' ); ?>
+					<?php esc_html_e( 'New Tag', 'sas-menu-maker' ); ?>
 				</button>
 			</div>
 			<p class="menucraft-page-description">
-				<?php esc_html_e( 'Label items with tags such as vegan, halal, gluten-free.', 'menucraft' ); ?>
+				<?php esc_html_e( 'Label items with tags such as vegan, halal, gluten-free.', 'sas-menu-maker' ); ?>
 			</p>
 			<hr class="menucraft-page-sep">
 		</header>
@@ -36,18 +36,18 @@ defined( 'ABSPATH' ) || exit;
 				data-menucraft-modal-delete="menucraft-modal-delete-tag">
 				<thead>
 					<tr>
-						<th scope="col" class="menucraft-col-thumb"><?php esc_html_e( 'Image', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-name"><?php esc_html_e( 'Name', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-color"><?php esc_html_e( 'Color', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-desc"><?php esc_html_e( 'Description', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-active"><?php esc_html_e( 'Active', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-dates"><?php esc_html_e( 'Dates', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-actions"><?php esc_html_e( 'Actions', 'menucraft' ); ?></th>
+						<th scope="col" class="menucraft-col-thumb"><?php esc_html_e( 'Image', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-name"><?php esc_html_e( 'Name', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-color"><?php esc_html_e( 'Color', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-desc"><?php esc_html_e( 'Description', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-active"><?php esc_html_e( 'Active', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-dates"><?php esc_html_e( 'Dates', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-actions"><?php esc_html_e( 'Actions', 'sas-menu-maker' ); ?></th>
 					</tr>
 				</thead>
 				<tbody data-menucraft-list-body>
 					<tr class="menucraft-row-status">
-						<td colspan="7"><?php esc_html_e( 'Loading…', 'menucraft' ); ?></td>
+						<td colspan="7"><?php esc_html_e( 'Loading…', 'sas-menu-maker' ); ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -71,14 +71,14 @@ defined( 'ABSPATH' ) || exit;
 				<header class="menucraft-offcanvas-header">
 					<h2 class="menucraft-offcanvas-title"
 						id="menucraft-panel-tag-form-title"
-						data-menucraft-title-create="<?php esc_attr_e( 'New Tag', 'menucraft' ); ?>"
-						data-menucraft-title-edit="<?php esc_attr_e( 'Edit Tag', 'menucraft' ); ?>">
-						<?php esc_html_e( 'New Tag', 'menucraft' ); ?>
+						data-menucraft-title-create="<?php esc_attr_e( 'New Tag', 'sas-menu-maker' ); ?>"
+						data-menucraft-title-edit="<?php esc_attr_e( 'Edit Tag', 'sas-menu-maker' ); ?>">
+						<?php esc_html_e( 'New Tag', 'sas-menu-maker' ); ?>
 					</h2>
 					<button type="button"
 						class="menucraft-offcanvas-close"
 						data-menucraft-panel-close
-						aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">
+						aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">
 						<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
 					</button>
 				</header>
@@ -86,34 +86,34 @@ defined( 'ABSPATH' ) || exit;
 				<div class="menucraft-offcanvas-body">
 					<div class="menucraft-field">
 						<label for="menucraft-tag-name">
-							<?php esc_html_e( 'Name', 'menucraft' ); ?>
+							<?php esc_html_e( 'Name', 'sas-menu-maker' ); ?>
 							<span class="menucraft-required" aria-hidden="true">*</span>
 						</label>
 						<input type="text" id="menucraft-tag-name" name="name" required>
 					</div>
 
 					<div class="menucraft-field">
-						<label for="menucraft-tag-description"><?php esc_html_e( 'Description', 'menucraft' ); ?></label>
+						<label for="menucraft-tag-description"><?php esc_html_e( 'Description', 'sas-menu-maker' ); ?></label>
 						<textarea id="menucraft-tag-description" name="description" rows="4"></textarea>
 					</div>
 
 					<div class="menucraft-field">
-						<label for="menucraft-tag-color"><?php esc_html_e( 'Color', 'menucraft' ); ?></label>
+						<label for="menucraft-tag-color"><?php esc_html_e( 'Color', 'sas-menu-maker' ); ?></label>
 						<input type="color" id="menucraft-tag-color" name="color" value="#3858e9">
 					</div>
 
 					<div class="menucraft-field menucraft-field-media">
-						<label><?php esc_html_e( 'Image', 'menucraft' ); ?></label>
+						<label><?php esc_html_e( 'Image', 'sas-menu-maker' ); ?></label>
 						<div class="menucraft-media-picker" data-menucraft-media-picker>
 							<div class="menucraft-media-preview"
 								data-menucraft-media-preview
-								data-empty="<?php esc_attr_e( 'No image selected', 'menucraft' ); ?>"></div>
+								data-empty="<?php esc_attr_e( 'No image selected', 'sas-menu-maker' ); ?>"></div>
 							<div class="menucraft-media-actions">
 								<button type="button" class="button" data-menucraft-media-choose>
-									<?php esc_html_e( 'Choose Image', 'menucraft' ); ?>
+									<?php esc_html_e( 'Choose Image', 'sas-menu-maker' ); ?>
 								</button>
 								<button type="button" class="button-link menucraft-media-remove" data-menucraft-media-remove hidden>
-									<?php esc_html_e( 'Remove', 'menucraft' ); ?>
+									<?php esc_html_e( 'Remove', 'sas-menu-maker' ); ?>
 								</button>
 							</div>
 							<input type="hidden" name="media_id" value="0" data-menucraft-media-input>
@@ -121,28 +121,28 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 
 					<div class="menucraft-field">
-						<label for="menucraft-tag-sort"><?php esc_html_e( 'Sort Order', 'menucraft' ); ?></label>
+						<label for="menucraft-tag-sort"><?php esc_html_e( 'Sort Order', 'sas-menu-maker' ); ?></label>
 						<input type="number" id="menucraft-tag-sort" name="sort_order" value="0" step="1" min="0">
 					</div>
 
 					<div class="menucraft-field menucraft-field-checkbox">
 						<label for="menucraft-tag-active">
 							<input type="checkbox" id="menucraft-tag-active" name="is_active" value="1" checked>
-							<?php esc_html_e( 'Active', 'menucraft' ); ?>
+							<?php esc_html_e( 'Active', 'sas-menu-maker' ); ?>
 						</label>
 					</div>
 				</div>
 
 				<footer class="menucraft-offcanvas-footer">
 					<button type="button" class="button" data-menucraft-panel-close>
-						<?php esc_html_e( 'Cancel', 'menucraft' ); ?>
+						<?php esc_html_e( 'Cancel', 'sas-menu-maker' ); ?>
 					</button>
 					<button type="submit"
 						class="button button-primary"
 						data-menucraft-submit
-						data-menucraft-label-create="<?php esc_attr_e( 'Save Tag', 'menucraft' ); ?>"
-						data-menucraft-label-edit="<?php esc_attr_e( 'Update Tag', 'menucraft' ); ?>">
-						<?php esc_html_e( 'Save Tag', 'menucraft' ); ?>
+						data-menucraft-label-create="<?php esc_attr_e( 'Save Tag', 'sas-menu-maker' ); ?>"
+						data-menucraft-label-edit="<?php esc_attr_e( 'Update Tag', 'sas-menu-maker' ); ?>">
+						<?php esc_html_e( 'Save Tag', 'sas-menu-maker' ); ?>
 					</button>
 				</footer>
 			</form>
@@ -155,7 +155,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="menucraft-modal-dialog" aria-labelledby="menucraft-modal-delete-tag-title">
 			<header class="menucraft-modal-header">
 				<h2 class="menucraft-modal-title" id="menucraft-modal-delete-tag-title">
-					<?php esc_html_e( 'Delete tag?', 'menucraft' ); ?>
+					<?php esc_html_e( 'Delete tag?', 'sas-menu-maker' ); ?>
 				</h2>
 			</header>
 			<div class="menucraft-modal-body">
@@ -163,7 +163,7 @@ defined( 'ABSPATH' ) || exit;
 					<?php
 					printf(
 						/* translators: %s: tag name placeholder replaced by JS. */
-						esc_html__( 'Are you sure you want to delete %s? This cannot be undone.', 'menucraft' ),
+						esc_html__( 'Are you sure you want to delete %s? This cannot be undone.', 'sas-menu-maker' ),
 						'<strong data-menucraft-modal-target-name>—</strong>'
 					);
 					?>
@@ -171,12 +171,12 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<footer class="menucraft-modal-footer">
 				<button type="button" class="button" data-menucraft-modal-close>
-					<?php esc_html_e( 'Cancel', 'menucraft' ); ?>
+					<?php esc_html_e( 'Cancel', 'sas-menu-maker' ); ?>
 				</button>
 				<button type="button"
 					class="button menucraft-btn-danger"
 					data-menucraft-modal-confirm-delete>
-					<?php esc_html_e( 'Delete', 'menucraft' ); ?>
+					<?php esc_html_e( 'Delete', 'sas-menu-maker' ); ?>
 				</button>
 			</footer>
 		</div>

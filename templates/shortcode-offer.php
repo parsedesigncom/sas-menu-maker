@@ -115,7 +115,7 @@ if ( $show_cond_modal ) {
 		tabindex="0"
 		role="button"
 		data-menucraft-open-details="offer-<?php echo esc_attr( (string) $offer_id ); ?>"
-		aria-label="<?php echo esc_attr( sprintf( /* translators: %s: offer name */ __( 'Show details for %s', 'menucraft' ), $offer['name'] ) ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( /* translators: %s: offer name */ __( 'Show details for %s', 'sas-menu-maker' ), $offer['name'] ) ); ?>"
 	<?php endif; ?>>
 
 	<?php

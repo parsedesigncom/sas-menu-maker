@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 // PHP global — the prefix rule does not apply.
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
-$instance_id  = isset( $config['instance_id'] ) ? $config['instance_id'] : 'menucraft-offers';
+$instance_id  = isset( $config['instance_id'] ) ? $config['instance_id'] : 'sas-menu-maker-offers';
 $image_pos    = isset( $config['image_pos'] ) ? $config['image_pos'] : 'left';
 $grid_class   = ! empty( $config['grid_enabled'] ) ? ' menucraft-offers--grid' : ' menucraft-offers--rows';
 $custom_class = ! empty( $config['custom_class'] ) ? ' ' . $config['custom_class'] : '';
@@ -32,10 +32,6 @@ $list_override = apply_filters( 'menucraft_offers_shortcode_items_html', '', $of
 	id="<?php echo esc_attr( $instance_id ); ?>"
 	data-menucraft-root>
 
-	<?php if ( ! empty( $config['grid_css'] ) ) : ?>
-		<style><?php echo $config['grid_css']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
-	<?php endif; ?>
-
 	<?php if ( is_string( $list_override ) && '' !== $list_override ) : ?>
 		<?php echo $list_override; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<?php else : ?>
@@ -43,7 +39,7 @@ $list_override = apply_filters( 'menucraft_offers_shortcode_items_html', '', $of
 		<div class="menucraft-offers-list" data-menucraft-offers-list>
 			<?php if ( empty( $offers ) ) : ?>
 				<p class="menucraft-empty">
-					<?php esc_html_e( 'No current offers.', 'menucraft' ); ?>
+					<?php esc_html_e( 'No current offers.', 'sas-menu-maker' ); ?>
 				</p>
 			<?php else : ?>
 				<?php foreach ( $offers as $offer ) : ?>
@@ -69,7 +65,7 @@ $list_override = apply_filters( 'menucraft_offers_shortcode_items_html', '', $of
 				<button type="button"
 					class="menucraft-modal-close"
 					data-menucraft-modal-close
-					aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">&times;</button>
+					aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">&times;</button>
 			</header>
 			<div class="menucraft-modal-body" data-menucraft-modal-body></div>
 		</div>

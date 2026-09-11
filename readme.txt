@@ -1,4 +1,4 @@
-=== MenuCraft ===
+=== SAS Menu Maker ===
 Contributors: saeidsamani
 Tags: menu, restaurant, cafe, food, drinks
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Beautiful, filterable menus for restaurants and cafés. Items, variants, allerge
 
 == Description ==
 
-MenuCraft is a free, self-contained menu manager for restaurants, cafés and bars. It stays out of your theme's way: your data lives in its own plugin tables, and the front-end output is a single CSS + a single JavaScript file, only loaded on pages that actually show the menu.
+SAS Menu Maker is a free, self-contained menu manager for restaurants, cafés and bars. It stays out of your theme's way: your data lives in its own plugin tables, and the front-end output is a single CSS + a single JavaScript file, only loaded on pages that actually show the menu.
 
 **What you can build**
 
@@ -23,8 +23,8 @@ MenuCraft is a free, self-contained menu manager for restaurants, cafés and bar
 
 **Ways to show the menu**
 
-* Shortcodes: `[menucraft]`, `[menucraft_offers]`, `[menucraft_group]`.
-* Gutenberg blocks: "MenuCraft Menu", "MenuCraft Offers", "MenuCraft Group" — each with a live preview and a sidebar of settings (image position, grid layout, colors with alpha, alignment, font size, border radius).
+* Shortcodes: `[sas_menu]`, `[sas_menu_offers]`, `[sas_menu_group]`.
+* Gutenberg blocks: "SAS Menu", "SAS Menu — Offers", "SAS Menu — Group" — each with a live preview and a sidebar of settings (image position, grid layout, colors with alpha, alignment, font size, border radius).
 
 **Made for real menus**
 
@@ -37,7 +37,7 @@ MenuCraft is a free, self-contained menu manager for restaurants, cafés and bar
 
 **Made for developers**
 
-Every rendered region flows through filter and action hooks so you can restyle or extend without editing plugin files. Templates live in `templates/` and can be overridden theme-side by copying to `theme/menucraft/`. Full REST API under `/wp-json/menucraft/v1/`.
+Every rendered region flows through filter and action hooks so you can restyle or extend without editing plugin files. Templates live in `templates/` and can be overridden theme-side by copying to `theme/sas-menu-maker/`. Full REST API under `/wp-json/sas-menu-maker/v1/`.
 
 **Made for WordPress.org**
 
@@ -48,9 +48,9 @@ Every rendered region flows through filter and action hooks so you can restyle o
 
 == Installation ==
 
-1. Upload the `menucraft` folder to `/wp-content/plugins/`, or install via **Plugins → Add New**.
+1. Upload the `sas-menu-maker` folder to `/wp-content/plugins/`, or install via **Plugins → Add New**.
 2. Activate the plugin through the **Plugins** screen in WordPress.
-3. In the WordPress admin sidebar, open **MenuCraft**.
+3. In the WordPress admin sidebar, open **SAS Menu Maker**.
 4. Open **Help & Docs** first — the "Getting started" section walks you through the recommended order to set things up.
 
 **Recommended setup order**
@@ -61,21 +61,21 @@ Every rendered region flows through filter and action hooks so you can restyle o
 4. **Items** — the actual food and drinks, with names, prices (or variants for sizes), images, and the categories/tags/allergens they belong to.
 5. **Offers** (optional) — special deals that combine several items at a fixed total price, with validity dates and optional conditions.
 6. **Options** — currency symbol shown next to every price.
-7. **Put the menu on a page** — insert the shortcode `[menucraft]` or add the **MenuCraft Menu** block in the block editor.
+7. **Put the menu on a page** — insert the shortcode `[sas_menu]` or add the **SAS Menu** block in the block editor.
 
 == Frequently Asked Questions ==
 
-= Is MenuCraft free? =
+= Is SAS Menu Maker free? =
 
 Yes. GPLv2 (or later), no premium version, no paid add-ons.
 
 = Does it work with my theme? =
 
-Yes. The front-end output uses class-scoped CSS (`.menucraft-*`) so it inherits your theme's fonts and colors and doesn't leak into your theme. Every template can also be overridden by copying it to `your-theme/menucraft/`.
+Yes. The front-end output uses class-scoped CSS so it inherits your theme's fonts and colors and doesn't leak into your theme. Every template can also be overridden by copying it to `your-theme/sas-menu-maker/`.
 
 = Does it slow down my site? =
 
-MenuCraft loads its front-end assets only on pages that actually render the shortcode or block. No JavaScript library dependency (no jQuery, no React). One CSS file, one JS file.
+SAS Menu Maker loads its front-end assets only on pages that actually render the shortcode or block. No JavaScript library dependency (no jQuery, no React). One CSS file, one JS file.
 
 = Can visitors filter the menu? =
 
@@ -83,11 +83,11 @@ Yes. Category and tag buttons appear above the item list. Only one filter per gr
 
 = Can I show only one section of the menu on a page? =
 
-Use `[menucraft_group category="drinks"]` or the **MenuCraft Group** block. It shows every item in one category (or one tag), with that taxonomy's own image and description as a hero header — no filter bar needed.
+Use `[sas_menu_group category="drinks"]` or the **SAS Menu — Group** block. It shows every item in one category (or one tag), with that taxonomy's own image and description as a hero header — no filter bar needed.
 
 = Where do I set the currency? =
 
-**MenuCraft → Options**. The symbol you set there is used everywhere in the plugin (item prices, variant prices, offer prices).
+**SAS Menu Maker → Options**. The symbol you set there is used everywhere in the plugin (item prices, variant prices, offer prices).
 
 = What happens to an item if I delete a category/tag/allergen it uses? =
 
@@ -97,13 +97,13 @@ The link is removed cleanly. The item stays; it just no longer belongs to that g
 
 No — you'll get a message telling you which offers reference it. Change the offer first, then delete.
 
-= Can I translate MenuCraft? =
+= Can I translate SAS Menu Maker? =
 
-Yes. All user-facing strings use WordPress's `__()` and are kept short so translation tools handle them well. A German translation is planned.
+Yes. All user-facing strings use WordPress's `__()` and are kept short so translation tools handle them well. Translations are managed on translate.wordpress.org.
 
 = Where can I get help? =
 
-The **MenuCraft → Help & Docs** page inside your WordPress admin has short walkthroughs for every feature. For developers: see `README.md` in the plugin folder or on GitHub for the full hook reference and code examples.
+The **SAS Menu Maker → Help & Docs** page inside your WordPress admin has short walkthroughs for every feature. For developers: see `README.md` on GitHub for the full hook reference and code examples.
 
 == Screenshots ==
 
@@ -111,13 +111,13 @@ The **MenuCraft → Help & Docs** page inside your WordPress admin has short wal
 2. Offer edit panel with the items sub-panel (chip picker + line configuration).
 3. Getting Started section in the Help & Docs accordion.
 4. Front-end menu with category and tag filters, item cards, and allergen legend.
-5. Gutenberg "MenuCraft Menu" block with the sidebar showing layout, colors and grid options.
+5. Gutenberg "SAS Menu" block with the sidebar showing layout, colors and grid options.
 
 == Changelog ==
 
 = 0.1.1 =
-* Added `[menucraft_group]` shortcode and **MenuCraft Group** block for focused single-category or single-tag pages, with hero header (image + name + description) and optional start-collapsed mode.
-* Added multi-select with search for item categories/tags/allergens (Select2-style, no library).
+* Added `[sas_menu_group]` shortcode and **SAS Menu — Group** block for focused single-category or single-tag pages, with hero header (image + name + description) and optional start-collapsed mode.
+* Added multi-select with search for item categories/tags/allergens.
 * Added default-category flag: mark one category as default; its filter chip is auto-activated on the frontend.
 * Frontend filter behaviour: single-select per group (Category, Tag), AND across groups.
 * Fixed a bug where items with multiple tags rendered fewer pills than expected.
@@ -126,8 +126,8 @@ The **MenuCraft → Help & Docs** page inside your WordPress admin has short wal
 = 0.1.0 =
 * Initial release.
 * Admin CRUD for Categories, Tags, Allergens, Items (with variants), Offers, Options.
-* Frontend shortcodes `[menucraft]` and `[menucraft_offers]`.
-* Gutenberg blocks **MenuCraft Menu** and **MenuCraft Offers** with per-block colors (alpha channel), alignment, font size, border radius, custom grid layout.
+* Frontend shortcodes `[sas_menu]` and `[sas_menu_offers]`.
+* Gutenberg blocks **SAS Menu** and **SAS Menu — Offers** with per-block colors (alpha channel), alignment, font size, border radius, custom grid layout.
 * Help & Docs accordion with onboarding + per-feature guides.
 
 == Upgrade Notice ==

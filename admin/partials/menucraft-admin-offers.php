@@ -21,11 +21,11 @@ defined( 'ABSPATH' ) || exit;
 					data-menucraft-panel-open="menucraft-panel-offer-form"
 					data-menucraft-panel-mode="create">
 					<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
-					<?php esc_html_e( 'New Offer', 'menucraft' ); ?>
+					<?php esc_html_e( 'New Offer', 'sas-menu-maker' ); ?>
 				</button>
 			</div>
 			<p class="menucraft-page-description">
-				<?php esc_html_e( 'Bundle single items or combos at a fixed price with an optional validity window and free-form conditions.', 'menucraft' ); ?>
+				<?php esc_html_e( 'Bundle single items or combos at a fixed price with an optional validity window and free-form conditions.', 'sas-menu-maker' ); ?>
 			</p>
 			<hr class="menucraft-page-sep">
 		</header>
@@ -41,78 +41,78 @@ defined( 'ABSPATH' ) || exit;
 					<span class="menucraft-filters-chevron dashicons dashicons-arrow-right" aria-hidden="true"></span>
 					<span class="menucraft-filters-title">
 						<span class="dashicons dashicons-filter" aria-hidden="true"></span>
-						<?php esc_html_e( 'Filters', 'menucraft' ); ?>
+						<?php esc_html_e( 'Filters', 'sas-menu-maker' ); ?>
 					</span>
 					<span class="menucraft-filters-count" data-menucraft-filters-count hidden></span>
 					<button type="button"
 						class="button-link menucraft-filters-reset"
 						data-menucraft-filters-reset>
-						<?php esc_html_e( 'Reset', 'menucraft' ); ?>
+						<?php esc_html_e( 'Reset', 'sas-menu-maker' ); ?>
 					</button>
 				</div>
 				<div class="menucraft-filters-body" id="menucraft-filters-body-offers">
 					<div class="menucraft-filter-field menucraft-filter-search">
 						<label for="menucraft-filter-offers-search">
-							<?php esc_html_e( 'Search', 'menucraft' ); ?>
+							<?php esc_html_e( 'Search', 'sas-menu-maker' ); ?>
 						</label>
 						<input type="search"
 							id="menucraft-filter-offers-search"
 							data-menucraft-filter="search"
-							placeholder="<?php esc_attr_e( 'Name, description or conditions…', 'menucraft' ); ?>">
+							placeholder="<?php esc_attr_e( 'Name, description or conditions…', 'sas-menu-maker' ); ?>">
 					</div>
 
 					<div class="menucraft-filter-row">
 						<div class="menucraft-filter-field">
 							<label for="menucraft-filter-offers-status">
-								<?php esc_html_e( 'Status', 'menucraft' ); ?>
+								<?php esc_html_e( 'Status', 'sas-menu-maker' ); ?>
 							</label>
 							<select id="menucraft-filter-offers-status" data-menucraft-filter="status">
-								<option value=""><?php esc_html_e( 'All', 'menucraft' ); ?></option>
-								<option value="active"><?php esc_html_e( 'Active', 'menucraft' ); ?></option>
-								<option value="inactive"><?php esc_html_e( 'Inactive', 'menucraft' ); ?></option>
+								<option value=""><?php esc_html_e( 'All', 'sas-menu-maker' ); ?></option>
+								<option value="active"><?php esc_html_e( 'Active', 'sas-menu-maker' ); ?></option>
+								<option value="inactive"><?php esc_html_e( 'Inactive', 'sas-menu-maker' ); ?></option>
 							</select>
 						</div>
 
 						<div class="menucraft-filter-field">
 							<label for="menucraft-filter-offers-validity">
-								<?php esc_html_e( 'Validity', 'menucraft' ); ?>
+								<?php esc_html_e( 'Validity', 'sas-menu-maker' ); ?>
 							</label>
 							<select id="menucraft-filter-offers-validity" data-menucraft-filter="validity">
-								<option value=""><?php esc_html_e( 'All', 'menucraft' ); ?></option>
-								<option value="current"><?php esc_html_e( 'Currently valid', 'menucraft' ); ?></option>
-								<option value="upcoming"><?php esc_html_e( 'Upcoming', 'menucraft' ); ?></option>
-								<option value="expired"><?php esc_html_e( 'Expired', 'menucraft' ); ?></option>
-								<option value="always"><?php esc_html_e( 'No date limit', 'menucraft' ); ?></option>
+								<option value=""><?php esc_html_e( 'All', 'sas-menu-maker' ); ?></option>
+								<option value="current"><?php esc_html_e( 'Currently valid', 'sas-menu-maker' ); ?></option>
+								<option value="upcoming"><?php esc_html_e( 'Upcoming', 'sas-menu-maker' ); ?></option>
+								<option value="expired"><?php esc_html_e( 'Expired', 'sas-menu-maker' ); ?></option>
+								<option value="always"><?php esc_html_e( 'No date limit', 'sas-menu-maker' ); ?></option>
 							</select>
 						</div>
 
 						<div class="menucraft-filter-field">
-							<label><?php esc_html_e( 'Price', 'menucraft' ); ?></label>
+							<label><?php esc_html_e( 'Price', 'sas-menu-maker' ); ?></label>
 							<div class="menucraft-filter-range">
 								<input type="number"
 									step="0.01"
 									min="0"
 									data-menucraft-filter="price_min"
 									data-menucraft-price
-									placeholder="<?php esc_attr_e( 'From', 'menucraft' ); ?>">
+									placeholder="<?php esc_attr_e( 'From', 'sas-menu-maker' ); ?>">
 								<span aria-hidden="true">–</span>
 								<input type="number"
 									step="0.01"
 									min="0"
 									data-menucraft-filter="price_max"
 									data-menucraft-price
-									placeholder="<?php esc_attr_e( 'To', 'menucraft' ); ?>">
+									placeholder="<?php esc_attr_e( 'To', 'sas-menu-maker' ); ?>">
 							</div>
 						</div>
 
 						<div class="menucraft-filter-field">
 							<label for="menucraft-filter-offers-image">
-								<?php esc_html_e( 'Image', 'menucraft' ); ?>
+								<?php esc_html_e( 'Image', 'sas-menu-maker' ); ?>
 							</label>
 							<select id="menucraft-filter-offers-image" data-menucraft-filter="image">
-								<option value=""><?php esc_html_e( 'All', 'menucraft' ); ?></option>
-								<option value="with"><?php esc_html_e( 'With image', 'menucraft' ); ?></option>
-								<option value="without"><?php esc_html_e( 'Without image', 'menucraft' ); ?></option>
+								<option value=""><?php esc_html_e( 'All', 'sas-menu-maker' ); ?></option>
+								<option value="with"><?php esc_html_e( 'With image', 'sas-menu-maker' ); ?></option>
+								<option value="without"><?php esc_html_e( 'Without image', 'sas-menu-maker' ); ?></option>
 							</select>
 						</div>
 					</div>
@@ -125,19 +125,19 @@ defined( 'ABSPATH' ) || exit;
 				data-menucraft-modal-delete="menucraft-modal-delete-offer">
 				<thead>
 					<tr>
-						<th scope="col" class="menucraft-col-thumb"><?php esc_html_e( 'Image', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-name"><?php esc_html_e( 'Name', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-price"><?php esc_html_e( 'Price', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-validity"><?php esc_html_e( 'Validity', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-items"><?php esc_html_e( 'Items', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-active"><?php esc_html_e( 'Active', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-dates"><?php esc_html_e( 'Dates', 'menucraft' ); ?></th>
-						<th scope="col" class="menucraft-col-actions"><?php esc_html_e( 'Actions', 'menucraft' ); ?></th>
+						<th scope="col" class="menucraft-col-thumb"><?php esc_html_e( 'Image', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-name"><?php esc_html_e( 'Name', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-price"><?php esc_html_e( 'Price', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-validity"><?php esc_html_e( 'Validity', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-items"><?php esc_html_e( 'Items', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-active"><?php esc_html_e( 'Active', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-dates"><?php esc_html_e( 'Dates', 'sas-menu-maker' ); ?></th>
+						<th scope="col" class="menucraft-col-actions"><?php esc_html_e( 'Actions', 'sas-menu-maker' ); ?></th>
 					</tr>
 				</thead>
 				<tbody data-menucraft-list-body>
 					<tr class="menucraft-row-status">
-						<td colspan="8"><?php esc_html_e( 'Loading…', 'menucraft' ); ?></td>
+						<td colspan="8"><?php esc_html_e( 'Loading…', 'sas-menu-maker' ); ?></td>
 					</tr>
 				</tbody>
 			</table>
@@ -161,14 +161,14 @@ defined( 'ABSPATH' ) || exit;
 				<header class="menucraft-offcanvas-header">
 					<h2 class="menucraft-offcanvas-title"
 						id="menucraft-panel-offer-form-title"
-						data-menucraft-title-create="<?php esc_attr_e( 'New Offer', 'menucraft' ); ?>"
-						data-menucraft-title-edit="<?php esc_attr_e( 'Edit Offer', 'menucraft' ); ?>">
-						<?php esc_html_e( 'New Offer', 'menucraft' ); ?>
+						data-menucraft-title-create="<?php esc_attr_e( 'New Offer', 'sas-menu-maker' ); ?>"
+						data-menucraft-title-edit="<?php esc_attr_e( 'Edit Offer', 'sas-menu-maker' ); ?>">
+						<?php esc_html_e( 'New Offer', 'sas-menu-maker' ); ?>
 					</h2>
 					<button type="button"
 						class="menucraft-offcanvas-close"
 						data-menucraft-panel-close
-						aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">
+						aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">
 						<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
 					</button>
 				</header>
@@ -176,29 +176,29 @@ defined( 'ABSPATH' ) || exit;
 				<div class="menucraft-offcanvas-body">
 					<div class="menucraft-field">
 						<label for="menucraft-offer-name">
-							<?php esc_html_e( 'Name', 'menucraft' ); ?>
+							<?php esc_html_e( 'Name', 'sas-menu-maker' ); ?>
 							<span class="menucraft-required" aria-hidden="true">*</span>
 						</label>
 						<input type="text" id="menucraft-offer-name" name="name" required>
 					</div>
 
 					<div class="menucraft-field">
-						<label for="menucraft-offer-description"><?php esc_html_e( 'Description', 'menucraft' ); ?></label>
+						<label for="menucraft-offer-description"><?php esc_html_e( 'Description', 'sas-menu-maker' ); ?></label>
 						<textarea id="menucraft-offer-description" name="description" rows="3"></textarea>
 					</div>
 
 					<div class="menucraft-field menucraft-field-media">
-						<label><?php esc_html_e( 'Image', 'menucraft' ); ?></label>
+						<label><?php esc_html_e( 'Image', 'sas-menu-maker' ); ?></label>
 						<div class="menucraft-media-picker" data-menucraft-media-picker>
 							<div class="menucraft-media-preview"
 								data-menucraft-media-preview
-								data-empty="<?php esc_attr_e( 'No image selected', 'menucraft' ); ?>"></div>
+								data-empty="<?php esc_attr_e( 'No image selected', 'sas-menu-maker' ); ?>"></div>
 							<div class="menucraft-media-actions">
 								<button type="button" class="button" data-menucraft-media-choose>
-									<?php esc_html_e( 'Choose Image', 'menucraft' ); ?>
+									<?php esc_html_e( 'Choose Image', 'sas-menu-maker' ); ?>
 								</button>
 								<button type="button" class="button-link menucraft-media-remove" data-menucraft-media-remove hidden>
-									<?php esc_html_e( 'Remove', 'menucraft' ); ?>
+									<?php esc_html_e( 'Remove', 'sas-menu-maker' ); ?>
 								</button>
 							</div>
 							<input type="hidden" name="media_id" value="0" data-menucraft-media-input>
@@ -207,7 +207,7 @@ defined( 'ABSPATH' ) || exit;
 
 					<div class="menucraft-field">
 						<label for="menucraft-offer-price">
-							<?php esc_html_e( 'Total Price', 'menucraft' ); ?>
+							<?php esc_html_e( 'Total Price', 'sas-menu-maker' ); ?>
 							<span class="menucraft-required" aria-hidden="true">*</span>
 						</label>
 						<input type="number"
@@ -219,74 +219,74 @@ defined( 'ABSPATH' ) || exit;
 							data-menucraft-price
 							placeholder="0.00">
 						<p class="menucraft-field-help">
-							<?php esc_html_e( 'One fixed price for the whole offer, regardless of the number of items.', 'menucraft' ); ?>
+							<?php esc_html_e( 'One fixed price for the whole offer, regardless of the number of items.', 'sas-menu-maker' ); ?>
 						</p>
 					</div>
 
 					<div class="menucraft-field-row">
 						<div class="menucraft-field">
-							<label for="menucraft-offer-valid-from"><?php esc_html_e( 'Valid From', 'menucraft' ); ?></label>
+							<label for="menucraft-offer-valid-from"><?php esc_html_e( 'Valid From', 'sas-menu-maker' ); ?></label>
 							<input type="datetime-local" id="menucraft-offer-valid-from" name="valid_from">
 						</div>
 						<div class="menucraft-field">
-							<label for="menucraft-offer-valid-until"><?php esc_html_e( 'Valid Until', 'menucraft' ); ?></label>
+							<label for="menucraft-offer-valid-until"><?php esc_html_e( 'Valid Until', 'sas-menu-maker' ); ?></label>
 							<input type="datetime-local" id="menucraft-offer-valid-until" name="valid_until">
 						</div>
 					</div>
 					<p class="menucraft-field-help">
-						<?php esc_html_e( 'Leave both empty for an offer with no time limit.', 'menucraft' ); ?>
+						<?php esc_html_e( 'Leave both empty for an offer with no time limit.', 'sas-menu-maker' ); ?>
 					</p>
 
 					<div class="menucraft-field">
-						<label for="menucraft-offer-conditions"><?php esc_html_e( 'Conditions', 'menucraft' ); ?></label>
+						<label for="menucraft-offer-conditions"><?php esc_html_e( 'Conditions', 'sas-menu-maker' ); ?></label>
 						<textarea id="menucraft-offer-conditions" name="conditions_text" rows="2"
-							placeholder="<?php esc_attr_e( 'e.g. from 20€ order value, regulars only, in-house only…', 'menucraft' ); ?>"></textarea>
+							placeholder="<?php esc_attr_e( 'e.g. from 20€ order value, regulars only, in-house only…', 'sas-menu-maker' ); ?>"></textarea>
 						<p class="menucraft-field-help">
-							<?php esc_html_e( 'Free-form text — no order system yet, so conditions are informational only.', 'menucraft' ); ?>
+							<?php esc_html_e( 'Free-form text — no order system yet, so conditions are informational only.', 'sas-menu-maker' ); ?>
 						</p>
 					</div>
 
 					<div class="menucraft-field">
-						<label><?php esc_html_e( 'Items in Offer', 'menucraft' ); ?></label>
+						<label><?php esc_html_e( 'Items in Offer', 'sas-menu-maker' ); ?></label>
 						<div class="menucraft-offer-items-summary" data-menucraft-offer-items-summary>
 							<span class="menucraft-offer-items-count" data-menucraft-offer-items-count>
-								<?php esc_html_e( 'None', 'menucraft' ); ?>
+								<?php esc_html_e( 'None', 'sas-menu-maker' ); ?>
 							</span>
 							<button type="button"
 								class="button"
 								data-menucraft-subpanel-open="menucraft-panel-offer-items"
 								data-menucraft-subpanel-parent="menucraft-panel-offer-form">
-								<?php esc_html_e( 'Manage Items', 'menucraft' ); ?>
+								<?php esc_html_e( 'Manage Items', 'sas-menu-maker' ); ?>
 							</button>
 						</div>
 						<p class="menucraft-field-help">
-							<?php esc_html_e( 'Pick items and, where applicable, a specific variant. Combos = multiple lines; single = one line.', 'menucraft' ); ?>
+							<?php esc_html_e( 'Pick items and, where applicable, a specific variant. Combos = multiple lines; single = one line.', 'sas-menu-maker' ); ?>
 						</p>
 					</div>
 
 					<div class="menucraft-field">
-						<label for="menucraft-offer-sort"><?php esc_html_e( 'Sort Order', 'menucraft' ); ?></label>
+						<label for="menucraft-offer-sort"><?php esc_html_e( 'Sort Order', 'sas-menu-maker' ); ?></label>
 						<input type="number" id="menucraft-offer-sort" name="sort_order" value="0" step="1" min="0">
 					</div>
 
 					<div class="menucraft-field menucraft-field-checkbox">
 						<label for="menucraft-offer-active">
 							<input type="checkbox" id="menucraft-offer-active" name="is_active" value="1" checked>
-							<?php esc_html_e( 'Active', 'menucraft' ); ?>
+							<?php esc_html_e( 'Active', 'sas-menu-maker' ); ?>
 						</label>
 					</div>
 				</div>
 
 				<footer class="menucraft-offcanvas-footer">
 					<button type="button" class="button" data-menucraft-panel-close>
-						<?php esc_html_e( 'Cancel', 'menucraft' ); ?>
+						<?php esc_html_e( 'Cancel', 'sas-menu-maker' ); ?>
 					</button>
 					<button type="submit"
 						class="button button-primary"
 						data-menucraft-submit
-						data-menucraft-label-create="<?php esc_attr_e( 'Save Offer', 'menucraft' ); ?>"
-						data-menucraft-label-edit="<?php esc_attr_e( 'Update Offer', 'menucraft' ); ?>">
-						<?php esc_html_e( 'Save Offer', 'menucraft' ); ?>
+						data-menucraft-label-create="<?php esc_attr_e( 'Save Offer', 'sas-menu-maker' ); ?>"
+						data-menucraft-label-edit="<?php esc_attr_e( 'Update Offer', 'sas-menu-maker' ); ?>">
+						<?php esc_html_e( 'Save Offer', 'sas-menu-maker' ); ?>
 					</button>
 				</footer>
 			</form>
@@ -303,48 +303,48 @@ defined( 'ABSPATH' ) || exit;
 			<header class="menucraft-offcanvas-header">
 				<div class="menucraft-offcanvas-title-group">
 					<span class="menucraft-offcanvas-breadcrumb">
-						<?php esc_html_e( 'Offer', 'menucraft' ); ?>
+						<?php esc_html_e( 'Offer', 'sas-menu-maker' ); ?>
 						<span class="menucraft-breadcrumb-sep" aria-hidden="true">›</span>
 					</span>
 					<h2 class="menucraft-offcanvas-title" id="menucraft-panel-offer-items-title">
-						<?php esc_html_e( 'Items', 'menucraft' ); ?>
+						<?php esc_html_e( 'Items', 'sas-menu-maker' ); ?>
 					</h2>
 				</div>
 				<button type="button"
 					class="menucraft-offcanvas-close"
 					data-menucraft-panel-close
-					aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">
+					aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">
 					<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
 				</button>
 			</header>
 
 			<div class="menucraft-offcanvas-body">
 				<p class="menucraft-field-help">
-					<?php esc_html_e( 'Click an item chip to add a line. An item can appear multiple times (e.g. the same item with two different variants). Items with variants require a variant per line.', 'menucraft' ); ?>
+					<?php esc_html_e( 'Click an item chip to add a line. An item can appear multiple times (e.g. the same item with two different variants). Items with variants require a variant per line.', 'sas-menu-maker' ); ?>
 				</p>
 
 				<div class="menucraft-field">
-					<label><?php esc_html_e( 'Available Items', 'menucraft' ); ?></label>
+					<label><?php esc_html_e( 'Available Items', 'sas-menu-maker' ); ?></label>
 					<div class="menucraft-chips menucraft-chips-picker"
 						data-menucraft-offer-items-chips
-						data-menucraft-chips-empty="<?php esc_attr_e( 'No items yet — create some first.', 'menucraft' ); ?>">
+						data-menucraft-chips-empty="<?php esc_attr_e( 'No items yet — create some first.', 'sas-menu-maker' ); ?>">
 					</div>
 				</div>
 
 				<div class="menucraft-field">
-					<label><?php esc_html_e( 'Selected Lines', 'menucraft' ); ?></label>
+					<label><?php esc_html_e( 'Selected Lines', 'sas-menu-maker' ); ?></label>
 					<div class="menucraft-offer-items-list" data-menucraft-offer-items-list>
 						<?php // Rendered by JS from itemFormState-equivalent for offers. ?>
 					</div>
 					<div class="menucraft-offer-items-empty" data-menucraft-offer-items-empty hidden>
-						<?php esc_html_e( 'No lines yet — click an item chip above.', 'menucraft' ); ?>
+						<?php esc_html_e( 'No lines yet — click an item chip above.', 'sas-menu-maker' ); ?>
 					</div>
 				</div>
 			</div>
 
 			<footer class="menucraft-offcanvas-footer">
 				<button type="button" class="button button-primary" data-menucraft-panel-close>
-					<?php esc_html_e( 'Done', 'menucraft' ); ?>
+					<?php esc_html_e( 'Done', 'sas-menu-maker' ); ?>
 				</button>
 			</footer>
 		</div>
@@ -356,7 +356,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="menucraft-modal-dialog" aria-labelledby="menucraft-modal-delete-offer-title">
 			<header class="menucraft-modal-header">
 				<h2 class="menucraft-modal-title" id="menucraft-modal-delete-offer-title">
-					<?php esc_html_e( 'Delete offer?', 'menucraft' ); ?>
+					<?php esc_html_e( 'Delete offer?', 'sas-menu-maker' ); ?>
 				</h2>
 			</header>
 			<div class="menucraft-modal-body">
@@ -364,7 +364,7 @@ defined( 'ABSPATH' ) || exit;
 					<?php
 					printf(
 						/* translators: %s: offer name placeholder replaced by JS. */
-						esc_html__( 'Are you sure you want to delete %s? This also removes its line items. This cannot be undone.', 'menucraft' ),
+						esc_html__( 'Are you sure you want to delete %s? This also removes its line items. This cannot be undone.', 'sas-menu-maker' ),
 						'<strong data-menucraft-modal-target-name>—</strong>'
 					);
 					?>
@@ -372,12 +372,12 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<footer class="menucraft-modal-footer">
 				<button type="button" class="button" data-menucraft-modal-close>
-					<?php esc_html_e( 'Cancel', 'menucraft' ); ?>
+					<?php esc_html_e( 'Cancel', 'sas-menu-maker' ); ?>
 				</button>
 				<button type="button"
 					class="button menucraft-btn-danger"
 					data-menucraft-modal-confirm-delete>
-					<?php esc_html_e( 'Delete', 'menucraft' ); ?>
+					<?php esc_html_e( 'Delete', 'sas-menu-maker' ); ?>
 				</button>
 			</footer>
 		</div>

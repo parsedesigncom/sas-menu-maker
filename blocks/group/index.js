@@ -38,44 +38,44 @@
 
 	var colorGroups = [
 		{
-			title: __( 'Colors — Container', 'menucraft' ),
+			title: __( 'Colors — Container', 'sas-menu-maker' ),
 			colors: [
-				{ attr: 'bgColor',   label: __( 'Background', 'menucraft' ) },
-				{ attr: 'textColor', label: __( 'Text (fallback)', 'menucraft' ) },
+				{ attr: 'bgColor',   label: __( 'Background', 'sas-menu-maker' ) },
+				{ attr: 'textColor', label: __( 'Text (fallback)', 'sas-menu-maker' ) },
 			],
 		},
 		{
-			title: __( 'Colors — Header', 'menucraft' ),
+			title: __( 'Colors — Header', 'sas-menu-maker' ),
 			colors: [
-				{ attr: 'headerBg',         label: __( 'Header background', 'menucraft' ) },
-				{ attr: 'headerTitleColor', label: __( 'Header title', 'menucraft' ) },
-				{ attr: 'headerDescColor',  label: __( 'Header description', 'menucraft' ) },
+				{ attr: 'headerBg',         label: __( 'Header background', 'sas-menu-maker' ) },
+				{ attr: 'headerTitleColor', label: __( 'Header title', 'sas-menu-maker' ) },
+				{ attr: 'headerDescColor',  label: __( 'Header description', 'sas-menu-maker' ) },
 			],
 		},
 		{
-			title: __( 'Colors — Items', 'menucraft' ),
+			title: __( 'Colors — Items', 'sas-menu-maker' ),
 			colors: [
-				{ attr: 'itemBg',              label: __( 'Card background', 'menucraft' ) },
-				{ attr: 'itemBorder',          label: __( 'Card border', 'menucraft' ) },
-				{ attr: 'itemTitleColor',      label: __( 'Title', 'menucraft' ) },
-				{ attr: 'itemDescColor',       label: __( 'Description', 'menucraft' ) },
-				{ attr: 'itemPriceColor',      label: __( 'Price', 'menucraft' ) },
-				{ attr: 'allergenSupColor',    label: __( 'Allergen superscript', 'menucraft' ) },
-				{ attr: 'variantDividerColor', label: __( 'Variant divider', 'menucraft' ) },
+				{ attr: 'itemBg',              label: __( 'Card background', 'sas-menu-maker' ) },
+				{ attr: 'itemBorder',          label: __( 'Card border', 'sas-menu-maker' ) },
+				{ attr: 'itemTitleColor',      label: __( 'Title', 'sas-menu-maker' ) },
+				{ attr: 'itemDescColor',       label: __( 'Description', 'sas-menu-maker' ) },
+				{ attr: 'itemPriceColor',      label: __( 'Price', 'sas-menu-maker' ) },
+				{ attr: 'allergenSupColor',    label: __( 'Allergen superscript', 'sas-menu-maker' ) },
+				{ attr: 'variantDividerColor', label: __( 'Variant divider', 'sas-menu-maker' ) },
 			],
 		},
 		{
-			title: __( 'Colors — Tags', 'menucraft' ),
+			title: __( 'Colors — Tags', 'sas-menu-maker' ),
 			colors: [
-				{ attr: 'tagBorder', label: __( 'Tag pill border', 'menucraft' ) },
-				{ attr: 'tagText',   label: __( 'Tag pill text', 'menucraft' ) },
+				{ attr: 'tagBorder', label: __( 'Tag pill border', 'sas-menu-maker' ) },
+				{ attr: 'tagText',   label: __( 'Tag pill text', 'sas-menu-maker' ) },
 			],
 		},
 		{
-			title: __( 'Colors — Allergen legend', 'menucraft' ),
+			title: __( 'Colors — Allergen legend', 'sas-menu-maker' ),
 			colors: [
-				{ attr: 'legendBg',   label: __( 'Legend background', 'menucraft' ) },
-				{ attr: 'legendText', label: __( 'Legend text', 'menucraft' ) },
+				{ attr: 'legendBg',   label: __( 'Legend background', 'sas-menu-maker' ) },
+				{ attr: 'legendText', label: __( 'Legend text', 'sas-menu-maker' ) },
 			],
 		},
 	];
@@ -108,14 +108,14 @@
 
 			useEffect( function () {
 				if ( ! apiFetch ) return;
-				apiFetch( { path: 'menucraft/v1/categories' } ).then( function ( rows ) {
+				apiFetch( { path: 'sas-menu-maker/v1/categories' } ).then( function ( rows ) {
 					setSources( function ( prev ) {
 						return { categories: rows || [], tags: prev.tags };
 					} );
 				} ).catch( function () {
 					setSources( function ( prev ) { return { categories: [], tags: prev.tags }; } );
 				} );
-				apiFetch( { path: 'menucraft/v1/tags' } ).then( function ( rows ) {
+				apiFetch( { path: 'sas-menu-maker/v1/tags' } ).then( function ( rows ) {
 					setSources( function ( prev ) {
 						return { categories: prev.categories, tags: rows || [] };
 					} );
@@ -127,7 +127,7 @@
 			var currentList = 'tag' === attrs.source ? sources.tags : sources.categories;
 			var loading     = currentList === null;
 
-			var sourceOptions = [ { label: __( '— pick one —', 'menucraft' ), value: 0 } ];
+			var sourceOptions = [ { label: __( '— pick one —', 'sas-menu-maker' ), value: 0 } ];
 			if ( currentList && currentList.length ) {
 				currentList.forEach( function ( row ) {
 					sourceOptions.push( { label: row.name, value: row.id } );
@@ -139,24 +139,24 @@
 			var inspectorChildren = [
 				el(
 					PanelBody,
-					{ title: __( 'Source', 'menucraft' ), initialOpen: true, key: 'source' },
+					{ title: __( 'Source', 'sas-menu-maker' ), initialOpen: true, key: 'source' },
 					el( SelectControl, {
-						label: __( 'Show items from', 'menucraft' ),
+						label: __( 'Show items from', 'sas-menu-maker' ),
 						value: attrs.source,
 						options: [
-							{ label: __( 'Category', 'menucraft' ), value: 'category' },
-							{ label: __( 'Tag',      'menucraft' ), value: 'tag'      }
+							{ label: __( 'Category', 'sas-menu-maker' ), value: 'category' },
+							{ label: __( 'Tag',      'sas-menu-maker' ), value: 'tag'      }
 						],
 						onChange: function ( v ) {
 							set( { source: v, sourceId: 0 } );
 						}
 					} ),
 					loading
-						? el( 'p', {}, el( Spinner ), ' ', __( 'Loading…', 'menucraft' ) )
+						? el( 'p', {}, el( Spinner ), ' ', __( 'Loading…', 'sas-menu-maker' ) )
 						: el( SelectControl, {
 							label: 'tag' === attrs.source
-								? __( 'Tag', 'menucraft' )
-								: __( 'Category', 'menucraft' ),
+								? __( 'Tag', 'sas-menu-maker' )
+								: __( 'Category', 'sas-menu-maker' ),
 							value: attrs.sourceId,
 							options: sourceOptions,
 							onChange: function ( v ) { set( { sourceId: parseInt( v, 10 ) || 0 } ); }
@@ -164,90 +164,90 @@
 				),
 				el(
 					PanelBody,
-					{ title: __( 'Header', 'menucraft' ), initialOpen: false, key: 'header' },
+					{ title: __( 'Header', 'sas-menu-maker' ), initialOpen: false, key: 'header' },
 					el( ToggleControl, {
-						label: __( 'Show header (image, title, description)', 'menucraft' ),
+						label: __( 'Show header (image, title, description)', 'sas-menu-maker' ),
 						checked: 'show' === attrs.showHeader,
 						onChange: function ( on ) { set( { showHeader: on ? 'show' : 'hide' } ); }
 					} ),
 					el( ToggleControl, {
-						label: __( 'Start collapsed', 'menucraft' ),
-						help:  __( 'Show only title + description; visitors click to reveal image and items.', 'menucraft' ),
+						label: __( 'Start collapsed', 'sas-menu-maker' ),
+						help:  __( 'Show only title + description; visitors click to reveal image and items.', 'sas-menu-maker' ),
 						checked: 'yes' === attrs.collapsed,
 						onChange: function ( on ) { set( { collapsed: on ? 'yes' : 'no' } ); }
 					} )
 				),
 				el(
 					PanelBody,
-					{ title: __( 'Layout', 'menucraft' ), initialOpen: false, key: 'layout' },
+					{ title: __( 'Layout', 'sas-menu-maker' ), initialOpen: false, key: 'layout' },
 					el( SelectControl, {
-						label: __( 'Image position (per item)', 'menucraft' ),
+						label: __( 'Image position (per item)', 'sas-menu-maker' ),
 						value: attrs.image,
 						options: [
-							{ label: __( 'Left',  'menucraft' ), value: 'left'  },
-							{ label: __( 'Right', 'menucraft' ), value: 'right' },
-							{ label: __( 'Top',   'menucraft' ), value: 'top'   }
+							{ label: __( 'Left',  'sas-menu-maker' ), value: 'left'  },
+							{ label: __( 'Right', 'sas-menu-maker' ), value: 'right' },
+							{ label: __( 'Top',   'sas-menu-maker' ), value: 'top'   }
 						],
 						onChange: function ( v ) { set( { image: v } ); }
 					} ),
 					el( SelectControl, {
-						label: __( 'Variants', 'menucraft' ),
+						label: __( 'Variants', 'sas-menu-maker' ),
 						value: attrs.variants,
 						options: [
-							{ label: __( 'Inline on the card', 'menucraft' ), value: 'inline' },
-							{ label: __( 'Only in modal', 'menucraft' ),      value: 'modal'  }
+							{ label: __( 'Inline on the card', 'sas-menu-maker' ), value: 'inline' },
+							{ label: __( 'Only in modal', 'sas-menu-maker' ),      value: 'modal'  }
 						],
 						onChange: function ( v ) { set( { variants: v } ); }
 					} ),
 					el( ToggleControl, {
-						label: __( 'Show allergen legend', 'menucraft' ),
+						label: __( 'Show allergen legend', 'sas-menu-maker' ),
 						checked: 'show' === attrs.allergensLegend,
 						onChange: function ( on ) { set( { allergensLegend: on ? 'show' : 'hide' } ); }
 					} )
 				),
 				el(
 					PanelBody,
-					{ title: __( 'Grid layout', 'menucraft' ), initialOpen: false, key: 'grid' },
+					{ title: __( 'Grid layout', 'sas-menu-maker' ), initialOpen: false, key: 'grid' },
 					el( ToggleControl, {
-						label: __( 'Show items as a grid', 'menucraft' ),
+						label: __( 'Show items as a grid', 'sas-menu-maker' ),
 						checked: gridEnabled,
 						onChange: function ( on ) {
 							set( { columns: on ? '720__1 1024__2 1400__3' : '' } );
 						}
 					} ),
 					gridEnabled && el( TextControl, {
-						label: __( 'Columns spec', 'menucraft' ),
-						help:  __( 'Format: <max-width>__<columns>, space-separated.', 'menucraft' ),
+						label: __( 'Columns spec', 'sas-menu-maker' ),
+						help:  __( 'Format: <max-width>__<columns>, space-separated.', 'sas-menu-maker' ),
 						value: attrs.columns,
 						onChange: function ( v ) { set( { columns: v } ); }
 					} )
 				),
 				el(
 					PanelBody,
-					{ title: __( 'Alignment & size', 'menucraft' ), initialOpen: false, key: 'align' },
+					{ title: __( 'Alignment & size', 'sas-menu-maker' ), initialOpen: false, key: 'align' },
 					el( SelectControl, {
-						label: __( 'Font size', 'menucraft' ),
+						label: __( 'Font size', 'sas-menu-maker' ),
 						value: attrs.fontScale,
 						options: [
-							{ label: __( 'Small',  'menucraft' ), value: 'small'  },
-							{ label: __( 'Medium', 'menucraft' ), value: 'medium' },
-							{ label: __( 'Large',  'menucraft' ), value: 'large'  }
+							{ label: __( 'Small',  'sas-menu-maker' ), value: 'small'  },
+							{ label: __( 'Medium', 'sas-menu-maker' ), value: 'medium' },
+							{ label: __( 'Large',  'sas-menu-maker' ), value: 'large'  }
 						],
 						onChange: function ( v ) { set( { fontScale: v } ); }
 					} ),
 					el( SelectControl, {
-						label: __( 'Card content alignment', 'menucraft' ),
+						label: __( 'Card content alignment', 'sas-menu-maker' ),
 						value: attrs.itemAlign,
 						options: [
-							{ label: __( 'Left',   'menucraft' ), value: 'left'   },
-							{ label: __( 'Center', 'menucraft' ), value: 'center' },
-							{ label: __( 'Right',  'menucraft' ), value: 'right'  }
+							{ label: __( 'Left',   'sas-menu-maker' ), value: 'left'   },
+							{ label: __( 'Center', 'sas-menu-maker' ), value: 'center' },
+							{ label: __( 'Right',  'sas-menu-maker' ), value: 'right'  }
 						],
 						onChange: function ( v ) { set( { itemAlign: v } ); }
 					} ),
 					el( RangeControl, {
-						label: __( 'Border radius (px)', 'menucraft' ),
-						help:  __( 'One value for container, cards, image and modal.', 'menucraft' ),
+						label: __( 'Border radius (px)', 'sas-menu-maker' ),
+						help:  __( 'One value for container, cards, image and modal.', 'sas-menu-maker' ),
 						value: '' === attrs.borderRadius ? undefined : parseInt( attrs.borderRadius, 10 ),
 						min:   0,
 						max:   40,
@@ -283,9 +283,9 @@
 					attrs.sourceId
 						? ( ServerSideRender
 							? el( ServerSideRender, { block: 'menucraft/group', attributes: attrs } )
-							: el( 'p', {}, __( 'Preview unavailable in this WordPress version.', 'menucraft' ) )
+							: el( 'p', {}, __( 'Preview unavailable in this WordPress version.', 'sas-menu-maker' ) )
 						)
-						: el( 'p', { className: 'menucraft-block-hint' }, __( 'Pick a category or tag in the sidebar to see the preview.', 'menucraft' ) )
+						: el( 'p', { className: 'menucraft-block-hint' }, __( 'Pick a category or tag in the sidebar to see the preview.', 'sas-menu-maker' ) )
 				)
 			);
 		},

@@ -63,7 +63,7 @@ if ( null !== $item['price'] ) {
 	if ( null !== $min_price ) {
 		$price_display = MenuCraft_Public::format_price( $min_price );
 		/* translators: prefix for "from X€" price when only the cheapest variant is shown */
-		$price_hint = __( 'from', 'menucraft' );
+		$price_hint = __( 'from', 'sas-menu-maker' );
 	}
 }
 $show_price_header = '' !== $price_display && ! $show_variants_inline;
@@ -101,7 +101,7 @@ if ( $show_allergens && ! empty( $item_all_ids ) ) {
 	}
 	if ( ! empty( $codes ) ) {
 		$allergen_prefix = '<span class="menucraft-item-allergens" aria-label="'
-			. esc_attr__( 'Allergens', 'menucraft' ) . '">'
+			. esc_attr__( 'Allergens', 'sas-menu-maker' ) . '">'
 			. esc_html( implode( ', ', $codes ) )
 			. '</span>';
 	}
@@ -168,7 +168,7 @@ if ( $image_url ) {
 		tabindex="0"
 		role="button"
 		data-menucraft-open-details="item-<?php echo esc_attr( (string) $item_id ); ?>"
-		aria-label="<?php echo esc_attr( sprintf( /* translators: %s: item name */ __( 'Show details for %s', 'menucraft' ), $item['name'] ) ); ?>"
+		aria-label="<?php echo esc_attr( sprintf( /* translators: %s: item name */ __( 'Show details for %s', 'sas-menu-maker' ), $item['name'] ) ); ?>"
 	<?php endif; ?>>
 
 	<?php

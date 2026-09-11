@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 				<h1 class="menucraft-page-title"><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			</div>
 			<p class="menucraft-page-description">
-				<?php esc_html_e( 'Plugin-wide settings. Changes take effect after saving; some fields (currency prefix) require a page reload to appear across the admin.', 'menucraft' ); ?>
+				<?php esc_html_e( 'Plugin-wide settings. Changes take effect after saving; some fields (currency prefix) require a page reload to appear across the admin.', 'sas-menu-maker' ); ?>
 			</p>
 			<hr class="menucraft-page-sep">
 		</header>
@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 				data-menucraft-options-form>
 				<div class="menucraft-field">
 					<label for="menucraft-option-currency">
-						<?php esc_html_e( 'Currency Symbol', 'menucraft' ); ?>
+						<?php esc_html_e( 'Currency Symbol', 'sas-menu-maker' ); ?>
 					</label>
 					<input type="text"
 						id="menucraft-option-currency"
@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
 						placeholder="€"
 						class="menucraft-input-narrow">
 					<p class="menucraft-field-help">
-						<?php esc_html_e( 'Shown as a non-editable prefix on every price input across the admin (e.g. €, $, CHF).', 'menucraft' ); ?>
+						<?php esc_html_e( 'Shown as a non-editable prefix on every price input across the admin (e.g. €, $, CHF).', 'sas-menu-maker' ); ?>
 					</p>
 				</div>
 
@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
 					<button type="submit"
 						class="button button-primary"
 						data-menucraft-submit>
-						<?php esc_html_e( 'Save Options', 'menucraft' ); ?>
+						<?php esc_html_e( 'Save Options', 'sas-menu-maker' ); ?>
 					</button>
 				</footer>
 			</form>

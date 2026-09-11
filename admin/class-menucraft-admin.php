@@ -90,61 +90,61 @@ class MenuCraft_Admin {
 			'menucraft-admin',
 			'menucraftAdmin',
 			array(
-				'restUrl'   => esc_url_raw( rest_url( 'menucraft/v1/' ) ),
+				'restUrl'   => esc_url_raw( rest_url( 'sas-menu-maker/v1/' ) ),
 				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'currency'  => (string) MenuCraft_Options::get( 'currency', '€' ),
 				'i18n'      => array(
-					'saving'          => __( 'Saving…', 'menucraft' ),
-					'saveSuccess'     => __( 'Saved.', 'menucraft' ),
-					'saveError'       => __( 'Save failed.', 'menucraft' ),
-					'updateSuccess'   => __( 'Updated.', 'menucraft' ),
-					'deleteSuccess'   => __( 'Deleted.', 'menucraft' ),
-					'deleteError'     => __( 'Delete failed.', 'menucraft' ),
-					'listError'       => __( 'Could not load list.', 'menucraft' ),
-					'empty'           => __( 'No entries yet.', 'menucraft' ),
-					'active'          => __( 'Active', 'menucraft' ),
-					'inactive'        => __( 'Inactive', 'menucraft' ),
-					'edit'            => __( 'Edit', 'menucraft' ),
-					'delete'          => __( 'Delete', 'menucraft' ),
-					'mediaTitle'      => __( 'Select Image', 'menucraft' ),
-					'mediaButton'     => __( 'Use this image', 'menucraft' ),
-					'mediaEmpty'      => __( 'No image selected', 'menucraft' ),
-					'mediaUnavail'    => __( 'Media library unavailable.', 'menucraft' ),
-					'from'            => __( 'from', 'menucraft' ),
-					'noPrice'         => __( 'no price', 'menucraft' ),
-					'variantsNone'    => __( 'None', 'menucraft' ),
+					'saving'          => __( 'Saving…', 'sas-menu-maker' ),
+					'saveSuccess'     => __( 'Saved.', 'sas-menu-maker' ),
+					'saveError'       => __( 'Save failed.', 'sas-menu-maker' ),
+					'updateSuccess'   => __( 'Updated.', 'sas-menu-maker' ),
+					'deleteSuccess'   => __( 'Deleted.', 'sas-menu-maker' ),
+					'deleteError'     => __( 'Delete failed.', 'sas-menu-maker' ),
+					'listError'       => __( 'Could not load list.', 'sas-menu-maker' ),
+					'empty'           => __( 'No entries yet.', 'sas-menu-maker' ),
+					'active'          => __( 'Active', 'sas-menu-maker' ),
+					'inactive'        => __( 'Inactive', 'sas-menu-maker' ),
+					'edit'            => __( 'Edit', 'sas-menu-maker' ),
+					'delete'          => __( 'Delete', 'sas-menu-maker' ),
+					'mediaTitle'      => __( 'Select Image', 'sas-menu-maker' ),
+					'mediaButton'     => __( 'Use this image', 'sas-menu-maker' ),
+					'mediaEmpty'      => __( 'No image selected', 'sas-menu-maker' ),
+					'mediaUnavail'    => __( 'Media library unavailable.', 'sas-menu-maker' ),
+					'from'            => __( 'from', 'sas-menu-maker' ),
+					'noPrice'         => __( 'no price', 'sas-menu-maker' ),
+					'variantsNone'    => __( 'None', 'sas-menu-maker' ),
 					/* translators: %d: number of variants on an item. */
-					'variantsCount'   => __( '%d variant(s)', 'menucraft' ),
-					'variantLabel'    => __( 'Label', 'menucraft' ),
-					'variantPrice'    => __( 'Price', 'menucraft' ),
-					'variantRemove'   => __( 'Remove', 'menucraft' ),
-					'variantLabelHint' => __( 'e.g. Small, Medium, Large', 'menucraft' ),
+					'variantsCount'   => __( '%d variant(s)', 'sas-menu-maker' ),
+					'variantLabel'    => __( 'Label', 'sas-menu-maker' ),
+					'variantPrice'    => __( 'Price', 'sas-menu-maker' ),
+					'variantRemove'   => __( 'Remove', 'sas-menu-maker' ),
+					'variantLabelHint' => __( 'e.g. Small, Medium, Large', 'sas-menu-maker' ),
 					/* translators: %d: number of items the bulk-edit was applied to. */
-					'bulkApplied'     => __( 'Applied to %d item(s).', 'menucraft' ),
-					'bulkNoOps'       => __( 'Nothing to apply — pick at least one operation.', 'menucraft' ),
-					'bulkNoSelection' => __( 'Select at least one item first.', 'menucraft' ),
+					'bulkApplied'     => __( 'Applied to %d item(s).', 'sas-menu-maker' ),
+					'bulkNoOps'       => __( 'Nothing to apply — pick at least one operation.', 'sas-menu-maker' ),
+					'bulkNoSelection' => __( 'Select at least one item first.', 'sas-menu-maker' ),
 					/* translators: %d: number of currently active filters. */
-					'filtersActive'   => __( '%d filter(s) active', 'menucraft' ),
-					'noMatches'       => __( 'No items match the current filters.', 'menucraft' ),
-					'offerLinesNone'  => __( 'None', 'menucraft' ),
+					'filtersActive'   => __( '%d filter(s) active', 'sas-menu-maker' ),
+					'noMatches'       => __( 'No items match the current filters.', 'sas-menu-maker' ),
+					'offerLinesNone'  => __( 'None', 'sas-menu-maker' ),
 					/* translators: %d: number of line items in an offer. */
-					'offerLinesCount' => __( '%d line(s)', 'menucraft' ),
-					'offerQuantity'   => __( 'Qty', 'menucraft' ),
-					'offerPickVariant' => __( '— pick variant —', 'menucraft' ),
-					'offerNoVariant'  => __( '(no variant)', 'menucraft' ),
-					'offerRemoveLine' => __( 'Remove line', 'menucraft' ),
-					'offerAlways'     => __( 'Always', 'menucraft' ),
+					'offerLinesCount' => __( '%d line(s)', 'sas-menu-maker' ),
+					'offerQuantity'   => __( 'Qty', 'sas-menu-maker' ),
+					'offerPickVariant' => __( '— pick variant —', 'sas-menu-maker' ),
+					'offerNoVariant'  => __( '(no variant)', 'sas-menu-maker' ),
+					'offerRemoveLine' => __( 'Remove line', 'sas-menu-maker' ),
+					'offerAlways'     => __( 'Always', 'sas-menu-maker' ),
 					/* translators: %s: start date of the offer validity. */
-					'offerFrom'       => __( 'From %s', 'menucraft' ),
+					'offerFrom'       => __( 'From %s', 'sas-menu-maker' ),
 					/* translators: %s: end date of the offer validity. */
-					'offerUntil'      => __( 'Until %s', 'menucraft' ),
+					'offerUntil'      => __( 'Until %s', 'sas-menu-maker' ),
 					/* translators: 1: start date, 2: end date of the offer validity. */
-					'offerBetween'    => __( '%1$s – %2$s', 'menucraft' ),
-					'offerCurrent'    => __( 'Currently valid', 'menucraft' ),
-					'offerUpcoming'   => __( 'Upcoming', 'menucraft' ),
-					'offerExpired'    => __( 'Expired', 'menucraft' ),
-					'defaultCategory' => __( 'Default', 'menucraft' ),
-					'defaultCategoryTitle' => __( 'Pre-selected in the frontend filter', 'menucraft' ),
+					'offerBetween'    => __( '%1$s – %2$s', 'sas-menu-maker' ),
+					'offerCurrent'    => __( 'Currently valid', 'sas-menu-maker' ),
+					'offerUpcoming'   => __( 'Upcoming', 'sas-menu-maker' ),
+					'offerExpired'    => __( 'Expired', 'sas-menu-maker' ),
+					'defaultCategory' => __( 'Default', 'sas-menu-maker' ),
+					'defaultCategoryTitle' => __( 'Pre-selected in the frontend filter', 'sas-menu-maker' ),
 				),
 			)
 		);
@@ -175,92 +175,92 @@ class MenuCraft_Admin {
 	 */
 	public function register_admin_menu() {
 		$this->page_hooks[] = add_menu_page(
-			__( 'MenuCraft', 'menucraft' ),
-			__( 'MenuCraft', 'menucraft' ),
+			__( 'SAS Menu Maker', 'sas-menu-maker' ),
+			__( 'SAS Menu Maker', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft',
+			'sas-menu-maker',
 			array( $this, 'render_admin_page' ),
 			'dashicons-coffee'
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'MenuCraft Dashboard', 'menucraft' ),
-			__( 'Dashboard', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'SAS Menu Maker Dashboard', 'sas-menu-maker' ),
+			__( 'Dashboard', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft',
+			'sas-menu-maker',
 			array( $this, 'render_admin_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Items', 'menucraft' ),
-			__( 'Items', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Items', 'sas-menu-maker' ),
+			__( 'Items', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-items',
+			'sas-menu-maker-items',
 			array( $this, 'render_items_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Categories', 'menucraft' ),
-			__( 'Categories', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Categories', 'sas-menu-maker' ),
+			__( 'Categories', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-categories',
+			'sas-menu-maker-categories',
 			array( $this, 'render_categories_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Tags', 'menucraft' ),
-			__( 'Tags', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Tags', 'sas-menu-maker' ),
+			__( 'Tags', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-tags',
+			'sas-menu-maker-tags',
 			array( $this, 'render_tags_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Allergens', 'menucraft' ),
-			__( 'Allergens', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Allergens', 'sas-menu-maker' ),
+			__( 'Allergens', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-allergens',
+			'sas-menu-maker-allergens',
 			array( $this, 'render_allergens_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Offers', 'menucraft' ),
-			__( 'Offers', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Offers', 'sas-menu-maker' ),
+			__( 'Offers', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-offers',
+			'sas-menu-maker-offers',
 			array( $this, 'render_offers_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'Options', 'menucraft' ),
-			__( 'Options', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'Options', 'sas-menu-maker' ),
+			__( 'Options', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-options',
+			'sas-menu-maker-options',
 			array( $this, 'render_options_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'MenuCraft Help & Documentation', 'menucraft' ),
-			__( 'Help & Docs', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'SAS Menu Maker Help & Documentation', 'sas-menu-maker' ),
+			__( 'Help & Docs', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-help',
+			'sas-menu-maker-help',
 			array( $this, 'render_help_page' )
 		);
 
 		$this->page_hooks[] = add_submenu_page(
-			'menucraft',
-			__( 'About MenuCraft', 'menucraft' ),
-			__( 'About', 'menucraft' ),
+			'sas-menu-maker',
+			__( 'About SAS Menu Maker', 'sas-menu-maker' ),
+			__( 'About', 'sas-menu-maker' ),
 			'manage_options',
-			'menucraft-about',
+			'sas-menu-maker-about',
 			array( $this, 'render_about_page' )
 		);
 

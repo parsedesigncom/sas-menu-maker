@@ -2,7 +2,7 @@
 /**
  * MenuCraft REST controller.
  *
- * Routes are registered under /wp-json/menucraft/v1/*. Term-like resources
+ * Routes are registered under /wp-json/sas-menu-maker/v1/*. Term-like resources
  * (categories, tags) share identical shape and validation, so registration
  * loops over the resource registry and all handlers delegate to shared
  * `handle_*` methods. Resources with different fields (allergens, items,
@@ -21,7 +21,7 @@ class MenuCraft_REST {
 	/**
 	 * Namespace for all MenuCraft REST routes.
 	 */
-	const REST_NAMESPACE = 'menucraft/v1';
+	const REST_NAMESPACE = 'sas-menu-maker/v1';
 
 	/**
 	 * Term-like resources — same schema, same handler logic.
@@ -368,7 +368,7 @@ class MenuCraft_REST {
 
 		$name = trim( (string) $request->get_param( 'name' ) );
 		if ( '' === $name ) {
-			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 
 		$validation = self::validate_relations( $request, $repo, 0 );
@@ -400,7 +400,7 @@ class MenuCraft_REST {
 		$entity = call_user_func( array( $repo, 'insert' ), $insert_data );
 
 		if ( null === $entity ) {
-			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $entity ), 201 );
@@ -433,7 +433,7 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'name' ) ) {
 			$name = trim( (string) $request->get_param( 'name' ) );
 			if ( '' === $name ) {
-				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			$data['name'] = $name;
 
@@ -462,7 +462,7 @@ class MenuCraft_REST {
 
 		$updated = call_user_func( array( $repo, 'update' ), $id, $data );
 		if ( null === $updated ) {
-			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $updated ), 200 );
@@ -486,7 +486,7 @@ class MenuCraft_REST {
 
 		$ok = call_user_func( array( $repo, 'delete' ), $id );
 		if ( ! $ok ) {
-			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response(
@@ -514,7 +514,7 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'media_id' ) ) {
 			$media_id = (int) $request->get_param( 'media_id' );
 			if ( $media_id > 0 && ! wp_attachment_is_image( $media_id ) ) {
-				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 
@@ -529,7 +529,7 @@ class MenuCraft_REST {
 	 */
 	private static function not_found( $resource ) {
 		unset( $resource );
-		return new WP_Error( 'menucraft_not_found', __( 'Not found.', 'menucraft' ), array( 'status' => 404 ) );
+		return new WP_Error( 'menucraft_not_found', __( 'Not found.', 'sas-menu-maker' ), array( 'status' => 404 ) );
 	}
 
 	/**
@@ -628,13 +628,13 @@ class MenuCraft_REST {
 		$name = trim( (string) $request->get_param( 'name' ) );
 
 		if ( '' === $code ) {
-			return new WP_Error( 'menucraft_invalid_code', __( 'Code is required.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_code', __( 'Code is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 		if ( '' === $name ) {
-			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 		if ( MenuCraft_Allergen_Repository::code_exists( $code ) ) {
-			return new WP_Error( 'menucraft_duplicate_code', __( 'This code is already in use.', 'menucraft' ), array( 'status' => 409 ) );
+			return new WP_Error( 'menucraft_duplicate_code', __( 'This code is already in use.', 'sas-menu-maker' ), array( 'status' => 409 ) );
 		}
 
 		$entity = MenuCraft_Allergen_Repository::insert(
@@ -648,7 +648,7 @@ class MenuCraft_REST {
 		);
 
 		if ( null === $entity ) {
-			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( $entity, 201 );
@@ -672,10 +672,10 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'code' ) ) {
 			$code = trim( (string) $request->get_param( 'code' ) );
 			if ( '' === $code ) {
-				return new WP_Error( 'menucraft_invalid_code', __( 'Code is required.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_code', __( 'Code is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			if ( MenuCraft_Allergen_Repository::code_exists( $code, $id ) ) {
-				return new WP_Error( 'menucraft_duplicate_code', __( 'This code is already in use.', 'menucraft' ), array( 'status' => 409 ) );
+				return new WP_Error( 'menucraft_duplicate_code', __( 'This code is already in use.', 'sas-menu-maker' ), array( 'status' => 409 ) );
 			}
 			$data['code'] = $code;
 		}
@@ -683,7 +683,7 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'name' ) ) {
 			$name = trim( (string) $request->get_param( 'name' ) );
 			if ( '' === $name ) {
-				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			$data['name'] = $name;
 		}
@@ -700,7 +700,7 @@ class MenuCraft_REST {
 
 		$updated = MenuCraft_Allergen_Repository::update( $id, $data );
 		if ( null === $updated ) {
-			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( $updated, 200 );
@@ -721,7 +721,7 @@ class MenuCraft_REST {
 
 		$ok = MenuCraft_Allergen_Repository::delete( $id );
 		if ( ! $ok ) {
-			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response(
@@ -913,7 +913,7 @@ class MenuCraft_REST {
 	public static function create_item( WP_REST_Request $request ) {
 		$name = trim( (string) $request->get_param( 'name' ) );
 		if ( '' === $name ) {
-			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 
 		$validation = self::validate_item_relations( $request );
@@ -945,7 +945,7 @@ class MenuCraft_REST {
 		);
 
 		if ( null === $entity ) {
-			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $entity ), 201 );
@@ -974,7 +974,7 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'name' ) ) {
 			$name = trim( (string) $request->get_param( 'name' ) );
 			if ( '' === $name ) {
-				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			$data['name'] = $name;
 
@@ -1016,7 +1016,7 @@ class MenuCraft_REST {
 
 		$updated = MenuCraft_Item_Repository::update( $id, $data );
 		if ( null === $updated ) {
-			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $updated ), 200 );
@@ -1041,7 +1041,7 @@ class MenuCraft_REST {
 				'menucraft_item_in_offer',
 				sprintf(
 					/* translators: %s: comma-separated offer names */
-					__( 'Cannot delete — this item is used in offer(s): %s.', 'menucraft' ),
+					__( 'Cannot delete — this item is used in offer(s): %s.', 'sas-menu-maker' ),
 					implode( ', ', array_values( $blocking ) )
 				),
 				array(
@@ -1053,7 +1053,7 @@ class MenuCraft_REST {
 
 		$ok = MenuCraft_Item_Repository::delete( $id );
 		if ( ! $ok ) {
-			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response(
@@ -1085,7 +1085,7 @@ class MenuCraft_REST {
 
 		$item_ids = array_values( array_unique( array_filter( array_map( 'intval', $item_ids ) ) ) );
 		if ( empty( $item_ids ) ) {
-			return new WP_Error( 'menucraft_no_items', __( 'No items selected.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_no_items', __( 'No items selected.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 
 		$validation = self::validate_bulk_operations( $operations );
@@ -1115,9 +1115,9 @@ class MenuCraft_REST {
 	 */
 	private static function validate_bulk_operations( array $operations ) {
 		$relation_specs = array(
-			'categories' => array( 'MenuCraft_Category_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown category.', 'menucraft' ) ),
-			'tags'       => array( 'MenuCraft_Tag_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown tag.', 'menucraft' ) ),
-			'allergens'  => array( 'MenuCraft_Allergen_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown allergen.', 'menucraft' ) ),
+			'categories' => array( 'MenuCraft_Category_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown category.', 'sas-menu-maker' ) ),
+			'tags'       => array( 'MenuCraft_Tag_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown tag.', 'sas-menu-maker' ) ),
+			'allergens'  => array( 'MenuCraft_Allergen_Repository', array( 'replace', 'add', 'remove' ), __( 'Unknown allergen.', 'sas-menu-maker' ) ),
 		);
 
 		foreach ( $relation_specs as $key => $spec ) {
@@ -1126,7 +1126,7 @@ class MenuCraft_REST {
 			}
 			$mode = isset( $operations[ $key ]['mode'] ) ? (string) $operations[ $key ]['mode'] : '';
 			if ( ! in_array( $mode, $spec[1], true ) ) {
-				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid mode for a relation operation.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid mode for a relation operation.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			$ids = isset( $operations[ $key ]['ids'] ) ? (array) $operations[ $key ]['ids'] : array();
 			foreach ( $ids as $raw_id ) {
@@ -1143,14 +1143,14 @@ class MenuCraft_REST {
 		if ( ! empty( $operations['base_price'] ) ) {
 			$mode = isset( $operations['base_price']['mode'] ) ? (string) $operations['base_price']['mode'] : '';
 			if ( ! in_array( $mode, array( 'replace', 'increase', 'decrease' ), true ) ) {
-				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid base-price mode.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid base-price mode.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 
 		if ( ! empty( $operations['variant_prices'] ) ) {
 			$mode = isset( $operations['variant_prices']['mode'] ) ? (string) $operations['variant_prices']['mode'] : '';
 			if ( ! in_array( $mode, array( 'increase', 'decrease' ), true ) ) {
-				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid variant-price mode.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_mode', __( 'Invalid variant-price mode.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 
@@ -1212,14 +1212,14 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'media_id' ) ) {
 			$media_id = (int) $request->get_param( 'media_id' );
 			if ( $media_id > 0 && ! wp_attachment_is_image( $media_id ) ) {
-				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 
 		$relation_specs = array(
-			'category_ids' => array( 'MenuCraft_Category_Repository', __( 'Unknown category.', 'menucraft' ) ),
-			'tag_ids'      => array( 'MenuCraft_Tag_Repository', __( 'Unknown tag.', 'menucraft' ) ),
-			'allergen_ids' => array( 'MenuCraft_Allergen_Repository', __( 'Unknown allergen.', 'menucraft' ) ),
+			'category_ids' => array( 'MenuCraft_Category_Repository', __( 'Unknown category.', 'sas-menu-maker' ) ),
+			'tag_ids'      => array( 'MenuCraft_Tag_Repository', __( 'Unknown tag.', 'sas-menu-maker' ) ),
+			'allergen_ids' => array( 'MenuCraft_Allergen_Repository', __( 'Unknown allergen.', 'sas-menu-maker' ) ),
 		);
 
 		foreach ( $relation_specs as $param => $spec ) {
@@ -1259,7 +1259,7 @@ class MenuCraft_REST {
 					'menucraft_variant_in_offer',
 					sprintf(
 						/* translators: %s: comma-separated offer names */
-						__( 'Cannot remove a variant — it is used in offer(s): %s.', 'menucraft' ),
+						__( 'Cannot remove a variant — it is used in offer(s): %s.', 'sas-menu-maker' ),
 						implode( ', ', array_values( $blocking ) )
 					),
 					array(
@@ -1457,7 +1457,7 @@ class MenuCraft_REST {
 	public static function create_offer( WP_REST_Request $request ) {
 		$name = trim( (string) $request->get_param( 'name' ) );
 		if ( '' === $name ) {
-			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 
 		$items      = self::read_offer_items( $request );
@@ -1489,7 +1489,7 @@ class MenuCraft_REST {
 		);
 
 		if ( null === $entity ) {
-			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_insert_failed', __( 'Could not save.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $entity ), 201 );
@@ -1519,7 +1519,7 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'name' ) ) {
 			$name = trim( (string) $request->get_param( 'name' ) );
 			if ( '' === $name ) {
-				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_name', __( 'Name is required.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 			$data['name'] = $name;
 			$data['slug'] = MenuCraft_Slug::generate(
@@ -1555,7 +1555,7 @@ class MenuCraft_REST {
 
 		$updated = MenuCraft_Offer_Repository::update( $id, $data );
 		if ( null === $updated ) {
-			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_update_failed', __( 'Could not update.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response( self::present( $updated ), 200 );
@@ -1576,7 +1576,7 @@ class MenuCraft_REST {
 
 		$ok = MenuCraft_Offer_Repository::delete( $id );
 		if ( ! $ok ) {
-			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'menucraft' ), array( 'status' => 500 ) );
+			return new WP_Error( 'menucraft_delete_failed', __( 'Could not delete.', 'sas-menu-maker' ), array( 'status' => 500 ) );
 		}
 
 		return new WP_REST_Response(
@@ -1637,25 +1637,25 @@ class MenuCraft_REST {
 		if ( $request->has_param( 'media_id' ) ) {
 			$media_id = (int) $request->get_param( 'media_id' );
 			if ( $media_id > 0 && ! wp_attachment_is_image( $media_id ) ) {
-				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_media', __( 'Selected media is not an image.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 
 		$from  = $request->has_param( 'valid_from' ) ? $request->get_param( 'valid_from' ) : null;
 		$until = $request->has_param( 'valid_until' ) ? $request->get_param( 'valid_until' ) : null;
 		if ( $from && $until && strtotime( $until ) < strtotime( $from ) ) {
-			return new WP_Error( 'menucraft_invalid_dates', __( 'Valid-until must be on or after valid-from.', 'menucraft' ), array( 'status' => 400 ) );
+			return new WP_Error( 'menucraft_invalid_dates', __( 'Valid-until must be on or after valid-from.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 		}
 
 		foreach ( $items as $line ) {
 			$item_id = isset( $line['item_id'] ) ? (int) $line['item_id'] : 0;
 			if ( $item_id <= 0 ) {
-				return new WP_Error( 'menucraft_invalid_line', __( 'Each offer line needs an item.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_line', __( 'Each offer line needs an item.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 
 			$item = MenuCraft_Item_Repository::find( $item_id );
 			if ( null === $item ) {
-				return new WP_Error( 'menucraft_unknown_item', __( 'Unknown item in offer.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_unknown_item', __( 'Unknown item in offer.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 
 			$variant_id      = isset( $line['variant_id'] ) && $line['variant_id'] ? (int) $line['variant_id'] : 0;
@@ -1672,7 +1672,7 @@ class MenuCraft_REST {
 					'menucraft_variant_required',
 					sprintf(
 						/* translators: %s: item name */
-						__( 'Pick a variant for "%s".', 'menucraft' ),
+						__( 'Pick a variant for "%s".', 'sas-menu-maker' ),
 						$item['name']
 					),
 					array( 'status' => 400 )
@@ -1684,7 +1684,7 @@ class MenuCraft_REST {
 					'menucraft_no_variants',
 					sprintf(
 						/* translators: %s: item name */
-						__( '"%s" has no variants — remove the variant selection.', 'menucraft' ),
+						__( '"%s" has no variants — remove the variant selection.', 'sas-menu-maker' ),
 						$item['name']
 					),
 					array( 'status' => 400 )
@@ -1696,7 +1696,7 @@ class MenuCraft_REST {
 					'menucraft_variant_mismatch',
 					sprintf(
 						/* translators: %s: item name */
-						__( 'Selected variant does not belong to "%s".', 'menucraft' ),
+						__( 'Selected variant does not belong to "%s".', 'sas-menu-maker' ),
 						$item['name']
 					),
 					array( 'status' => 400 )
@@ -1704,7 +1704,7 @@ class MenuCraft_REST {
 			}
 
 			if ( isset( $line['quantity'] ) && (int) $line['quantity'] < 1 ) {
-				return new WP_Error( 'menucraft_invalid_quantity', __( 'Quantity must be at least 1.', 'menucraft' ), array( 'status' => 400 ) );
+				return new WP_Error( 'menucraft_invalid_quantity', __( 'Quantity must be at least 1.', 'sas-menu-maker' ), array( 'status' => 400 ) );
 			}
 		}
 

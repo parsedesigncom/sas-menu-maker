@@ -80,8 +80,8 @@ class MenuCraft_Block {
 		// panels (Layout, Colors, etc.) speak the site's language.
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations(
-				'menucraft-menu-editor-script',
-				'menucraft',
+				'sas-menu-maker-menu-editor-script',
+				'sas-menu-maker',
 				MENUCRAFT_PLUGIN_DIR . 'languages'
 			);
 		}
@@ -90,7 +90,7 @@ class MenuCraft_Block {
 	}
 
 	/**
-	 * Add a dedicated "MenuCraft" category to the block inserter so our
+	 * Add a dedicated "SAS Menu Maker" category to the block inserter so our
 	 * blocks live in one predictable place instead of scattered across
 	 * Widgets/Common.
 	 *
@@ -101,8 +101,8 @@ class MenuCraft_Block {
 		return array_merge(
 			array(
 				array(
-					'slug'  => 'menucraft',
-					'title' => __( 'MenuCraft', 'menucraft' ),
+					'slug'  => 'sas-menu-maker',
+					'title' => __( 'SAS Menu Maker', 'sas-menu-maker' ),
 					'icon'  => 'coffee',
 				),
 			),
@@ -155,13 +155,20 @@ class MenuCraft_Block {
 			$classes[] = 'align' . $attributes['align'];
 		}
 
-		$style = self::build_style_block( $block_id, $attributes );
+		// Per-instance color/border-radius rules are attached to the public
+		// stylesheet handle instead of being echoed as a raw <style> tag,
+		// per WP.org's "enqueue all CSS" guideline. Enqueue first so the
+		// handle exists before add_inline_style targets it.
+		wp_enqueue_style( 'menucraft-public' );
+		$css = self::build_style_css( $block_id, $attributes );
+		if ( '' !== $css ) {
+			wp_add_inline_style( 'menucraft-public', $css );
+		}
 
 		return sprintf(
-			'<div id="%1$s" class="%2$s">%3$s%4$s</div>',
+			'<div id="%1$s" class="%2$s">%3$s</div>',
 			esc_attr( $block_id ),
 			esc_attr( implode( ' ', $classes ) ),
-			$style,
 			do_shortcode( $sc )
 		);
 	}
@@ -202,7 +209,7 @@ class MenuCraft_Block {
 			$parts[] = 'class="' . esc_attr( (string) $attributes['className'] ) . '"';
 		}
 
-		return '[menucraft' . ( empty( $parts ) ? '' : ' ' . implode( ' ', $parts ) ) . ']';
+		return '[sas_menu' . ( empty( $parts ) ? '' : ' ' . implode( ' ', $parts ) ) . ']';
 	}
 
 	/**
@@ -227,15 +234,16 @@ class MenuCraft_Block {
 	}
 
 	/**
-	 * Build a <style> block scoped to the outer wrapper id, applying
-	 * whatever color slots the author actually filled in plus a global
-	 * border-radius when that attribute is set.
+	 * Build the CSS rules (no wrapping <style> tag) scoped to the outer
+	 * wrapper id, applying whatever color slots the author actually filled
+	 * in plus a global border-radius when that attribute is set. Returned
+	 * value is meant to be attached via wp_add_inline_style().
 	 *
 	 * @param string              $block_id   Outer wrapper id.
 	 * @param array<string,mixed> $attributes Block attributes.
 	 * @return string
 	 */
-	private static function build_style_block( $block_id, array $attributes ) {
+	private static function build_style_css( $block_id, array $attributes ) {
 		$rules = array();
 
 		foreach ( self::color_slots() as $slot ) {
@@ -257,10 +265,7 @@ class MenuCraft_Block {
 			}
 		}
 
-		if ( empty( $rules ) ) {
-			return '';
-		}
-		return '<style>' . implode( '', $rules ) . '</style>';
+		return implode( '', $rules );
 	}
 
 	/**

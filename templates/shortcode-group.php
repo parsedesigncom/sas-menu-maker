@@ -133,7 +133,7 @@ $render_items = function () use ( $items, $items_override, $allergens, $tags, $c
 	do_action( 'menucraft_before_items', $items );
 	echo '<div class="menucraft-items" data-menucraft-items>';
 	if ( empty( $items ) ) {
-		echo '<p class="menucraft-empty">' . esc_html__( 'No menu items to display yet.', 'menucraft' ) . '</p>';
+		echo '<p class="menucraft-empty">' . esc_html__( 'No menu items to display yet.', 'sas-menu-maker' ) . '</p>';
 	} else {
 		foreach ( $items as $item ) {
 			echo MenuCraft_Public::render_item( $item, $allergens, $tags, $config ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -153,7 +153,7 @@ $render_legend = function () use ( $allergens, $legend_override, $config ) {
 	}
 	do_action( 'menucraft_before_allergens_legend', $allergens );
 	echo '<div class="menucraft-allergens-legend" data-menucraft-allergens-legend>';
-	echo '<span class="menucraft-allergens-legend-label">' . esc_html__( 'Allergens', 'menucraft' ) . ':</span>';
+	echo '<span class="menucraft-allergens-legend-label">' . esc_html__( 'Allergens', 'sas-menu-maker' ) . ':</span>';
 	echo '<span class="menucraft-allergens-legend-list">';
 	foreach ( $allergens as $allergen ) {
 		echo '<span class="menucraft-allergens-legend-item"><strong>' . esc_html( $allergen['code'] ) . '</strong> ' . esc_html( $allergen['name'] ) . '</span>';
@@ -167,12 +167,8 @@ $render_legend = function () use ( $allergens, $legend_override, $config ) {
 	id="<?php echo esc_attr( $instance_id ); ?>"
 	data-menucraft-root>
 
-	<?php if ( ! empty( $config['grid_css'] ) ) : ?>
-		<style><?php echo $config['grid_css']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
-	<?php endif; ?>
-
 	<?php if ( ! $source ) : ?>
-		<p class="menucraft-empty"><?php esc_html_e( 'No matching category or tag found.', 'menucraft' ); ?></p>
+		<p class="menucraft-empty"><?php esc_html_e( 'No matching category or tag found.', 'sas-menu-maker' ); ?></p>
 	<?php elseif ( $collapsed ) : ?>
 		<details class="menucraft-group-details">
 			<summary class="menucraft-group-summary">
@@ -206,7 +202,7 @@ $render_legend = function () use ( $allergens, $legend_override, $config ) {
 				<button type="button"
 					class="menucraft-modal-close"
 					data-menucraft-modal-close
-					aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">&times;</button>
+					aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">&times;</button>
 			</header>
 			<div class="menucraft-modal-body" data-menucraft-modal-body></div>
 		</div>

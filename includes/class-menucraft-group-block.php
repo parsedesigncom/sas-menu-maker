@@ -86,8 +86,8 @@ class MenuCraft_Group_Block {
 
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations(
-				'menucraft-group-editor-script',
-				'menucraft',
+				'sas-menu-maker-group-editor-script',
+				'sas-menu-maker',
 				MENUCRAFT_PLUGIN_DIR . 'languages'
 			);
 		}
@@ -103,7 +103,7 @@ class MenuCraft_Group_Block {
 		$source_id = isset( $attributes['sourceId'] ) ? (int) $attributes['sourceId'] : 0;
 		if ( $source_id <= 0 ) {
 			return '<p class="menucraft-empty">'
-				. esc_html__( 'Pick a category or tag in the block sidebar.', 'menucraft' )
+				. esc_html__( 'Pick a category or tag in the block sidebar.', 'sas-menu-maker' )
 				. '</p>';
 		}
 
@@ -129,13 +129,16 @@ class MenuCraft_Group_Block {
 			$classes[] = 'align' . $attributes['align'];
 		}
 
-		$style = self::build_style_block( $block_id, $attributes );
+		wp_enqueue_style( 'menucraft-public' );
+		$css = self::build_style_css( $block_id, $attributes );
+		if ( '' !== $css ) {
+			wp_add_inline_style( 'menucraft-public', $css );
+		}
 
 		return sprintf(
-			'<div id="%1$s" class="%2$s">%3$s%4$s</div>',
+			'<div id="%1$s" class="%2$s">%3$s</div>',
 			esc_attr( $block_id ),
 			esc_attr( implode( ' ', $classes ) ),
-			$style,
 			do_shortcode( $sc )
 		);
 	}
@@ -181,17 +184,19 @@ class MenuCraft_Group_Block {
 			$parts[] = 'class="' . esc_attr( (string) $attributes['className'] ) . '"';
 		}
 
-		return '[menucraft_group ' . implode( ' ', $parts ) . ']';
+		return '[sas_menu_group ' . implode( ' ', $parts ) . ']';
 	}
 
 	/**
-	 * Build the scoped <style> block for colors + border-radius.
+	 * Build the scoped CSS rules (no wrapping <style> tag) for color slots
+	 * + border-radius. Returned string is meant to be attached via
+	 * wp_add_inline_style().
 	 *
 	 * @param string              $block_id   Outer wrapper id.
 	 * @param array<string,mixed> $attributes Block attributes.
 	 * @return string
 	 */
-	private static function build_style_block( $block_id, array $attributes ) {
+	private static function build_style_css( $block_id, array $attributes ) {
 		$rules = array();
 
 		foreach ( self::color_slots() as $slot ) {
@@ -213,10 +218,7 @@ class MenuCraft_Group_Block {
 			}
 		}
 
-		if ( empty( $rules ) ) {
-			return '';
-		}
-		return '<style>' . implode( '', $rules ) . '</style>';
+		return implode( '', $rules );
 	}
 
 	/**

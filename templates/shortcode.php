@@ -39,10 +39,6 @@ $items_override   = apply_filters( 'menucraft_shortcode_items_html', '', $items 
 	data-menucraft-menu
 	data-menucraft-root>
 
-	<?php if ( ! empty( $config['grid_css'] ) ) : ?>
-		<style><?php echo $config['grid_css']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></style>
-	<?php endif; ?>
-
 	<?php if ( is_string( $filters_override ) && '' !== $filters_override ) : ?>
 		<?php echo $filters_override; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	<?php else : ?>
@@ -101,7 +97,7 @@ $items_override   = apply_filters( 'menucraft_shortcode_items_html', '', $items 
 		<div class="menucraft-items" data-menucraft-items>
 			<?php if ( empty( $items ) ) : ?>
 				<p class="menucraft-empty">
-					<?php esc_html_e( 'No menu items to display yet.', 'menucraft' ); ?>
+					<?php esc_html_e( 'No menu items to display yet.', 'sas-menu-maker' ); ?>
 				</p>
 			<?php else : ?>
 				<?php foreach ( $items as $item ) : ?>
@@ -173,7 +169,7 @@ $items_override   = apply_filters( 'menucraft_shortcode_items_html', '', $items 
 				<button type="button"
 					class="menucraft-modal-close"
 					data-menucraft-modal-close
-					aria-label="<?php esc_attr_e( 'Close', 'menucraft' ); ?>">&times;</button>
+					aria-label="<?php esc_attr_e( 'Close', 'sas-menu-maker' ); ?>">&times;</button>
 			</header>
 			<div class="menucraft-modal-body" data-menucraft-modal-body></div>
 		</div>

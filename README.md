@@ -1,10 +1,10 @@
-# MenuCraft
+# SAS Menu Maker
 
 A self-contained WordPress plugin for restaurant, café and bar menus. Items, variants, allergens, offers — with shortcodes, Gutenberg blocks, a REST API, and an extensive filter/action hook layer for developers.
 
 - **Zero external dependencies.** No jQuery, no build tools, no CDN.
 - **One CSS + one JS on the front end**, conditionally enqueued only when the shortcode or block is on the page.
-- **Templates overridable** by theme (`theme/menucraft/<name>.php`).
+- **Templates overridable** by theme (`theme/sas-menu-maker/<name>.php`).
 - **Every rendered region flows through hooks** so you can restyle or extend without touching plugin files.
 - **Own database tables** — plugin data can be exported as a single SQL dump; nothing is smeared into `wp_options` or `wp_posts`.
 
@@ -15,9 +15,9 @@ Requires WordPress 6.0+, PHP 7.4+. GPL-2.0-or-later.
 - [Install & activate](#install--activate)
 - [Admin overview](#admin-overview)
 - [Shortcodes](#shortcodes)
-  - [`[menucraft]`](#menucraft)
-  - [`[menucraft_offers]`](#menucraft_offers)
-  - [`[menucraft_group]`](#menucraft_group)
+  - [`[sas_menu]`](#sas_menu)
+  - [`[sas_menu_offers]`](#sas_menu_offers)
+  - [`[sas_menu_group]`](#sas_menu_group)
 - [Gutenberg blocks](#gutenberg-blocks)
 - [Template overrides](#template-overrides)
 - [Filter hooks](#filter-hooks)
@@ -32,18 +32,18 @@ Requires WordPress 6.0+, PHP 7.4+. GPL-2.0-or-later.
 
 ## Install & activate
 
-Clone or copy into `wp-content/plugins/menucraft/`, then activate through **Plugins** in WordPress admin. On activation the plugin creates its own tables (`wp_menucraft_*`) via `dbDelta` and stamps the current DB version.
+Clone or copy into `wp-content/plugins/sas-menu-maker/`, then activate through **Plugins** in WordPress admin. On activation the plugin creates its own tables (`wp_menucraft_*`) via `dbDelta` and stamps the current DB version.
 
 ```bash
 cd wp-content/plugins
-git clone https://github.com/parsedesigncom/MenuCraft.git menucraft
+git clone https://github.com/saeidsamani/sas-menu-maker.git menucraft
 ```
 
 No `composer install`, no `npm install`, no build step — everything ships ready to run.
 
 ## Admin overview
 
-`MenuCraft` menu in the WordPress sidebar. Sub-screens:
+`SAS Menu Maker` menu in the WordPress sidebar. Sub-screens:
 
 - **Items** — CRUD with variants (size + price), M2M relations to categories/tags/allergens, client-side filters (search, price range, image, status), bulk-edit, guarded delete (blocked while referenced by an offer).
 - **Categories** — flat CRUD (name, slug, description, color, image, sort order, active) plus a `is_default` flag: exactly one category can be default, and its filter chip is auto-activated on the front end.
@@ -55,14 +55,14 @@ No `composer install`, no `npm install`, no build step — everything ships read
 
 ## Shortcodes
 
-### `[menucraft]`
+### `[sas_menu]`
 
 Full menu view with filter chips.
 
 ```
-[menucraft]                                        Default: rows, image left, filters on
-[menucraft image="top" columns="720__1 1200__2"]   Grid with responsive columns
-[menucraft variants="modal" class="dinner-menu"]   Variants inside details window, extra CSS class
+[sas_menu]                                        Default: rows, image left, filters on
+[sas_menu image="top" columns="720__1 1200__2"]   Grid with responsive columns
+[sas_menu variants="modal" class="dinner-menu"]   Variants inside details window, extra CSS class
 ```
 
 **Attributes** (all optional):
@@ -80,14 +80,14 @@ Full menu view with filter chips.
 
 Front-end filter semantics: single-select per group (Categories, Tags), AND across groups.
 
-### `[menucraft_offers]`
+### `[sas_menu_offers]`
 
 Offers list — no filter bar; offers with visible items are picked server-side.
 
 ```
-[menucraft_offers]                                     Preview mode (running now OR starting in 7 days)
-[menucraft_offers validity="all"]                      All active offers regardless of dates
-[menucraft_offers show_items="modal" conditions="modal" show_desc="modal" show_dates="hide"]
+[sas_menu_offers]                                     Preview mode (running now OR starting in 7 days)
+[sas_menu_offers validity="all"]                      All active offers regardless of dates
+[sas_menu_offers show_items="modal" conditions="modal" show_desc="modal" show_dates="hide"]
 ```
 
 **Attributes**:
@@ -105,15 +105,15 @@ Offers list — no filter bar; offers with visible items are picked server-side.
 
 The card is only clickable → modal when the modal actually has content (description-in-modal OR items-in-modal OR conditions-in-modal).
 
-### `[menucraft_group]`
+### `[sas_menu_group]`
 
 Focused list of one category or one tag with a hero header.
 
 ```
-[menucraft_group category="drinks"]
-[menucraft_group tag="vegan" show_header="hide"]
-[menucraft_group category="pizza" collapsed="yes"]
-[menucraft_group category="5" image="top" columns="720__1 1200__2"]
+[sas_menu_group category="drinks"]
+[sas_menu_group tag="vegan" show_header="hide"]
+[sas_menu_group category="pizza" collapsed="yes"]
+[sas_menu_group category="5" image="top" columns="720__1 1200__2"]
 ```
 
 **Attributes**:
@@ -134,26 +134,26 @@ Exactly one of `category` or `tag` is required. If both are set, `category` wins
 
 ## Gutenberg blocks
 
-Three dynamic blocks live under a dedicated **MenuCraft** category in the inserter. Each block wraps its corresponding shortcode via `do_shortcode()`, plus it exposes block-only decoration (font scale, alignment, border radius, ~10–20 color slots with alpha, custom grid) via a scoped inline `<style>` on the outer wrapper. Editing is a live preview through `wp.serverSideRender`.
+Three dynamic blocks live under a dedicated **SAS Menu Maker** category in the inserter. Each block wraps its corresponding shortcode via `do_shortcode()`, plus it exposes block-only decoration (font scale, alignment, border radius, ~10–20 color slots with alpha, custom grid) via a scoped inline `<style>` on the outer wrapper. Editing is a live preview through `wp.serverSideRender`.
 
 | Block | Wraps | Sidebar panels |
 | --- | --- | --- |
-| `menucraft/menu` | `[menucraft]` | Layout · Filter titles · Grid layout · Alignment & size · 5 color panels |
-| `menucraft/offers` | `[menucraft_offers]` | Content & layout · Card vs. modal · Grid layout · Alignment & size · 3 color panels |
-| `menucraft/group` | `[menucraft_group]` | Source · Header · Layout · Grid layout · Alignment & size · 5 color panels |
+| `sas-menu-maker/menu` | `[sas_menu]` | Layout · Filter titles · Grid layout · Alignment & size · 5 color panels |
+| `sas-menu-maker/offers` | `[sas_menu_offers]` | Content & layout · Card vs. modal · Grid layout · Alignment & size · 3 color panels |
+| `sas-menu-maker/group` | `[sas_menu_group]` | Source · Header · Layout · Grid layout · Alignment & size · 5 color panels |
 
 Written in plain JS via `wp.element.createElement` — no JSX, no build step, no committed compiled output.
 
 ## Template overrides
 
-Copy any file from `templates/` into `your-theme/menucraft/` and it wins.
+Copy any file from `templates/` into `your-theme/sas-menu-maker/` and it wins.
 
 ```
-plugin/templates/shortcode.php          → your-theme/menucraft/shortcode.php
-plugin/templates/shortcode-item.php     → your-theme/menucraft/shortcode-item.php
-plugin/templates/shortcode-offers.php   → your-theme/menucraft/shortcode-offers.php
-plugin/templates/shortcode-offer.php    → your-theme/menucraft/shortcode-offer.php
-plugin/templates/shortcode-group.php    → your-theme/menucraft/shortcode-group.php
+plugin/templates/shortcode.php          → your-theme/sas-menu-maker/shortcode.php
+plugin/templates/shortcode-item.php     → your-theme/sas-menu-maker/shortcode-item.php
+plugin/templates/shortcode-offers.php   → your-theme/sas-menu-maker/shortcode-offers.php
+plugin/templates/shortcode-offer.php    → your-theme/sas-menu-maker/shortcode-offer.php
+plugin/templates/shortcode-group.php    → your-theme/sas-menu-maker/shortcode-group.php
 ```
 
 The loader (`MenuCraft_Public::locate_template()`) always checks the theme first, then falls back to the plugin.
@@ -261,9 +261,9 @@ Fire before / after the whole shortcode render.
 
 | Action | Fired by | Args |
 | --- | --- | --- |
-| `menucraft_before_shortcode` / `menucraft_after_shortcode` | `[menucraft]` | `$context` |
-| `menucraft_before_offers_shortcode` / `menucraft_after_offers_shortcode` | `[menucraft_offers]` | `$context` |
-| `menucraft_before_group_shortcode` / `menucraft_after_group_shortcode` | `[menucraft_group]` | `$context` |
+| `menucraft_before_shortcode` / `menucraft_after_shortcode` | `[sas_menu]` | `$context` |
+| `menucraft_before_offers_shortcode` / `menucraft_after_offers_shortcode` | `[sas_menu_offers]` | `$context` |
+| `menucraft_before_group_shortcode` / `menucraft_after_group_shortcode` | `[sas_menu_group]` | `$context` |
 
 Example — insert a Google-schema JSON-LD block before every menu render:
 
@@ -318,11 +318,11 @@ add_action( 'menucraft_after_filters', function () {
 All routes require the `manage_options` capability.
 
 ```
-GET    /wp-json/menucraft/v1/categories
-POST   /wp-json/menucraft/v1/categories
-GET    /wp-json/menucraft/v1/categories/{id}
-PUT    /wp-json/menucraft/v1/categories/{id}
-DELETE /wp-json/menucraft/v1/categories/{id}
+GET    /wp-json/sas-menu-maker/v1/categories
+POST   /wp-json/sas-menu-maker/v1/categories
+GET    /wp-json/sas-menu-maker/v1/categories/{id}
+PUT    /wp-json/sas-menu-maker/v1/categories/{id}
+DELETE /wp-json/sas-menu-maker/v1/categories/{id}
 ```
 
 Same shape (five verbs) for `/tags`, `/allergens`, `/items`, `/offers`, `/options`.
@@ -330,7 +330,7 @@ Same shape (five verbs) for `/tags`, `/allergens`, `/items`, `/offers`, `/option
 Item bulk operations:
 
 ```
-POST /wp-json/menucraft/v1/items/bulk-edit
+POST /wp-json/sas-menu-maker/v1/items/bulk-edit
 {
     "item_ids":   [1, 3, 7],
     "operations": {
@@ -356,7 +356,7 @@ Schema is versioned (`MENUCRAFT_DB_VERSION`) with idempotent migrations in `Menu
 
 ## Front-end DOM contract
 
-If you're writing custom CSS or JS against MenuCraft's front-end output, these are the stable selectors:
+If you're writing custom CSS or JS against SAS Menu Maker's front-end output, these are the stable selectors:
 
 - Wrapper: `[data-menucraft-root]` (all three shortcodes). Also carries `data-menucraft-menu` for backwards compat when it's the menu shortcode.
 - Filter chip: `.menucraft-filter-chip[data-menucraft-filter="category|tag"]`. Active state: `.is-active`.

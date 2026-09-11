@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "menucraft/group",
-	"title": "MenuCraft Group",
-	"category": "menucraft",
+	"name": "sas-menu-maker/group",
+	"title": "SAS Menu — Group",
+	"category": "sas-menu-maker",
 	"icon": "category",
 	"description": "Show every item from one category or one tag, with the taxonomy's own image and description as a hero header.",
-	"keywords": [ "menucraft", "category", "tag", "menu section" ],
-	"textdomain": "menucraft",
+	"keywords": [ "category", "tag", "menu section", "menu" ],
+	"textdomain": "sas-menu-maker",
 	"attributes": {
 		"source":     { "type": "string", "default": "category", "enum": [ "category", "tag" ] },
 		"sourceId":   { "type": "integer", "default": 0 },

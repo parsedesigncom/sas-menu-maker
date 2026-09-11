@@ -85,7 +85,7 @@ $tile = function ( $value, $label, $modifier = '' ) {
 				<h1 class="menucraft-page-title"><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			</div>
 			<p class="menucraft-page-description">
-				<?php esc_html_e( 'At a glance — the numbers behind your menu.', 'menucraft' ); ?>
+				<?php esc_html_e( 'At a glance — the numbers behind your menu.', 'sas-menu-maker' ); ?>
 			</p>
 			<hr class="menucraft-page-sep">
 		</header>
@@ -94,32 +94,32 @@ $tile = function ( $value, $label, $modifier = '' ) {
 
 			<?php // -------------------- Offers (top priority) -------------------- ?>
 			<section class="menucraft-counters menucraft-counters--primary">
-				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Offers', 'menucraft' ); ?></h2>
+				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Offers', 'sas-menu-maker' ); ?></h2>
 				<div class="menucraft-counters-grid">
-					<?php $tile( $offers_total,   __( 'Total offers', 'menucraft' ),      'primary' ); ?>
-					<?php $tile( $offers_active,  __( 'Active', 'menucraft' ),           'primary' ); ?>
-					<?php $tile( $offers_current, __( 'Currently valid', 'menucraft' ), 'primary' ); ?>
+					<?php $tile( $offers_total,   __( 'Total offers', 'sas-menu-maker' ),      'primary' ); ?>
+					<?php $tile( $offers_active,  __( 'Active', 'sas-menu-maker' ),           'primary' ); ?>
+					<?php $tile( $offers_current, __( 'Currently valid', 'sas-menu-maker' ), 'primary' ); ?>
 				</div>
 			</section>
 
 			<?php // -------------------- Items -------------------- ?>
 			<section class="menucraft-counters">
-				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Items', 'menucraft' ); ?></h2>
+				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Items', 'sas-menu-maker' ); ?></h2>
 				<div class="menucraft-counters-grid">
-					<?php $tile( $items_total,         __( 'Total items', 'menucraft' ) ); ?>
-					<?php $tile( $items_with_variants, __( 'Items with variants', 'menucraft' ) ); ?>
-					<?php $tile( $variants_total,      __( 'Variants in total', 'menucraft' ) ); ?>
-					<?php $tile( $items_no_image,      __( 'Without image', 'menucraft' ), $items_no_image > 0 ? 'warn' : '' ); ?>
+					<?php $tile( $items_total,         __( 'Total items', 'sas-menu-maker' ) ); ?>
+					<?php $tile( $items_with_variants, __( 'Items with variants', 'sas-menu-maker' ) ); ?>
+					<?php $tile( $variants_total,      __( 'Variants in total', 'sas-menu-maker' ) ); ?>
+					<?php $tile( $items_no_image,      __( 'Without image', 'sas-menu-maker' ), $items_no_image > 0 ? 'warn' : '' ); ?>
 				</div>
 			</section>
 
 			<?php // -------------------- Taxonomies -------------------- ?>
 			<section class="menucraft-counters">
-				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Categories, tags & allergens', 'menucraft' ); ?></h2>
+				<h2 class="menucraft-counters-title"><?php esc_html_e( 'Categories, tags & allergens', 'sas-menu-maker' ); ?></h2>
 				<div class="menucraft-counters-grid">
-					<?php $tile( count( $categories ), __( 'Categories', 'menucraft' ) ); ?>
-					<?php $tile( count( $tags ),       __( 'Tags', 'menucraft' ) ); ?>
-					<?php $tile( count( $allergens ),  __( 'Allergens', 'menucraft' ) ); ?>
+					<?php $tile( count( $categories ), __( 'Categories', 'sas-menu-maker' ) ); ?>
+					<?php $tile( count( $tags ),       __( 'Tags', 'sas-menu-maker' ) ); ?>
+					<?php $tile( count( $allergens ),  __( 'Allergens', 'sas-menu-maker' ) ); ?>
 				</div>
 			</section>
 

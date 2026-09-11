@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "menucraft/menu",
-	"title": "MenuCraft Menu",
-	"category": "menucraft",
+	"name": "sas-menu-maker/menu",
+	"title": "SAS Menu",
+	"category": "sas-menu-maker",
 	"icon": "coffee",
-	"description": "Display your MenuCraft menu with optional filters, layout and image position.",
-	"keywords": [ "menu", "menucraft", "food", "restaurant" ],
-	"textdomain": "menucraft",
+	"description": "Display your restaurant menu with optional filters, layout and image position.",
+	"keywords": [ "menu", "food", "restaurant", "cafe" ],
+	"textdomain": "sas-menu-maker",
 	"attributes": {
 		"image": {
 			"type": "string",

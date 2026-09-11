@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "menucraft/offers",
-	"title": "MenuCraft Offers",
-	"category": "menucraft",
+	"name": "sas-menu-maker/offers",
+	"title": "SAS Menu — Offers",
+	"category": "sas-menu-maker",
 	"icon": "tickets-alt",
-	"description": "Display your MenuCraft offers with optional grid layout, alignment, colors and card configuration.",
-	"keywords": [ "offers", "menucraft", "promotion", "deals" ],
-	"textdomain": "menucraft",
+	"description": "Display your restaurant offers with optional grid layout, alignment, colors and card configuration.",
+	"keywords": [ "offers", "promotion", "deals", "menu" ],
+	"textdomain": "sas-menu-maker",
 	"attributes": {
 		"image": {
 			"type": "string",
