@@ -165,10 +165,22 @@ class MenuCraft_Block {
 			wp_add_inline_style( 'menucraft-public', $css );
 		}
 
+		// In the Gutenberg editor the block preview is fetched via a REST
+		// endpoint (ServerSideRender); wp_add_inline_style attaches CSS to
+		// the handle in the REST process but that inline CSS does not travel
+		// with the response to the editor iframe. Emit a scoped <style> in
+		// the returned HTML only in that REST context so the editor preview
+		// mirrors the frontend. Regular page renders never see this branch.
+		$preview_style = '';
+		if ( '' !== $css && defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			$preview_style = '<style>' . $css . '</style>'; // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- Editor-preview only; frontend uses wp_add_inline_style above.
+		}
+
 		return sprintf(
-			'<div id="%1$s" class="%2$s">%3$s</div>',
+			'<div id="%1$s" class="%2$s">%3$s%4$s</div>',
 			esc_attr( $block_id ),
 			esc_attr( implode( ' ', $classes ) ),
+			$preview_style,
 			do_shortcode( $sc )
 		);
 	}

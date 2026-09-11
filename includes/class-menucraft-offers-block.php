@@ -119,10 +119,19 @@ class MenuCraft_Offers_Block {
 			wp_add_inline_style( 'menucraft-public', $css );
 		}
 
+		// Editor preview via ServerSideRender REST endpoint does not receive
+		// wp_add_inline_style attachments — emit a scoped <style> only in
+		// that REST context. Frontend page renders never take this branch.
+		$preview_style = '';
+		if ( '' !== $css && defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			$preview_style = '<style>' . $css . '</style>'; // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- Editor-preview only.
+		}
+
 		return sprintf(
-			'<div id="%1$s" class="%2$s">%3$s</div>',
+			'<div id="%1$s" class="%2$s">%3$s%4$s</div>',
 			esc_attr( $block_id ),
 			esc_attr( implode( ' ', $classes ) ),
+			$preview_style,
 			do_shortcode( $sc )
 		);
 	}
