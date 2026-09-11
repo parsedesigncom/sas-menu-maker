@@ -76,7 +76,7 @@
 		} );
 	}
 
-	registerBlockType( 'menucraft/offers', {
+	registerBlockType( 'sas-menu-maker/offers', {
 		edit: function ( props ) {
 			var attrs = props.attributes;
 			var set   = props.setAttributes;
@@ -231,7 +231,7 @@
 					blockProps,
 					ServerSideRender
 						? el( ServerSideRender, {
-							block: 'menucraft/offers',
+							block: 'sas-menu-maker/offers',
 							attributes: attrs
 						} )
 						: el( 'p', {}, __( 'Preview unavailable in this WordPress version.', 'sas-menu-maker' ) )

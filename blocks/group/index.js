@@ -95,7 +95,7 @@
 		} );
 	}
 
-	registerBlockType( 'menucraft/group', {
+	registerBlockType( 'sas-menu-maker/group', {
 		edit: function ( props ) {
 			var attrs = props.attributes;
 			var set   = props.setAttributes;
@@ -282,7 +282,7 @@
 					blockProps,
 					attrs.sourceId
 						? ( ServerSideRender
-							? el( ServerSideRender, { block: 'menucraft/group', attributes: attrs } )
+							? el( ServerSideRender, { block: 'sas-menu-maker/group', attributes: attrs } )
 							: el( 'p', {}, __( 'Preview unavailable in this WordPress version.', 'sas-menu-maker' ) )
 						)
 						: el( 'p', { className: 'menucraft-block-hint' }, __( 'Pick a category or tag in the sidebar to see the preview.', 'sas-menu-maker' ) )
