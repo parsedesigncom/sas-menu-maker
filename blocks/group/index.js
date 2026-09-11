@@ -1,8 +1,8 @@
 /**
- * MenuCraft — Gutenberg "group" block editor script.
+ * SAS Menu Maker — Gutenberg "group" block editor script.
  *
- * Dynamic block: the render_callback (in class-menucraft-group-block.php)
- * wraps the [menucraft_group] shortcode. This script drives the sidebar
+ * Dynamic block: the render_callback (in class-sas-menu-maker-group-block.php)
+ * wraps the [sas_menu_group] shortcode. This script drives the sidebar
  * and shows a live ServerSideRender preview.
  *
  * The Source panel loads Categories and Tags via REST so the author can
@@ -285,7 +285,7 @@
 							? el( ServerSideRender, { block: 'sas-menu-maker/group', attributes: attrs } )
 							: el( 'p', {}, __( 'Preview unavailable in this WordPress version.', 'sas-menu-maker' ) )
 						)
-						: el( 'p', { className: 'menucraft-block-hint' }, __( 'Pick a category or tag in the sidebar to see the preview.', 'sas-menu-maker' ) )
+						: el( 'p', { className: 'sas-menu-maker-block-hint' }, __( 'Pick a category or tag in the sidebar to see the preview.', 'sas-menu-maker' ) )
 				)
 			);
 		},

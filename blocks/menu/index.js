@@ -1,8 +1,8 @@
 /**
- * MenuCraft — Gutenberg "menu" block editor script.
+ * SAS Menu Maker — Gutenberg "menu" block editor script.
  *
  * Dynamic block: the frontend HTML is produced server-side (by wrapping
- * the [menucraft] shortcode); this script only wires up the block-inserter
+ * the [sas_menu] shortcode); this script only wires up the block-inserter
  * entry, the inspector controls in the sidebar, and a ServerSideRender
  * preview so authors see the real menu inside the editor.
  *
@@ -35,7 +35,7 @@
 
 	// -------- Color-slot registry --------
 	// Grouped for the sidebar UI. Each `attr` name must exist in
-	// block.json and be mirrored in class-menucraft-block.php::color_slots().
+	// block.json and be mirrored in class-sas-menu-maker-block.php::color_slots().
 	var colorGroups = [
 		{
 			title: __( 'Colors — Container', 'sas-menu-maker' ),

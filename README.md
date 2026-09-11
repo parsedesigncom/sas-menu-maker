@@ -156,7 +156,7 @@ plugin/templates/shortcode-offer.php    → your-theme/sas-menu-maker/shortcode-
 plugin/templates/shortcode-group.php    → your-theme/sas-menu-maker/shortcode-group.php
 ```
 
-The loader (`MenuCraft_Public::locate_template()`) always checks the theme first, then falls back to the plugin.
+The loader (`SAS_Menu_Maker_Public::locate_template()`) always checks the theme first, then falls back to the plugin.
 
 ## Filter hooks
 
@@ -352,7 +352,7 @@ Custom tables (`$wpdb->prefix . 'menucraft_*'`):
 - `item_categories`, `item_tags`, `item_allergens` — M2M junctions.
 - `menucraft_options` — plugin-owned key/value store, independent of `wp_options`.
 
-Schema is versioned (`MENUCRAFT_DB_VERSION`) with idempotent migrations in `MenuCraft_Schema::run_migrations()`. Latest is 1.5.
+Schema is versioned (`SAS_MENU_MAKER_DB_VERSION`) with idempotent migrations in `SAS_Menu_Maker_Schema::run_migrations()`. Latest is 1.5.
 
 ## Front-end DOM contract
 
@@ -385,14 +385,14 @@ languages/                         Translation files (menucraft.pot + menucraft-
 
 **Coding standards**: WordPress PHP Coding Standards. Prefixes:
 
-- Constants: `MENUCRAFT_`
-- Classes:   `MenuCraft_`
+- Constants: `SAS_MENU_MAKER_`
+- Classes:   `SAS_Menu_Maker_`
 - Functions: `menucraft_`
 - Options / meta keys: `menucraft_`
 
 **No build step**: JavaScript is hand-written and committed as-is. That's a deliberate choice — the plugin ships and installs without `node_modules` or a bundler.
 
-**Testing local changes**: activate the plugin, then reload. Migrations run on `admin_init` via `MenuCraft_Schema::maybe_upgrade()`, so bumping `MENUCRAFT_DB_VERSION` triggers your migration on the next admin page load.
+**Testing local changes**: activate the plugin, then reload. Migrations run on `admin_init` via `SAS_Menu_Maker_Schema::maybe_upgrade()`, so bumping `SAS_MENU_MAKER_DB_VERSION` triggers your migration on the next admin page load.
 
 ## License
 

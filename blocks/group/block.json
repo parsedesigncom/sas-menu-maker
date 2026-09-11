@@ -45,6 +45,6 @@
 		"align": [ "wide", "full" ]
 	},
 	"editorScript": "file:./index.js",
-	"style":       "menucraft-public",
-	"viewScript":  "menucraft-public"
+	"style":       "sas-menu-maker-public",
+	"viewScript":  "sas-menu-maker-public"
 }

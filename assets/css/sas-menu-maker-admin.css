@@ -1,0 +1,2061 @@
+/*
+ * MenuCraft — base admin styles.
+ *
+ * All rules are scoped to `.sas-menu-maker-admin` on <body> so they only apply
+ * on plugin screens and never leak into the rest of the WP admin.
+ *
+ * Layout target: the card fills the viewport (below the WP admin bar) and
+ * behaves like an app shell — sticky header at the top, sticky footer at
+ * the bottom, and a scrollable body between them. Achieved with flexbox,
+ * no JS.
+ */
+
+/* ---- Backdrop --------------------------------------------------------- */
+
+body.sas-menu-maker-admin {
+	background-color: #f5f6f8;
+}
+
+/*
+ * Make #wpbody-content a flex column so the wrap can claim remaining
+ * height between the admin bar and the WP admin footer.
+ */
+body.sas-menu-maker-admin #wpbody-content {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 32px); /* 32px = WP admin bar (desktop) */
+	padding-bottom: 0;
+}
+
+@media screen and (max-width: 782px) {
+	body.sas-menu-maker-admin #wpbody-content {
+		min-height: calc(100vh - 46px); /* 46px = WP admin bar (mobile) */
+	}
+}
+
+/* Hide the WP admin footer on our pages so the card can truly fill height. */
+body.sas-menu-maker-admin #wpfooter {
+	display: none;
+}
+
+/* ---- Page wrap + card (flex shell) ------------------------------------ */
+
+.sas-menu-maker-wrap {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	margin: 20px 20px 20px 0;
+	max-width: 1280px;
+	min-height: 0; /* required for children with overflow to work */
+}
+
+.sas-menu-maker-card {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	box-shadow:
+		0 1px 2px rgba(15, 23, 42, 0.04),
+		0 8px 24px -12px rgba(15, 23, 42, 0.08);
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	margin: 0;
+	min-height: 0;
+	overflow: hidden; /* clip inner scroll and preserve border-radius */
+	padding: 0;
+}
+
+/* ---- Header (sticky top, non-scrolling) ------------------------------- */
+
+.sas-menu-maker-page-header {
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 28px 36px 0;
+}
+
+.sas-menu-maker-page-title.sas-menu-maker-page-title {
+	/* doubled selector raises specificity above WP's default .wrap h1 */
+	color: #1d2327;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.25;
+	margin: 0 0 12px;
+	padding: 0;
+}
+
+.sas-menu-maker-page-description {
+	color: #646970;
+	font-size: 14px;
+	line-height: 1.6;
+	margin: 0;
+	max-width: 65ch;
+}
+
+.sas-menu-maker-page-header .sas-menu-maker-page-sep {
+	margin: 20px 0 0;
+}
+
+/* ---- Body (scrollable) ------------------------------------------------ */
+
+.sas-menu-maker-page-body {
+	color: #1d2327;
+	flex: 1 1 auto;
+	font-size: 14px;
+	line-height: 1.6;
+	min-height: 0;
+	overflow-y: auto;
+	padding: 24px 36px;
+}
+
+.sas-menu-maker-page-body > *:first-child {
+	margin-top: 0;
+}
+
+.sas-menu-maker-page-body > *:last-child {
+	margin-bottom: 0;
+}
+
+/* Slim, subtle scrollbar inside the body — WebKit + Firefox. */
+.sas-menu-maker-page-body {
+	scrollbar-color: #d1d5db transparent;
+	scrollbar-width: thin;
+}
+
+.sas-menu-maker-page-body::-webkit-scrollbar {
+	width: 10px;
+}
+
+.sas-menu-maker-page-body::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.sas-menu-maker-page-body::-webkit-scrollbar-thumb {
+	background: #d1d5db;
+	background-clip: content-box;
+	border: 2px solid transparent;
+	border-radius: 5px;
+}
+
+.sas-menu-maker-page-body::-webkit-scrollbar-thumb:hover {
+	background: #9ca3af;
+	background-clip: content-box;
+}
+
+/* ---- Footer (sticky bottom, non-scrolling) ---------------------------- */
+
+.sas-menu-maker-page-footer {
+	flex: 0 0 auto;
+	margin: 0;
+	padding: 0 36px 24px;
+}
+
+.sas-menu-maker-page-footer .sas-menu-maker-page-sep {
+	margin: 0 0 20px;
+}
+
+/* Shared separator style. */
+.sas-menu-maker-page-sep {
+	background: transparent;
+	border: 0;
+	border-top: 1px solid #e5e7eb;
+	height: 0;
+}
+
+/* ---- Responsive ------------------------------------------------------- */
+
+@media (max-width: 782px) {
+	.sas-menu-maker-wrap {
+		margin: 12px 12px 12px 0;
+	}
+
+	.sas-menu-maker-card {
+		border-radius: 6px;
+	}
+
+	.sas-menu-maker-page-header {
+		padding: 22px 20px 0;
+	}
+
+	.sas-menu-maker-page-header .sas-menu-maker-page-sep {
+		margin: 16px 0 0;
+	}
+
+	.sas-menu-maker-page-body {
+		padding: 18px 20px;
+	}
+
+	.sas-menu-maker-page-footer {
+		padding: 0 20px 18px;
+	}
+
+	.sas-menu-maker-page-footer .sas-menu-maker-page-sep {
+		margin: 0 0 16px;
+	}
+
+	.sas-menu-maker-page-title.sas-menu-maker-page-title {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.sas-menu-maker-page-header {
+		padding: 18px 16px 0;
+	}
+
+	.sas-menu-maker-page-body {
+		padding: 14px 16px;
+	}
+
+	.sas-menu-maker-page-footer {
+		padding: 0 16px 14px;
+	}
+
+	.sas-menu-maker-page-title.sas-menu-maker-page-title {
+		font-size: 18px;
+	}
+}
+
+/* ---- Header row (title + action button) ------------------------------ */
+
+.sas-menu-maker-page-header-row {
+	align-items: center;
+	display: flex;
+	gap: 16px;
+	justify-content: space-between;
+	margin: 0;
+}
+
+.sas-menu-maker-page-header-row .sas-menu-maker-page-title.sas-menu-maker-page-title {
+	margin: 0;
+}
+
+.sas-menu-maker-page-header-row + .sas-menu-maker-page-description {
+	margin-top: 12px;
+}
+
+.button.sas-menu-maker-btn-add {
+	align-items: center;
+	display: inline-flex;
+	flex-shrink: 0;
+	gap: 6px;
+}
+
+.button.sas-menu-maker-btn-add .dashicons {
+	font-size: 18px;
+	height: 18px;
+	line-height: 1;
+	width: 18px;
+}
+
+/* ---- Off-canvas panel ------------------------------------------------- */
+
+.sas-menu-maker-offcanvas {
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	position: fixed;
+	right: 0;
+	top: 32px; /* WP admin bar height (desktop) */
+	z-index: 99998;
+}
+
+.sas-menu-maker-offcanvas-backdrop {
+	background: rgba(15, 23, 42, 0.35);
+	inset: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	transition: opacity 0.2s ease;
+}
+
+.sas-menu-maker-offcanvas-panel {
+	background: #ffffff;
+	bottom: 0;
+	box-shadow: -12px 0 32px rgba(15, 23, 42, 0.14);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	pointer-events: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translateX(100%);
+	transition: transform 0.25s ease;
+	width: 50%;
+}
+
+.sas-menu-maker-offcanvas.sas-menu-maker-offcanvas-is-open .sas-menu-maker-offcanvas-backdrop {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.sas-menu-maker-offcanvas.sas-menu-maker-offcanvas-is-open .sas-menu-maker-offcanvas-panel {
+	transform: translateX(0);
+}
+
+.sas-menu-maker-offcanvas-panel > form {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 0;
+}
+
+.sas-menu-maker-offcanvas-header {
+	align-items: center;
+	border-bottom: 1px solid #e5e7eb;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 18px 24px;
+}
+
+.sas-menu-maker-offcanvas-title {
+	color: #1d2327;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.25;
+	margin: 0;
+}
+
+.sas-menu-maker-offcanvas-close {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	border-radius: 4px;
+	color: #646970;
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	padding: 6px;
+}
+
+.sas-menu-maker-offcanvas-close:hover {
+	background: #f0f0f1;
+	color: #1d2327;
+}
+
+.sas-menu-maker-offcanvas-close .dashicons {
+	font-size: 20px;
+	height: 20px;
+	line-height: 1;
+	width: 20px;
+}
+
+.sas-menu-maker-offcanvas-body {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+	padding: 24px;
+}
+
+.sas-menu-maker-offcanvas-footer {
+	align-items: center;
+	background: #fafbfc;
+	border-top: 1px solid #e5e7eb;
+	display: flex;
+	flex: 0 0 auto;
+	gap: 8px;
+	justify-content: flex-end;
+	padding: 14px 24px;
+}
+
+body.sas-menu-maker-offcanvas-open {
+	overflow: hidden;
+}
+
+@media screen and (max-width: 782px) {
+	.sas-menu-maker-offcanvas {
+		top: 46px; /* WP admin bar height (mobile) */
+	}
+
+	.sas-menu-maker-offcanvas-panel {
+		width: 95%;
+	}
+
+	.sas-menu-maker-offcanvas-header {
+		padding: 14px 18px;
+	}
+
+	.sas-menu-maker-offcanvas-body {
+		padding: 18px;
+	}
+
+	.sas-menu-maker-offcanvas-footer {
+		padding: 12px 18px;
+	}
+}
+
+/* Sub-panel: sits above the main panel (higher z-index and offset) so
+   the user sees the parent as a dimmed frame behind. */
+.sas-menu-maker-offcanvas-sub {
+	z-index: 100000;
+}
+
+.sas-menu-maker-offcanvas-sub .sas-menu-maker-offcanvas-panel {
+	max-width: 640px;
+	width: 45%;
+}
+
+@media screen and (max-width: 782px) {
+	.sas-menu-maker-offcanvas-sub .sas-menu-maker-offcanvas-panel {
+		max-width: none;
+		width: 92%;
+	}
+}
+
+/* Any panel that got shoved to the back stack gets desaturated and
+   pushed slightly aside so the user notices they descended one level. */
+.sas-menu-maker-offcanvas.sas-menu-maker-offcanvas-behind .sas-menu-maker-offcanvas-panel {
+	filter: brightness( 0.9 ) saturate( 0.75 );
+	pointer-events: none;
+	transform: translateX( -24px ) scale( 0.985 );
+	transform-origin: right center;
+	transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.sas-menu-maker-offcanvas.sas-menu-maker-offcanvas-behind .sas-menu-maker-offcanvas-backdrop {
+	pointer-events: none;
+}
+
+/* Header layout tweaks when a breadcrumb precedes the title. */
+.sas-menu-maker-offcanvas-title-group {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.sas-menu-maker-offcanvas-breadcrumb {
+	color: #8c92a4;
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-breadcrumb-sep {
+	margin: 0 4px;
+}
+
+/* ---- Form fields ------------------------------------------------------ */
+
+.sas-menu-maker-form .sas-menu-maker-field {
+	margin: 0 0 20px;
+}
+
+.sas-menu-maker-form .sas-menu-maker-field:last-child {
+	margin-bottom: 0;
+}
+
+.sas-menu-maker-form label {
+	color: #1d2327;
+	display: block;
+	font-size: 13px;
+	font-weight: 500;
+	margin: 0 0 6px;
+}
+
+.sas-menu-maker-form input[type="text"],
+.sas-menu-maker-form input[type="number"],
+.sas-menu-maker-form input[type="url"],
+.sas-menu-maker-form input[type="email"],
+.sas-menu-maker-form textarea,
+.sas-menu-maker-form select {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: #1d2327;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	line-height: 1.4;
+	margin: 0;
+	max-width: 100%;
+	padding: 8px 12px;
+	width: 100%;
+}
+
+.sas-menu-maker-form textarea {
+	min-height: 96px;
+	resize: vertical;
+}
+
+.sas-menu-maker-form input:focus,
+.sas-menu-maker-form textarea:focus,
+.sas-menu-maker-form select:focus {
+	border-color: #3858e9;
+	box-shadow: 0 0 0 2px rgba(56, 88, 233, 0.2);
+	outline: 0;
+}
+
+.sas-menu-maker-form input[type="color"] {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	cursor: pointer;
+	height: 40px;
+	padding: 4px;
+	width: 80px;
+}
+
+.sas-menu-maker-form .sas-menu-maker-field-checkbox label {
+	align-items: center;
+	cursor: pointer;
+	display: inline-flex;
+	font-weight: 400;
+	gap: 8px;
+	margin: 0;
+}
+
+.sas-menu-maker-form .sas-menu-maker-field-checkbox input {
+	margin: 0;
+}
+
+.sas-menu-maker-form .sas-menu-maker-required {
+	color: #d63638;
+	margin-left: 4px;
+}
+
+/* ---- Media picker ----------------------------------------------------- */
+
+.sas-menu-maker-media-picker {
+	display: block;
+}
+
+.sas-menu-maker-media-preview {
+	align-items: center;
+	background: #f6f7f8;
+	border: 1px dashed #d1d5db;
+	border-radius: 6px;
+	display: flex;
+	height: 160px;
+	justify-content: center;
+	margin-bottom: 8px;
+	overflow: hidden;
+	width: 160px;
+}
+
+.sas-menu-maker-media-preview:empty::before {
+	color: #8c92a4;
+	content: attr(data-empty);
+	font-size: 13px;
+}
+
+.sas-menu-maker-media-preview img {
+	display: block;
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+}
+
+.sas-menu-maker-media-actions {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+}
+
+.sas-menu-maker-media-remove.button-link {
+	color: #b91c1c;
+	cursor: pointer;
+	padding: 0;
+	text-decoration: underline;
+}
+
+.sas-menu-maker-media-remove.button-link:hover {
+	color: #7f1d1d;
+}
+
+/* ---- Chip selector ---------------------------------------------------- */
+
+.sas-menu-maker-chips {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	min-height: 34px;
+}
+
+.sas-menu-maker-chips-empty {
+	color: #8c92a4;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.sas-menu-maker-chip {
+	--sas-menu-maker-chip-color: #d1d5db;
+	align-items: center;
+	background: #ffffff;
+	border: 1px solid var( --sas-menu-maker-chip-color );
+	border-radius: 999px;
+	color: #1d2327;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 13px;
+	gap: 6px;
+	line-height: 1;
+	padding: 6px 12px;
+	transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.sas-menu-maker-chip:hover {
+	background: #f6f7f9;
+}
+
+.sas-menu-maker-chip:focus {
+	outline: 2px solid rgba( 56, 88, 233, 0.35 );
+	outline-offset: 1px;
+}
+
+.sas-menu-maker-chip-selected {
+	background: color-mix( in srgb, var( --sas-menu-maker-chip-color ) 12%, #ffffff );
+	border-color: var( --sas-menu-maker-chip-color );
+	box-shadow: 0 0 0 1px var( --sas-menu-maker-chip-color ) inset;
+	font-weight: 600;
+}
+
+.sas-menu-maker-chip-selected:hover {
+	background: color-mix( in srgb, var( --sas-menu-maker-chip-color ) 20%, #ffffff );
+}
+
+.sas-menu-maker-chip-code {
+	background: rgba( 55, 48, 163, 0.12 );
+	border-radius: 3px;
+	color: #3730a3;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 700;
+	padding: 2px 5px;
+	text-transform: uppercase;
+}
+
+/* ---- List table ------------------------------------------------------- */
+
+.sas-menu-maker-table {
+	background: #ffffff;
+	margin: 0;
+}
+
+.sas-menu-maker-table th,
+.sas-menu-maker-table td {
+	vertical-align: middle;
+}
+
+.sas-menu-maker-col-select     { width: 36px;  text-align: center; }
+.sas-menu-maker-col-thumb      { width: 68px;  }
+.sas-menu-maker-col-code       { width: 88px;  }
+.sas-menu-maker-col-color      { width: 70px;  }
+.sas-menu-maker-col-price      { width: 110px; }
+.sas-menu-maker-col-categories { width: 180px; }
+.sas-menu-maker-col-active     { width: 100px; }
+.sas-menu-maker-col-dates      { width: 180px; }
+.sas-menu-maker-col-actions    { width: 96px;  text-align: right; }
+
+.sas-menu-maker-col-select input[type="checkbox"] {
+	margin: 0;
+}
+
+.sas-menu-maker-row-selected {
+	background: rgba( 56, 88, 233, 0.05 ) !important;
+}
+
+.sas-menu-maker-code-badge {
+	background: #eef2ff;
+	border: 1px solid #c7d2fe;
+	border-radius: 4px;
+	color: #3730a3;
+	display: inline-block;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 5px 8px;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-row-status td {
+	color: #646970;
+	font-style: italic;
+	text-align: center;
+	padding: 24px;
+}
+
+.sas-menu-maker-thumb {
+	background: #f6f7f8;
+	border-radius: 4px;
+	display: inline-block;
+	height: 50px;
+	object-fit: cover;
+	overflow: hidden;
+	vertical-align: middle;
+	width: 50px;
+}
+
+.sas-menu-maker-thumb-empty {
+	background-image: linear-gradient(45deg, #eef0f3 25%, transparent 25%),
+		linear-gradient(-45deg, #eef0f3 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, #eef0f3 75%),
+		linear-gradient(-45deg, transparent 75%, #eef0f3 75%);
+	background-size: 8px 8px;
+	background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.sas-menu-maker-cell-sub {
+	color: #8c92a4;
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+.sas-menu-maker-color-swatch {
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	display: inline-block;
+	height: 22px;
+	vertical-align: middle;
+	width: 36px;
+}
+
+.sas-menu-maker-cell-dates {
+	font-size: 12px;
+	line-height: 1.4;
+	white-space: nowrap;
+}
+
+/* Active toggle (badge-style button) */
+.sas-menu-maker-toggle {
+	background: #f3f4f6;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	color: #6b7280;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 5px 12px;
+	transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.sas-menu-maker-toggle:disabled {
+	cursor: default;
+	opacity: 0.6;
+}
+
+.sas-menu-maker-toggle-on {
+	background: rgba(20, 128, 74, 0.12);
+	border-color: rgba(20, 128, 74, 0.3);
+	color: #14804a;
+}
+
+.sas-menu-maker-toggle-off {
+	background: #f3f4f6;
+	border-color: #e5e7eb;
+	color: #6b7280;
+}
+
+.sas-menu-maker-toggle:focus {
+	outline: 2px solid rgba(56, 88, 233, 0.35);
+	outline-offset: 1px;
+}
+
+/* Action buttons */
+.sas-menu-maker-cell-actions {
+	display: inline-flex;
+	gap: 4px;
+	justify-content: flex-end;
+}
+
+.sas-menu-maker-btn-icon.button-link {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	border-radius: 4px;
+	color: #646970;
+	cursor: pointer;
+	display: inline-flex;
+	height: 30px;
+	justify-content: center;
+	padding: 0;
+	text-decoration: none;
+	width: 30px;
+}
+
+.sas-menu-maker-btn-icon.button-link:hover {
+	background: #f0f0f1;
+	color: #1d2327;
+}
+
+.sas-menu-maker-btn-delete.button-link:hover {
+	background: rgba(185, 28, 28, 0.08);
+	color: #b91c1c;
+}
+
+/* ---- Modal ------------------------------------------------------------ */
+
+.sas-menu-maker-modal {
+	display: none;
+	inset: 0;
+	position: fixed;
+	z-index: 100000;
+}
+
+.sas-menu-maker-modal.sas-menu-maker-modal-is-open {
+	display: block;
+}
+
+.sas-menu-maker-modal-backdrop {
+	background: rgba(15, 23, 42, 0.45);
+	inset: 0;
+	position: absolute;
+}
+
+.sas-menu-maker-modal-dialog {
+	background: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 12px 40px rgba(15, 23, 42, 0.25);
+	display: flex;
+	flex-direction: column;
+	left: 50%;
+	max-width: 420px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 92%;
+}
+
+.sas-menu-maker-modal-header {
+	border-bottom: 1px solid #e5e7eb;
+	padding: 18px 22px;
+}
+
+.sas-menu-maker-modal-title {
+	color: #1d2327;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.sas-menu-maker-modal-body {
+	color: #1d2327;
+	font-size: 14px;
+	line-height: 1.5;
+	padding: 20px 22px;
+}
+
+.sas-menu-maker-modal-body p {
+	margin: 0;
+}
+
+.sas-menu-maker-modal-footer {
+	align-items: center;
+	background: #fafbfc;
+	border-top: 1px solid #e5e7eb;
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	padding: 14px 22px;
+}
+
+.sas-menu-maker-btn-danger.button {
+	background: #b91c1c;
+	border-color: #7f1d1d;
+	color: #ffffff;
+	text-shadow: none;
+}
+
+.sas-menu-maker-btn-danger.button:hover,
+.sas-menu-maker-btn-danger.button:focus {
+	background: #a11414;
+	border-color: #7f1d1d;
+	color: #ffffff;
+}
+
+/* ---- Item form specifics --------------------------------------------- */
+
+.sas-menu-maker-field-help {
+	color: #646970;
+	font-size: 12px;
+	line-height: 1.5;
+	margin: 6px 0 0;
+}
+
+.sas-menu-maker-variants-summary {
+	align-items: center;
+	background: #f6f7f9;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 10px 14px;
+}
+
+.sas-menu-maker-variants-count {
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.sas-menu-maker-variants-add.button {
+	align-items: center;
+	display: inline-flex;
+	gap: 4px;
+	margin-top: 8px;
+}
+
+.sas-menu-maker-variants-add.button .dashicons {
+	height: 18px;
+	line-height: 1;
+	width: 18px;
+}
+
+.sas-menu-maker-variants-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.sas-menu-maker-variant-row {
+	align-items: center;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	display: grid;
+	gap: 8px;
+	grid-template-columns: 1fr 130px auto;
+	padding: 8px;
+}
+
+.sas-menu-maker-variant-cell input {
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: #1d2327;
+	font-size: 14px;
+	padding: 6px 10px;
+	width: 100%;
+}
+
+.sas-menu-maker-variant-cell input:focus {
+	border-color: #3858e9;
+	box-shadow: 0 0 0 2px rgba( 56, 88, 233, 0.2 );
+	outline: 0;
+}
+
+.sas-menu-maker-variants-empty {
+	color: #8c92a4;
+	font-size: 13px;
+	font-style: italic;
+	padding: 12px 0;
+	text-align: center;
+}
+
+/* Item list — categories + price cells */
+
+.sas-menu-maker-related-list {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.sas-menu-maker-related-pill {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 999px;
+	color: #1d2327;
+	display: inline-block;
+	font-size: 11px;
+	padding: 2px 8px;
+}
+
+.sas-menu-maker-cell-price {
+	color: #1d2327;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* ---- Filters ---------------------------------------------------------- */
+
+.sas-menu-maker-filters {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	margin: 0 0 12px;
+}
+
+.sas-menu-maker-filters-header {
+	align-items: center;
+	border-bottom: 1px solid #e5e7eb;
+	cursor: pointer;
+	display: flex;
+	gap: 10px;
+	padding: 8px 14px;
+	user-select: none;
+}
+
+.sas-menu-maker-filters-header:hover {
+	background: #fafbfc;
+}
+
+.sas-menu-maker-filters-header:focus-visible {
+	outline: 2px solid rgba( 56, 88, 233, 0.35 );
+	outline-offset: -2px;
+}
+
+.sas-menu-maker-filters-chevron {
+	color: #8c92a4;
+	font-size: 18px;
+	height: 18px;
+	line-height: 1;
+	transition: transform 0.15s ease;
+	width: 18px;
+}
+
+.sas-menu-maker-filters:not( .sas-menu-maker-filters-collapsed ) .sas-menu-maker-filters-chevron {
+	transform: rotate( 90deg );
+}
+
+.sas-menu-maker-filters.sas-menu-maker-filters-collapsed {
+	border-color: #e5e7eb;
+}
+
+.sas-menu-maker-filters.sas-menu-maker-filters-collapsed .sas-menu-maker-filters-header {
+	border-bottom: 0;
+}
+
+.sas-menu-maker-filters.sas-menu-maker-filters-collapsed .sas-menu-maker-filters-body {
+	display: none;
+}
+
+.sas-menu-maker-filters-title {
+	align-items: center;
+	color: #1d2327;
+	display: inline-flex;
+	font-size: 13px;
+	font-weight: 600;
+	gap: 6px;
+}
+
+.sas-menu-maker-filters-title .dashicons {
+	color: #3730a3;
+	font-size: 16px;
+	height: 16px;
+	line-height: 1;
+	width: 16px;
+}
+
+.sas-menu-maker-filters-count {
+	background: rgba( 55, 48, 163, 0.12 );
+	border-radius: 999px;
+	color: #3730a3;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 2px 8px;
+}
+
+.sas-menu-maker-filters-reset {
+	background: transparent;
+	border: 0;
+	color: #b91c1c;
+	cursor: pointer;
+	font-size: 12px;
+	margin-left: auto;
+	padding: 4px 8px;
+	text-decoration: underline;
+}
+
+.sas-menu-maker-filters-reset:hover {
+	color: #7f1d1d;
+}
+
+.sas-menu-maker-filters-body {
+	display: grid;
+	gap: 12px;
+	padding: 14px;
+}
+
+.sas-menu-maker-filter-field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.sas-menu-maker-filter-field label {
+	color: #1d2327;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-filter-field input[type="search"],
+.sas-menu-maker-filter-field input[type="number"],
+.sas-menu-maker-filter-field select {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	color: #1d2327;
+	font-size: 14px;
+	padding: 6px 10px;
+	width: 100%;
+}
+
+.sas-menu-maker-filter-field input:focus,
+.sas-menu-maker-filter-field select:focus {
+	border-color: #3858e9;
+	box-shadow: 0 0 0 2px rgba( 56, 88, 233, 0.2 );
+	outline: 0;
+}
+
+.sas-menu-maker-filter-search input[type="search"] {
+	background-image: url( "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238c92a4'><path d='M9 3a6 6 0 104.472 10.03l3.749 3.75a1 1 0 001.415-1.415l-3.75-3.749A6 6 0 009 3zm-4 6a4 4 0 118 0 4 4 0 01-8 0z'/></svg>" );
+	background-position: 10px 50%;
+	background-repeat: no-repeat;
+	background-size: 16px 16px;
+	padding-left: 34px;
+}
+
+.sas-menu-maker-filter-row {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+}
+
+.sas-menu-maker-filter-range {
+	align-items: center;
+	display: flex;
+	gap: 6px;
+}
+
+.sas-menu-maker-filter-range input {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.sas-menu-maker-filter-range span {
+	color: #8c92a4;
+}
+
+.sas-menu-maker-chips-filter .sas-menu-maker-chip {
+	font-size: 12px;
+	padding: 4px 10px;
+}
+
+@media (max-width: 782px) {
+	.sas-menu-maker-filter-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ---- Bulk toolbar + panel -------------------------------------------- */
+
+.sas-menu-maker-bulk-toolbar {
+	align-items: center;
+	background: #eef2ff;
+	border: 1px solid #c7d2fe;
+	border-radius: 4px;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	margin: 0 0 8px;
+	padding: 4px 10px;
+}
+
+/* Explicit override — my class rule above beats the UA [hidden] rule
+   otherwise, so the toolbar was visible even when hidden was set. */
+.sas-menu-maker-bulk-toolbar[hidden] {
+	display: none;
+}
+
+.sas-menu-maker-bulk-count {
+	color: #1d2327;
+	font-size: 12px;
+}
+
+.sas-menu-maker-bulk-count strong {
+	color: #3730a3;
+	font-size: 13px;
+	margin-right: 3px;
+}
+
+.sas-menu-maker-bulk-actions {
+	align-items: center;
+	display: flex;
+	gap: 4px;
+}
+
+.sas-menu-maker-bulk-actions .button {
+	font-size: 12px;
+	line-height: 1.6;
+	min-height: 26px;
+	padding: 0 10px;
+}
+
+.sas-menu-maker-offcanvas-title-badge {
+	background: rgba( 55, 48, 163, 0.12 );
+	border-radius: 999px;
+	color: #3730a3;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 600;
+	margin-left: 8px;
+	padding: 3px 10px;
+}
+
+.sas-menu-maker-bulk-op {
+	border-top: 1px solid #e5e7eb;
+	display: grid;
+	gap: 8px;
+	grid-template-columns: 1fr;
+	margin: 0 0 16px;
+	padding: 16px 0 0;
+}
+
+.sas-menu-maker-bulk-op:first-of-type {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.sas-menu-maker-bulk-op-label {
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.sas-menu-maker-bulk-op .sas-menu-maker-bulk-mode {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	color: #1d2327;
+	font-size: 14px;
+	max-width: 260px;
+	padding: 6px 10px;
+	width: 100%;
+}
+
+.sas-menu-maker-bulk-op input[type="number"] {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	color: #1d2327;
+	font-size: 14px;
+	max-width: 200px;
+	padding: 8px 12px;
+	width: 100%;
+}
+
+.sas-menu-maker-bulk-op .sas-menu-maker-field-help {
+	margin-top: 4px;
+}
+
+/* ---- Toast ------------------------------------------------------------ */
+
+.sas-menu-maker-toast {
+	background: #1d2327;
+	border-radius: 8px;
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.24);
+	color: #ffffff;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1.4;
+	max-width: 360px;
+	opacity: 0;
+	padding: 12px 16px;
+	position: fixed;
+	right: 24px;
+	top: 56px; /* below admin bar (32) + margin */
+	transform: translateY(-12px);
+	transition: opacity 0.22s ease, transform 0.22s ease;
+	z-index: 100001;
+}
+
+.sas-menu-maker-toast-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.sas-menu-maker-toast-success {
+	background: #14804a;
+}
+
+.sas-menu-maker-toast-error {
+	background: #b91c1c;
+}
+
+@media screen and (max-width: 782px) {
+	.sas-menu-maker-toast {
+		left: 12px;
+		max-width: none;
+		right: 12px;
+		top: 62px; /* below mobile admin bar (46) + margin */
+	}
+}
+
+/* Offers — table columns */
+
+.sas-menu-maker-col-validity { width: 200px; }
+.sas-menu-maker-col-items    { width: 220px; }
+
+/* Offers — form date row */
+
+.sas-menu-maker-field-row {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: 1fr 1fr;
+}
+
+/* Offers — validity cell (list) */
+
+.sas-menu-maker-cell-validity {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.sas-menu-maker-validity-badge {
+	border-radius: 999px;
+	display: inline-block;
+	font-size: 11px;
+	font-style: normal;
+	padding: 1px 8px;
+	width: fit-content;
+}
+
+.sas-menu-maker-validity-current {
+	background: #dcfce7;
+	color: #14532d;
+}
+
+.sas-menu-maker-validity-upcoming {
+	background: #dbeafe;
+	color: #1e3a8a;
+}
+
+.sas-menu-maker-validity-expired {
+	background: #fee2e2;
+	color: #7f1d1d;
+}
+
+.sas-menu-maker-cell-conditions {
+	font-style: italic;
+}
+
+/* Offers — sub-panel: chips picker + line rows */
+
+.sas-menu-maker-chips-picker {
+	border: 1px dashed #d1d5db;
+	border-radius: 6px;
+	padding: 8px;
+}
+
+.sas-menu-maker-offer-items-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.sas-menu-maker-offer-line {
+	align-items: center;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	display: grid;
+	gap: 8px;
+	grid-template-columns: 1fr 1fr 120px auto;
+	padding: 8px;
+}
+
+.sas-menu-maker-offer-line-cell-name {
+	font-weight: 600;
+}
+
+.sas-menu-maker-offer-line-cell select,
+.sas-menu-maker-offer-line-cell input {
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: #1d2327;
+	font-size: 14px;
+	padding: 6px 10px;
+	width: 100%;
+}
+
+.sas-menu-maker-offer-line-cell-qty {
+	align-items: center;
+	display: flex;
+	gap: 6px;
+}
+
+.sas-menu-maker-offer-line-cell-qty input {
+	width: 72px;
+}
+
+.sas-menu-maker-offer-items-empty {
+	color: #8c92a4;
+	font-size: 13px;
+	font-style: italic;
+	padding: 12px 0;
+	text-align: center;
+}
+
+/* Offer-items summary in main panel — same shape as variants summary */
+
+.sas-menu-maker-offer-items-summary {
+	align-items: center;
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 10px 12px;
+}
+
+.sas-menu-maker-offer-items-count {
+	color: #4b5563;
+	font-size: 13px;
+}
+
+/* Currency input-group — non-editable prefix chip + numeric field.
+ * Matches the plugin's border/focus tokens, no Bootstrap. */
+
+.sas-menu-maker-input-group {
+	align-items: stretch;
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	box-sizing: border-box;
+	display: inline-flex;
+	overflow: hidden;
+	width: 100%;
+}
+
+.sas-menu-maker-input-group:focus-within {
+	border-color: #3858e9;
+	box-shadow: 0 0 0 2px rgba( 56, 88, 233, 0.2 );
+}
+
+.sas-menu-maker-input-group-prefix {
+	align-items: center;
+	background: #f3f4f6;
+	border-right: 1px solid #d1d5db;
+	color: #6b7280;
+	display: inline-flex;
+	font-size: 14px;
+	padding: 0 10px;
+	pointer-events: none;
+	user-select: none;
+	white-space: nowrap;
+}
+
+.sas-menu-maker-input-group-input {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	flex: 1 1 auto;
+	font-size: 14px;
+	min-width: 0;
+	outline: none !important;
+	padding: 6px 10px;
+	width: auto;
+}
+
+.sas-menu-maker-input-group-input:focus {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+/* Filter range: both inputs are wrapped in input-groups now; keep them
+ * inline with a dash in between. */
+.sas-menu-maker-filter-range .sas-menu-maker-input-group {
+	flex: 1 1 0;
+}
+
+/* Options-form footer + narrow currency input */
+
+.sas-menu-maker-options-form .sas-menu-maker-input-narrow {
+	max-width: 160px;
+}
+
+.sas-menu-maker-form-footer {
+	border-top: 1px solid #e5e7eb;
+	margin-top: 16px;
+	padding-top: 16px;
+	text-align: right;
+}
+
+/* Help & Docs — accordion */
+
+.sas-menu-maker-accordion {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.sas-menu-maker-accordion-item {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.sas-menu-maker-accordion-summary {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	font-size: 15px;
+	font-weight: 600;
+	gap: 10px;
+	list-style: none;
+	padding: 12px 16px;
+	user-select: none;
+}
+
+.sas-menu-maker-accordion-summary::-webkit-details-marker {
+	display: none;
+}
+
+.sas-menu-maker-accordion-summary:hover {
+	background: #f9fafb;
+}
+
+.sas-menu-maker-accordion-summary:focus-visible {
+	outline: 2px solid #3858e9;
+	outline-offset: -2px;
+}
+
+.sas-menu-maker-accordion-chevron {
+	border-right: 2px solid #6b7280;
+	border-bottom: 2px solid #6b7280;
+	display: inline-block;
+	height: 8px;
+	transform: rotate( -45deg );
+	transition: transform 0.15s ease;
+	width: 8px;
+}
+
+.sas-menu-maker-accordion-item[open] .sas-menu-maker-accordion-chevron {
+	transform: rotate( 45deg );
+}
+
+.sas-menu-maker-accordion-title {
+	flex: 1;
+}
+
+.sas-menu-maker-accordion-body {
+	border-top: 1px solid #e5e7eb;
+	color: #374151;
+	line-height: 1.55;
+	padding: 14px 18px 18px;
+}
+
+.sas-menu-maker-accordion-body h3 {
+	color: #1d2327;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	margin: 18px 0 8px;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-accordion-body h3:first-child {
+	margin-top: 0;
+}
+
+.sas-menu-maker-accordion-body h4 {
+	color: #1d2327;
+	font-size: 14px;
+	font-weight: 600;
+	margin: 14px 0 6px;
+}
+
+.sas-menu-maker-accordion-body p {
+	margin: 4px 0;
+}
+
+.sas-menu-maker-accordion-body ul {
+	margin: 4px 0 8px 20px;
+}
+
+.sas-menu-maker-accordion-body code {
+	background: #f3f4f6;
+	border-radius: 3px;
+	color: #1d2327;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.9em;
+	padding: 1px 5px;
+}
+
+/* Select-box — Select2-style multi-select for item edit panel */
+
+.sas-menu-maker-select {
+	position: relative;
+}
+
+.sas-menu-maker-select-control {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	cursor: text;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 6px;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sas-menu-maker-select-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.sas-menu-maker-select-pills:empty {
+	display: none;
+}
+
+.sas-menu-maker-select-control:focus-within {
+	border-color: #3858e9;
+	box-shadow: 0 0 0 2px rgba( 56, 88, 233, 0.2 );
+}
+
+.sas-menu-maker-select-pill {
+	--sas-menu-maker-chip-color: #3858e9;
+	align-items: center;
+	background: #eef2ff;
+	border: 1px solid var( --sas-menu-maker-chip-color );
+	border-radius: 999px;
+	color: #1d2327;
+	display: inline-flex;
+	font-size: 12px;
+	gap: 4px;
+	line-height: 1.2;
+	padding: 2px 4px 2px 10px;
+}
+
+.sas-menu-maker-select-pill-code {
+	background: rgba( 0, 0, 0, 0.06 );
+	border-radius: 3px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 600;
+	margin-right: 2px;
+	padding: 0 4px;
+}
+
+.sas-menu-maker-select-pill-label {
+	line-height: 1.4;
+}
+
+.sas-menu-maker-select-pill-remove {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	border-radius: 50%;
+	color: #4b5563;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 14px;
+	height: 18px;
+	justify-content: center;
+	line-height: 1;
+	padding: 0;
+	width: 18px;
+}
+
+.sas-menu-maker-select-pill-remove:hover,
+.sas-menu-maker-select-pill-remove:focus-visible {
+	background: rgba( 0, 0, 0, 0.1 );
+	color: #1d2327;
+	outline: none;
+}
+
+.sas-menu-maker-select-input {
+	background: transparent;
+	border: 0;
+	color: #1d2327;
+	display: block;
+	font-size: 14px;
+	outline: none;
+	padding: 4px 4px;
+	width: 100%;
+}
+
+/* Thin separator between pills and the input, only when pills exist. */
+.sas-menu-maker-select-pills:not(:empty) + .sas-menu-maker-select-input {
+	border-top: 1px solid #e5e7eb;
+	padding-top: 8px;
+}
+
+.sas-menu-maker-select-dropdown {
+	background: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 4px;
+	box-shadow: 0 4px 12px rgba( 0, 0, 0, 0.08 );
+	left: 0;
+	margin-top: 2px;
+	max-height: 240px;
+	overflow-y: auto;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	z-index: 10;
+}
+
+.sas-menu-maker-select-option {
+	align-items: center;
+	color: #1d2327;
+	cursor: pointer;
+	display: flex;
+	font-size: 14px;
+	gap: 8px;
+	padding: 6px 10px;
+}
+
+.sas-menu-maker-select-option:hover,
+.sas-menu-maker-select-option:focus {
+	background: #f3f4f6;
+}
+
+.sas-menu-maker-select-option-code {
+	background: #eef2ff;
+	border-radius: 3px;
+	color: #3730a3;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 1px 6px;
+}
+
+.sas-menu-maker-select-empty {
+	color: #8c92a4;
+	font-size: 13px;
+	font-style: italic;
+	padding: 8px 10px;
+	text-align: center;
+}
+
+/* Dashboard — counter tiles */
+
+.sas-menu-maker-counters {
+	margin: 0 0 28px;
+}
+
+.sas-menu-maker-counters-title {
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 10px;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-counters-grid {
+	display: grid;
+	gap: 14px;
+	grid-template-columns: repeat( auto-fill, minmax( 200px, 1fr ) );
+}
+
+.sas-menu-maker-counter {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 22px 20px;
+	position: relative;
+	overflow: hidden;
+	transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sas-menu-maker-counter::before {
+	background: linear-gradient( 135deg, rgba( 56, 88, 233, 0.06 ) 0%, transparent 60% );
+	content: '';
+	inset: 0;
+	pointer-events: none;
+	position: absolute;
+}
+
+.sas-menu-maker-counter:hover {
+	border-color: #c7d2fe;
+	box-shadow: 0 6px 18px rgba( 0, 0, 0, 0.05 );
+	transform: translateY( -1px );
+}
+
+.sas-menu-maker-counter-value {
+	color: #1d2327;
+	font-size: 42px;
+	font-variant-numeric: tabular-nums;
+	font-weight: 700;
+	line-height: 1;
+	position: relative;
+}
+
+.sas-menu-maker-counter-label {
+	color: #6b7280;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	position: relative;
+	text-transform: uppercase;
+}
+
+/* Primary tiles (Offers section) — accent color to draw the eye first. */
+
+.sas-menu-maker-counter--primary {
+	background: linear-gradient( 135deg, #eef2ff 0%, #ffffff 60% );
+	border-color: #c7d2fe;
+}
+
+.sas-menu-maker-counter--primary .sas-menu-maker-counter-value {
+	color: #3730a3;
+}
+
+/* Warn tile (used when "items without image" > 0) — subtle amber accent. */
+
+.sas-menu-maker-counter--warn {
+	background: linear-gradient( 135deg, #fef3c7 0%, #ffffff 60% );
+	border-color: #fde68a;
+}
+
+.sas-menu-maker-counter--warn .sas-menu-maker-counter-value {
+	color: #b45309;
+}
+
+.sas-menu-maker-default-badge {
+	background: #eef2ff;
+	border: 1px solid #c7d2fe;
+	border-radius: 4px;
+	color: #3730a3;
+	display: inline-block;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	line-height: 1.4;
+	padding: 1px 6px;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+.sas-menu-maker-help-code {
+	background: #1f2937;
+	border-radius: 6px;
+	color: #e5e7eb;
+	display: block;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 13px;
+	margin: 6px 0 12px;
+	overflow-x: auto;
+	padding: 10px 12px;
+	white-space: pre;
+}
+
+/* About page */
+
+.sas-menu-maker-about-version {
+	background: #eef2ff;
+	border-radius: 999px;
+	color: #3730a3;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 600;
+	padding: 3px 10px;
+	white-space: nowrap;
+}
+
+.sas-menu-maker-about-intro {
+	color: #374151;
+	font-size: 15px;
+	line-height: 1.6;
+	margin: 0 0 28px;
+	max-width: 780px;
+}
+
+.sas-menu-maker-about-intro p {
+	margin: 0 0 12px;
+}
+
+.sas-menu-maker-about-section-title {
+	color: #1d2327;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	margin: 0 0 14px;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-about-features {
+	margin: 0 0 40px;
+}
+
+/* Each feature is a full-width row: big icon on the left, title +
+ * description stacked on the right. */
+.sas-menu-maker-about-feature {
+	align-items: flex-start;
+	display: flex;
+	gap: 18px;
+	padding: 4px 0;
+}
+
+.sas-menu-maker-about-feature-icon {
+	color: #3858e9;
+	flex-shrink: 0;
+	font-size: 28px;
+	height: 28px;
+	line-height: 1;
+	margin-top: 2px;
+	width: 28px;
+}
+
+.sas-menu-maker-about-feature-body {
+	flex: 1;
+	min-width: 0;
+}
+
+.sas-menu-maker-about-feature-title {
+	color: #1d2327;
+	font-size: 15px;
+	font-weight: 700;
+	margin: 0 0 4px;
+}
+
+.sas-menu-maker-about-feature-desc {
+	color: #4b5563;
+	font-size: 13px;
+	line-height: 1.55;
+	margin: 0;
+}
+
+/* Airy separator between features. */
+.sas-menu-maker-about-sep {
+	background: transparent;
+	border: 0;
+	border-top: 1px solid #e5e7eb;
+	height: 0;
+	margin: 22px 0;
+}
+
+/* Get help & get involved — simple list, one link per row. */
+
+.sas-menu-maker-about-links {
+	margin: 0 0 40px;
+}
+
+.sas-menu-maker-about-link-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sas-menu-maker-about-link-list li {
+	align-items: baseline;
+	color: #4b5563;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 13px;
+	gap: 8px;
+	line-height: 1.55;
+	padding: 8px 0;
+}
+
+.sas-menu-maker-about-link-list li + li {
+	border-top: 1px solid #f1f5f9;
+}
+
+.sas-menu-maker-about-link-list .dashicons {
+	color: #3858e9;
+	flex-shrink: 0;
+	font-size: 18px;
+	height: 18px;
+	position: relative;
+	top: 3px;
+	width: 18px;
+}
+
+.sas-menu-maker-about-link-list a {
+	color: #3858e9;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.sas-menu-maker-about-link-list a:hover,
+.sas-menu-maker-about-link-list a:focus-visible {
+	text-decoration: underline;
+}
+
+.sas-menu-maker-about-link-desc {
+	color: #6b7280;
+}
+
+.sas-menu-maker-about-credits {
+	color: #4b5563;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.sas-menu-maker-about-credits a {
+	color: #3858e9;
+}
+
+.sas-menu-maker-about-credits-block {
+	align-items: flex-start;
+	display: flex;
+	gap: 20px;
+}
+
+/* Brand portrait next to the credit text. Rounded, subtle ring, gentle
+ * hover-lift because the whole thing links to saeidsamani.de. */
+.sas-menu-maker-about-brand {
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+	overflow: hidden;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sas-menu-maker-about-brand img {
+	border-radius: 50%;
+	display: block;
+	height: 96px;
+	object-fit: cover;
+	width: 96px;
+}
+
+.sas-menu-maker-about-brand:hover,
+.sas-menu-maker-about-brand:focus-visible {
+	box-shadow: 0 0 0 3px rgba( 56, 88, 233, 0.25 );
+	outline: none;
+	transform: translateY( -1px );
+}
+
+.sas-menu-maker-about-credits-body {
+	flex: 1;
+	min-width: 0;
+}
+
+.sas-menu-maker-about-credits-body p {
+	margin: 0 0 8px;
+}
+
+.sas-menu-maker-about-credits-body p:last-child {
+	margin-bottom: 0;
+}
+
+.sas-menu-maker-about-thanks {
+	color: #6b7280;
+	font-style: italic;
+	margin-top: 12px;
+}
+
+@media ( max-width: 600px ) {
+	.sas-menu-maker-about-credits-block {
+		flex-direction: column;
+		gap: 14px;
+	}
+}

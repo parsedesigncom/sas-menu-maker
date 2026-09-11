@@ -1,0 +1,653 @@
+/*
+ * SAS Menu Maker — public / front-end styles.
+ *
+ * Single file per WP.org "keep asset count low" guidance. All selectors
+ * are scoped under `.sas-menu-maker` so we don't leak into theme markup.
+ */
+
+.sas-menu-maker {
+	color: inherit;
+	font-family: inherit;
+	line-height: 1.5;
+	margin: 0 0 24px;
+}
+
+.sas-menu-maker *,
+.sas-menu-maker *::before,
+.sas-menu-maker *::after {
+	box-sizing: border-box;
+}
+
+/* ============================================================= Filter bar */
+
+.sas-menu-maker-filter-bar {
+	background: rgba( 0, 0, 0, 0.02 );
+	border: 1px solid rgba( 0, 0, 0, 0.08 );
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 20px;
+	padding: 12px 14px;
+}
+
+.sas-menu-maker-filter-group {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.sas-menu-maker-filter-label {
+	font-size: 0.85em;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	margin-right: 4px;
+	opacity: 0.7;
+	text-transform: uppercase;
+}
+
+.sas-menu-maker-filter-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.sas-menu-maker-filter-chip {
+	background: #ffffff;
+	border: 1px solid rgba( 0, 0, 0, 0.15 );
+	border-radius: 999px;
+	color: inherit;
+	cursor: pointer;
+	font: inherit;
+	font-size: 0.9em;
+	line-height: 1.2;
+	padding: 5px 12px;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.sas-menu-maker-filter-chip:hover,
+.sas-menu-maker-filter-chip:focus-visible {
+	border-color: rgba( 0, 0, 0, 0.35 );
+	outline: none;
+}
+
+.sas-menu-maker-filter-chip.is-active {
+	background: #1d2327;
+	border-color: #1d2327;
+	color: #ffffff;
+}
+
+/* ============================================================= Items list */
+
+.sas-menu-maker-items {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.sas-menu-maker-empty {
+	color: rgba( 0, 0, 0, 0.6 );
+	font-style: italic;
+	margin: 0;
+	padding: 24px;
+	text-align: center;
+}
+
+.sas-menu-maker-item {
+	background: #ffffff;
+	border: 1px solid rgba( 0, 0, 0, 0.08 );
+	border-radius: 8px;
+	display: grid;
+	gap: 14px;
+	grid-template-columns: 120px 1fr;
+	padding: 14px;
+	transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.sas-menu-maker-item--image-right {
+	grid-template-columns: 1fr 120px;
+}
+
+.sas-menu-maker-item--image-top {
+	grid-template-columns: 1fr;
+}
+
+.sas-menu-maker-item--image-top .sas-menu-maker-item-media img {
+	max-height: 220px;
+	object-fit: cover;
+	width: 100%;
+}
+
+.sas-menu-maker-item:not(:has(.sas-menu-maker-item-media)) {
+	grid-template-columns: 1fr;
+}
+
+/* Grid layout (opt-in via `columns` arg). The `sas-menu-maker-items` container
+ * gets `display:grid` from the shortcode's inline <style>; nothing here to
+ * override except: reset the items-list flex direction so the grid can
+ * take over. */
+
+.sas-menu-maker-menu--grid .sas-menu-maker-items {
+	display: grid;
+	gap: 16px;
+}
+
+.sas-menu-maker-menu--grid .sas-menu-maker-item {
+	height: 100%;
+}
+
+.sas-menu-maker-item.sas-menu-maker-item-has-details,
+.sas-menu-maker-item.sas-menu-maker-offer-has-details {
+	cursor: pointer;
+}
+
+.sas-menu-maker-item.sas-menu-maker-item-has-details:hover,
+.sas-menu-maker-item.sas-menu-maker-item-has-details:focus-visible,
+.sas-menu-maker-item.sas-menu-maker-offer-has-details:hover,
+.sas-menu-maker-item.sas-menu-maker-offer-has-details:focus-visible {
+	border-color: rgba( 0, 0, 0, 0.2 );
+	box-shadow: 0 2px 8px rgba( 0, 0, 0, 0.06 );
+	outline: none;
+}
+
+.sas-menu-maker-item[hidden] {
+	display: none !important;
+}
+
+/* Image column */
+
+.sas-menu-maker-item-media {
+	align-items: flex-start;
+	display: flex;
+	justify-content: center;
+}
+
+.sas-menu-maker-item-media img {
+	border-radius: 6px;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	object-fit: cover;
+	width: 120px;
+}
+
+/* Body column */
+
+.sas-menu-maker-item-body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.sas-menu-maker-item-head {
+	align-items: baseline;
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+}
+
+.sas-menu-maker-item-title {
+	font-size: 1.05em;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0;
+}
+
+.sas-menu-maker-item-price {
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.sas-menu-maker-item-price-hint {
+	color: rgba( 0, 0, 0, 0.5 );
+	font-size: 0.85em;
+	font-weight: 400;
+	margin-right: 2px;
+}
+
+.sas-menu-maker-item-desc {
+	color: rgba( 0, 0, 0, 0.72 );
+	font-size: 0.95em;
+	margin: 0;
+}
+
+/* Variants — inline list, no separate rows */
+
+.sas-menu-maker-item-variants {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	list-style: none;
+	margin: 4px 0 0;
+	padding: 0;
+}
+
+.sas-menu-maker-item-variant {
+	align-items: baseline;
+	border-bottom: 1px dotted rgba( 0, 0, 0, 0.15 );
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 2px 0;
+}
+
+.sas-menu-maker-item-variant:last-child {
+	border-bottom: 0;
+}
+
+.sas-menu-maker-item-variant-label {
+	font-size: 0.95em;
+}
+
+.sas-menu-maker-item-variant-price {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+/* Meta — allergens + tags */
+
+.sas-menu-maker-item-meta {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 4px;
+}
+
+.sas-menu-maker-item-allergens {
+	color: rgba( 0, 0, 0, 0.6 );
+	font-size: 0.5em;
+	font-style: italic;
+	font-weight: 400;
+	margin-left: 4px;
+	vertical-align: super;
+}
+
+.sas-menu-maker-item-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.sas-menu-maker-item-tag {
+	background: transparent;
+	border: 1px solid rgba( 0, 0, 0, 0.2 );
+	border-radius: 999px;
+	font-size: 0.75em;
+	line-height: 1;
+	padding: 3px 8px;
+}
+
+/* ============================================================= Modal */
+
+.sas-menu-maker-modal {
+	display: none;
+}
+
+.sas-menu-maker-modal.is-open {
+	align-items: center;
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	padding: 20px;
+	position: fixed;
+	z-index: 99999;
+}
+
+.sas-menu-maker-modal-backdrop {
+	background: rgba( 0, 0, 0, 0.55 );
+	cursor: pointer;
+	inset: 0;
+	position: absolute;
+}
+
+.sas-menu-maker-modal-dialog {
+	background: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 20px 60px rgba( 0, 0, 0, 0.35 );
+	color: #1d2327;
+	display: flex;
+	flex-direction: column;
+	max-height: calc( 100vh - 40px );
+	max-width: 640px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.sas-menu-maker-modal-header {
+	align-items: flex-start;
+	border-bottom: 1px solid rgba( 0, 0, 0, 0.08 );
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 16px 20px;
+}
+
+.sas-menu-maker-modal-title {
+	font-size: 1.2em;
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0;
+}
+
+.sas-menu-maker-modal-close {
+	background: transparent;
+	border: 0;
+	color: inherit;
+	cursor: pointer;
+	font-size: 1.6em;
+	line-height: 1;
+	padding: 0 4px;
+}
+
+.sas-menu-maker-modal-body {
+	overflow-y: auto;
+	padding: 16px 20px 20px;
+}
+
+.sas-menu-maker-modal-body .sas-menu-maker-modal-desc {
+	line-height: 1.55;
+}
+
+.sas-menu-maker-modal-body .sas-menu-maker-modal-desc p {
+	margin: 0 0 0.75em;
+}
+
+.sas-menu-maker-modal-variants {
+	border-top: 1px solid rgba( 0, 0, 0, 0.08 );
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 12px 0 0;
+}
+
+.sas-menu-maker-modal-variants li {
+	align-items: baseline;
+	border-bottom: 1px dotted rgba( 0, 0, 0, 0.12 );
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 4px 0;
+}
+
+.sas-menu-maker-modal-variants li:last-child {
+	border-bottom: 0;
+}
+
+.sas-menu-maker-modal-variant-price {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+/* ============================================================= Allergen legend */
+
+.sas-menu-maker-allergens-legend {
+	color: rgba( 0, 0, 0, 0.55 );
+	font-size: 0.8em;
+	line-height: 1.5;
+	margin-top: 20px;
+	padding-top: 12px;
+	border-top: 1px solid rgba( 0, 0, 0, 0.08 );
+}
+
+.sas-menu-maker-allergens-legend-label {
+	font-weight: 600;
+	margin-right: 4px;
+}
+
+.sas-menu-maker-allergens-legend-item {
+	display: inline;
+	white-space: nowrap;
+}
+
+.sas-menu-maker-allergens-legend-item + .sas-menu-maker-allergens-legend-item::before {
+	content: " · ";
+	opacity: 0.6;
+	white-space: normal;
+}
+
+.sas-menu-maker-allergens-legend-item strong {
+	font-weight: 700;
+	margin-right: 2px;
+}
+
+/* ============================================================= Block-only utilities
+ * The following classes are set by the Gutenberg block wrapper. They do
+ * nothing when the shortcode is used directly; they scale the whole
+ * menu (font-size cascades via em) and align filter / item content.
+ */
+
+.sas-menu-maker-scale-s { font-size: 0.85em; }
+.sas-menu-maker-scale-m { font-size: 1em; }
+.sas-menu-maker-scale-l { font-size: 1.2em; }
+
+.sas-menu-maker-filter-align-center .sas-menu-maker-filter-group { justify-content: center; }
+.sas-menu-maker-filter-align-right  .sas-menu-maker-filter-group { justify-content: flex-end; }
+
+.sas-menu-maker-filter-align-center .sas-menu-maker-filter-chips { justify-content: center; }
+.sas-menu-maker-filter-align-right  .sas-menu-maker-filter-chips { justify-content: flex-end; }
+
+.sas-menu-maker-content-align-center .sas-menu-maker-item-body { text-align: center; }
+.sas-menu-maker-content-align-right  .sas-menu-maker-item-body { text-align: right; }
+
+.sas-menu-maker-content-align-center .sas-menu-maker-item-head { justify-content: center; }
+.sas-menu-maker-content-align-right  .sas-menu-maker-item-head { justify-content: flex-end; }
+
+/* ============================================================= Offers */
+
+.sas-menu-maker-offers-list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.sas-menu-maker-offers--grid .sas-menu-maker-offers-list {
+	display: grid;
+	gap: 16px;
+}
+
+.sas-menu-maker-offers--grid .sas-menu-maker-item {
+	height: 100%;
+}
+
+/* Composition list inside an offer card ("2× Pizza (Small)").
+ * list-style is off — the bullet is a CSS ::before character on the li
+ * itself so it moves with the text when the card content is centered
+ * or right-aligned via the block's Card content alignment setting. */
+.sas-menu-maker-offer-lines {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	list-style: none;
+	margin: 10px 0 0;
+	padding: 0;
+}
+
+.sas-menu-maker-offer-line {
+	font-size: 0.95em;
+}
+
+.sas-menu-maker-offer-line::before {
+	content: "\2022"; /* • */
+	display: inline-block;
+	margin-right: 6px;
+	opacity: 0.55;
+}
+
+.sas-menu-maker-offer-validity {
+	color: rgba( 0, 0, 0, 0.55 );
+	font-size: 0.8em;
+	margin-top: 6px;
+}
+
+.sas-menu-maker-offer-conditions {
+	color: rgba( 0, 0, 0, 0.55 );
+	font-size: 0.8em;
+	font-style: italic;
+	margin: 6px 0 0;
+}
+
+/* Same conditions/composition styling when they appear inside the modal */
+.sas-menu-maker-modal-offer-lines {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	list-style: none;
+	margin: 0 0 12px;
+	padding: 0;
+}
+
+.sas-menu-maker-modal-offer-lines li::before {
+	content: "\2022";
+	display: inline-block;
+	margin-right: 6px;
+	opacity: 0.55;
+}
+
+.sas-menu-maker-modal-offer-conditions {
+	color: rgba( 0, 0, 0, 0.6 );
+	font-size: 0.9em;
+	font-style: italic;
+	margin: 8px 0 0;
+}
+
+.sas-menu-maker-modal-offer-desc {
+	line-height: 1.55;
+	margin: 0 0 0.75em;
+}
+
+/* ============================================================= Group shortcode
+ * Hero header (category or tag image + name + description) followed by
+ * the list of items in that group. No filter bar — this is the "focused"
+ * variant of the menu view.
+ */
+
+.sas-menu-maker-group-header {
+	margin: 0 0 20px;
+}
+
+.sas-menu-maker-group-header-media img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.sas-menu-maker-group-header-body {
+	margin-top: 12px;
+}
+
+.sas-menu-maker-group-title {
+	font-size: 1.6em;
+	font-weight: 700;
+	line-height: 1.2;
+	margin: 0 0 6px;
+}
+
+.sas-menu-maker-group-desc {
+	color: rgba( 0, 0, 0, 0.72 );
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Grid variant of the items list — same as the menu shortcode grid. */
+
+.sas-menu-maker-group--grid .sas-menu-maker-items {
+	display: grid;
+	gap: 16px;
+}
+
+.sas-menu-maker-group--grid .sas-menu-maker-item {
+	height: 100%;
+}
+
+/* Collapsible mode via native <details>. The summary carries the header
+ * markup so title + description sit inside the click target. */
+
+.sas-menu-maker-group-details {
+	background: transparent;
+}
+
+.sas-menu-maker-group-summary {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	list-style: none;
+	padding: 12px 0;
+	position: relative;
+}
+
+.sas-menu-maker-group-summary::-webkit-details-marker {
+	display: none;
+}
+
+.sas-menu-maker-group-summary .sas-menu-maker-group-header {
+	flex: 1;
+	margin: 0;
+}
+
+.sas-menu-maker-group-summary-icon {
+	border-right: 2px solid rgba( 0, 0, 0, 0.4 );
+	border-bottom: 2px solid rgba( 0, 0, 0, 0.4 );
+	display: inline-block;
+	flex-shrink: 0;
+	height: 10px;
+	transform: rotate( 45deg );
+	transition: transform 0.2s ease;
+	width: 10px;
+}
+
+.sas-menu-maker-group-details[open] .sas-menu-maker-group-summary-icon {
+	transform: rotate( -135deg );
+}
+
+.sas-menu-maker-group-content {
+	padding-top: 8px;
+}
+
+.sas-menu-maker-group-expanded-media {
+	margin: 0 0 16px;
+}
+
+.sas-menu-maker-group-expanded-media img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	max-width: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+body.sas-menu-maker-modal-lock {
+	overflow: hidden;
+}
+
+/* ============================================================= Responsive */
+
+@media ( max-width: 520px ) {
+	.sas-menu-maker-item--image-left,
+	.sas-menu-maker-item--image-right {
+		grid-template-columns: 80px 1fr;
+	}
+	.sas-menu-maker-item--image-right {
+		grid-template-columns: 1fr 80px;
+	}
+	.sas-menu-maker-item--image-left .sas-menu-maker-item-media img,
+	.sas-menu-maker-item--image-right .sas-menu-maker-item-media img {
+		width: 80px;
+	}
+	.sas-menu-maker-item-head {
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 4px;
+	}
+}

@@ -1,23 +1,23 @@
 <?php
 /**
- * MenuCraft — default per-item template used by the [menucraft] shortcode.
+ * SAS Menu Maker — default per-item template used by the [sas_menu] shortcode.
  *
  * Themes may override this file by copying it to:
- *   your-theme/menucraft/shortcode-item.php
+ *   your-theme/sas-menu-maker/shortcode-item.php
  *
- * Available variables (passed by MenuCraft_Public::render_item):
+ * Available variables (passed by SAS_Menu_Maker_Public::render_item):
  *   $item      array<string,mixed>            Hydrated item.
  *   $allergens array<int,array<string,mixed>> Allergen map keyed by id.
  *   $tags      array<int,array<string,mixed>> Tag map keyed by id (for pill labels).
  *   $config    array<string,mixed>            Normalised shortcode config
  *                                             (image_pos, variants_mode).
  *
- * @package MenuCraft
+ * @package SAS_Menu_Maker
  */
 
 defined( 'ABSPATH' ) || exit;
 
-// This template is `include`d from MenuCraft_Public::render_item(), so
+// This template is `include`d from SAS_Menu_Maker_Public::render_item(), so
 // every variable declared below is a local of that method scope, not a
 // PHP global — the prefix rule does not apply.
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
@@ -51,7 +51,7 @@ $has_details   = $has_long_desc || $show_variants_modal;
 $price_display = '';
 $price_hint    = '';
 if ( null !== $item['price'] ) {
-	$price_display = MenuCraft_Public::format_price( $item['price'] );
+	$price_display = SAS_Menu_Maker_Public::format_price( $item['price'] );
 } elseif ( $has_variants ) {
 	$min_price = null;
 	foreach ( $active_variants as $v ) {
@@ -61,7 +61,7 @@ if ( null !== $item['price'] ) {
 		}
 	}
 	if ( null !== $min_price ) {
-		$price_display = MenuCraft_Public::format_price( $min_price );
+		$price_display = SAS_Menu_Maker_Public::format_price( $min_price );
 		/* translators: prefix for "from X€" price when only the cheapest variant is shown */
 		$price_hint = __( 'from', 'sas-menu-maker' );
 	}
@@ -73,21 +73,21 @@ $show_price_header = '' !== $price_display && ! $show_variants_inline;
 // someone pasted markup into it.
 $modal_html = '';
 if ( $has_long_desc ) {
-	$modal_html .= '<div class="menucraft-modal-desc">' . wpautop( wp_kses_post( $item['description_long'] ) ) . '</div>';
+	$modal_html .= '<div class="sas-menu-maker-modal-desc">' . wpautop( wp_kses_post( $item['description_long'] ) ) . '</div>';
 }
 if ( $show_variants_modal ) {
-	$modal_html .= '<ul class="menucraft-modal-variants">';
+	$modal_html .= '<ul class="sas-menu-maker-modal-variants">';
 	foreach ( $active_variants as $v ) {
 		$modal_html .= '<li>'
-			. '<span class="menucraft-modal-variant-label">' . esc_html( $v['label'] ) . '</span>'
-			. '<span class="menucraft-modal-variant-price">' . esc_html( MenuCraft_Public::format_price( $v['price'] ) ) . '</span>'
+			. '<span class="sas-menu-maker-modal-variant-label">' . esc_html( $v['label'] ) . '</span>'
+			. '<span class="sas-menu-maker-modal-variant-price">' . esc_html( SAS_Menu_Maker_Public::format_price( $v['price'] ) ) . '</span>'
 			. '</li>';
 	}
 	$modal_html .= '</ul>';
 }
 
 // Allergen codes rendered inside the title as a small italic
-// superscript suffix (see .menucraft-item-allergens CSS). Skipped
+// superscript suffix (see .sas-menu-maker-item-allergens CSS). Skipped
 // entirely when the end-of-menu legend is hidden — without the legend
 // the code letters would be meaningless to visitors.
 $allergen_prefix = '';
@@ -100,7 +100,7 @@ if ( $show_allergens && ! empty( $item_all_ids ) ) {
 		}
 	}
 	if ( ! empty( $codes ) ) {
-		$allergen_prefix = '<span class="menucraft-item-allergens" aria-label="'
+		$allergen_prefix = '<span class="sas-menu-maker-item-allergens" aria-label="'
 			. esc_attr__( 'Allergens', 'sas-menu-maker' ) . '">'
 			. esc_html( implode( ', ', $codes ) )
 			. '</span>';
@@ -108,13 +108,13 @@ if ( $show_allergens && ! empty( $item_all_ids ) ) {
 }
 
 $body_html  = '';
-$body_html .= '<div class="menucraft-item-body">';
-$body_html .= '<header class="menucraft-item-head">';
-$body_html .= '<h3 class="menucraft-item-title">' . esc_html( $item['name'] ) . $allergen_prefix . '</h3>';
+$body_html .= '<div class="sas-menu-maker-item-body">';
+$body_html .= '<header class="sas-menu-maker-item-head">';
+$body_html .= '<h3 class="sas-menu-maker-item-title">' . esc_html( $item['name'] ) . $allergen_prefix . '</h3>';
 if ( $show_price_header ) {
-	$body_html .= '<span class="menucraft-item-price">';
+	$body_html .= '<span class="sas-menu-maker-item-price">';
 	if ( '' !== $price_hint ) {
-		$body_html .= '<span class="menucraft-item-price-hint">' . esc_html( $price_hint ) . '</span> ';
+		$body_html .= '<span class="sas-menu-maker-item-price-hint">' . esc_html( $price_hint ) . '</span> ';
 	}
 	$body_html .= esc_html( $price_display );
 	$body_html .= '</span>';
@@ -122,15 +122,15 @@ if ( $show_price_header ) {
 $body_html .= '</header>';
 
 if ( ! empty( $item['description_short'] ) ) {
-	$body_html .= '<p class="menucraft-item-desc">' . esc_html( $item['description_short'] ) . '</p>';
+	$body_html .= '<p class="sas-menu-maker-item-desc">' . esc_html( $item['description_short'] ) . '</p>';
 }
 
 if ( $show_variants_inline ) {
-	$body_html .= '<ul class="menucraft-item-variants">';
+	$body_html .= '<ul class="sas-menu-maker-item-variants">';
 	foreach ( $active_variants as $v ) {
-		$body_html .= '<li class="menucraft-item-variant">'
-			. '<span class="menucraft-item-variant-label">' . esc_html( $v['label'] ) . '</span>'
-			. '<span class="menucraft-item-variant-price">' . esc_html( MenuCraft_Public::format_price( $v['price'] ) ) . '</span>'
+		$body_html .= '<li class="sas-menu-maker-item-variant">'
+			. '<span class="sas-menu-maker-item-variant-label">' . esc_html( $v['label'] ) . '</span>'
+			. '<span class="sas-menu-maker-item-variant-price">' . esc_html( SAS_Menu_Maker_Public::format_price( $v['price'] ) ) . '</span>'
 			. '</li>';
 	}
 	$body_html .= '</ul>';
@@ -143,11 +143,11 @@ if ( ! empty( $item_tag_ids ) ) {
 			continue;
 		}
 		$style          = ! empty( $tags[ $tid ]['color'] ) ? ' style="border-color:' . esc_attr( $tags[ $tid ]['color'] ) . '"' : '';
-		$rendered_tags .= '<span class="menucraft-item-tag"' . $style . '>' . esc_html( $tags[ $tid ]['name'] ) . '</span>';
+		$rendered_tags .= '<span class="sas-menu-maker-item-tag"' . $style . '>' . esc_html( $tags[ $tid ]['name'] ) . '</span>';
 	}
 	if ( '' !== $rendered_tags ) {
-		$body_html .= '<footer class="menucraft-item-meta">';
-		$body_html .= '<span class="menucraft-item-tags">' . $rendered_tags . '</span>';
+		$body_html .= '<footer class="sas-menu-maker-item-meta">';
+		$body_html .= '<span class="sas-menu-maker-item-tags">' . $rendered_tags . '</span>';
 		$body_html .= '</footer>';
 	}
 }
@@ -155,19 +155,19 @@ $body_html .= '</div>';
 
 $media_html = '';
 if ( $image_url ) {
-	$media_html = '<div class="menucraft-item-media">'
+	$media_html = '<div class="sas-menu-maker-item-media">'
 		. '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $item['name'] ) . '" loading="lazy">'
 		. '</div>';
 }
 ?>
-<article class="menucraft-item menucraft-item--image-<?php echo esc_attr( $image_pos ); ?><?php echo $has_details ? ' menucraft-item-has-details' : ''; ?>"
-	data-menucraft-item="<?php echo esc_attr( (string) $item_id ); ?>"
-	data-menucraft-categories="<?php echo esc_attr( implode( ',', $categories ) ); ?>"
-	data-menucraft-tags="<?php echo esc_attr( implode( ',', $item_tag_ids ) ); ?>"
+<article class="sas-menu-maker-item sas-menu-maker-item--image-<?php echo esc_attr( $image_pos ); ?><?php echo $has_details ? ' sas-menu-maker-item-has-details' : ''; ?>"
+	data-sas-menu-maker-item="<?php echo esc_attr( (string) $item_id ); ?>"
+	data-sas-menu-maker-categories="<?php echo esc_attr( implode( ',', $categories ) ); ?>"
+	data-sas-menu-maker-tags="<?php echo esc_attr( implode( ',', $item_tag_ids ) ); ?>"
 	<?php if ( $has_details ) : ?>
 		tabindex="0"
 		role="button"
-		data-menucraft-open-details="item-<?php echo esc_attr( (string) $item_id ); ?>"
+		data-sas-menu-maker-open-details="item-<?php echo esc_attr( (string) $item_id ); ?>"
 		aria-label="<?php echo esc_attr( sprintf( /* translators: %s: item name */ __( 'Show details for %s', 'sas-menu-maker' ), $item['name'] ) ); ?>"
 	<?php endif; ?>>
 
@@ -183,7 +183,7 @@ if ( $image_url ) {
 	?>
 
 	<?php if ( $has_details ) : ?>
-		<script type="application/json" data-menucraft-details="item-<?php echo esc_attr( (string) $item_id ); ?>">
+		<script type="application/json" data-sas-menu-maker-details="item-<?php echo esc_attr( (string) $item_id ); ?>">
 			<?php echo wp_json_encode( array( 'title' => $item['name'], 'html' => $modal_html ) ); ?>
 		</script>
 	<?php endif; ?>

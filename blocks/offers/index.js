@@ -1,8 +1,8 @@
 /**
- * MenuCraft — Gutenberg "offers" block editor script.
+ * SAS Menu Maker — Gutenberg "offers" block editor script.
  *
  * Dynamic block: the frontend HTML is produced server-side (by wrapping
- * the [menucraft_offers] shortcode); this script only wires up the block-
+ * the [sas_menu_offers] shortcode); this script only wires up the block-
  * inserter entry, the inspector controls in the sidebar, and a
  * ServerSideRender preview so authors see the real offers inside the
  * editor.
@@ -32,7 +32,7 @@
 		|| ( wp.editor && wp.editor.ServerSideRender )
 		|| ( wp.components && wp.components.ServerSideRender );
 
-	// Grouped color slots — must mirror class-menucraft-offers-block.php.
+	// Grouped color slots — must mirror class-sas-menu-maker-offers-block.php.
 	var colorGroups = [
 		{
 			title: __( 'Colors — Container', 'sas-menu-maker' ),

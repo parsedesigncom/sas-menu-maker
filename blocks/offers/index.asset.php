@@ -2,7 +2,7 @@
 /**
  * Dependency + version manifest for blocks/offers/index.js.
  *
- * @package MenuCraft
+ * @package SAS_Menu_Maker
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -16,5 +16,5 @@ return array(
 		'wp-i18n',
 		'wp-server-side-render',
 	),
-	'version'      => defined( 'MENUCRAFT_VERSION' ) ? MENUCRAFT_VERSION : '0.0.0',
+	'version'      => defined( 'SAS_MENU_MAKER_VERSION' ) ? SAS_MENU_MAKER_VERSION : '0.0.0',
 );

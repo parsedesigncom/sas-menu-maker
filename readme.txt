@@ -4,7 +4,7 @@ Tags: menu, restaurant, cafe, food, drinks
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,10 @@ The **SAS Menu Maker → Help & Docs** page inside your WordPress admin has shor
 
 == Changelog ==
 
+= 0.1.2 =
+* Internal rename: class prefix `SAS_Menu_Maker_`, constant prefix `SAS_MENU_MAKER_`, hook/function prefix `sas_menu_maker_`, CSS class prefix `.sas-menu-maker-`, DB table prefix `wp_sas_menu_maker_*` (existing tables are renamed automatically on first admin load).
+* All code comments translated to English.
+
 = 0.1.1 =
 * Added `[sas_menu_group]` shortcode and **SAS Menu — Group** block for focused single-category or single-tag pages, with hero header (image + name + description) and optional start-collapsed mode.
 * Added multi-select with search for item categories/tags/allergens.
@@ -131,6 +135,9 @@ The **SAS Menu Maker → Help & Docs** page inside your WordPress admin has shor
 * Help & Docs accordion with onboarding + per-feature guides.
 
 == Upgrade Notice ==
+
+= 0.1.2 =
+Internal rename to `sas_menu_maker` prefix across classes, hooks, CSS and database tables. Existing tables are renamed automatically on first admin load — no manual steps needed.
 
 = 0.1.1 =
 Adds the new group shortcode/block, multi-select for item relations, default-category flag, and fixes multi-tag rendering. No manual steps needed.

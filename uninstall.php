@@ -6,7 +6,7 @@
  * opted in via the "delete_data_on_uninstall" option. Default is to keep
  * all tables intact so accidental removal does not destroy content.
  *
- * @package MenuCraft
+ * @package SAS_Menu_Maker
  */
 
 // Exit if uninstall not called from WordPress.
@@ -14,14 +14,14 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-require_once __DIR__ . '/includes/class-menucraft-schema.php';
-require_once __DIR__ . '/includes/class-menucraft-options.php';
+require_once __DIR__ . '/includes/class-sas-menu-maker-schema.php';
+require_once __DIR__ . '/includes/class-sas-menu-maker-options.php';
 
 // This file runs once at plugin uninstall in a short-lived isolated
 // process — `$delete` is a local flag, not a persistent global.
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-$delete = MenuCraft_Options::get( 'delete_data_on_uninstall', '0' );
+$delete = SAS_Menu_Maker_Options::get( 'delete_data_on_uninstall', '0' );
 
 if ( '1' === (string) $delete ) {
-	MenuCraft_Schema::drop_tables();
+	SAS_Menu_Maker_Schema::drop_tables();
 }
