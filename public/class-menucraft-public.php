@@ -61,14 +61,14 @@ class MenuCraft_Public {
 	 */
 	public function register_assets() {
 		wp_register_style(
-			$this->plugin_name . '-public',
+			'menucraft-public',
 			MENUCRAFT_PLUGIN_URL . 'assets/css/menucraft-public.css',
 			array(),
 			$this->version
 		);
 
 		wp_register_script(
-			$this->plugin_name . '-public',
+			'menucraft-public',
 			MENUCRAFT_PLUGIN_URL . 'assets/js/menucraft-public.js',
 			array(),
 			$this->version,
@@ -154,8 +154,8 @@ class MenuCraft_Public {
 
 		// Enqueue at render time — safe mid-content because WP prints the
 		// tags in the footer.
-		wp_enqueue_style( $this->plugin_name . '-public' );
-		wp_enqueue_script( $this->plugin_name . '-public' );
+		wp_enqueue_style( 'menucraft-public' );
+		wp_enqueue_script( 'menucraft-public' );
 
 		self::$instance_counter++;
 		$instance_id = 'menucraft-menu-' . self::$instance_counter;
@@ -166,7 +166,7 @@ class MenuCraft_Public {
 		// instead of echoing a raw <style> block in the template, per WP.org
 		// "enqueue all CSS" guideline.
 		if ( ! empty( $config['grid_css'] ) ) {
-			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+			wp_add_inline_style( 'menucraft-public', $config['grid_css'] );
 		}
 
 		$items      = $this->collect_items();
@@ -568,8 +568,8 @@ class MenuCraft_Public {
 			'sas_menu_offers'
 		);
 
-		wp_enqueue_style( $this->plugin_name . '-public' );
-		wp_enqueue_script( $this->plugin_name . '-public' );
+		wp_enqueue_style( 'menucraft-public' );
+		wp_enqueue_script( 'menucraft-public' );
 
 		self::$instance_counter++;
 		$instance_id = 'menucraft-offers-' . self::$instance_counter;
@@ -577,7 +577,7 @@ class MenuCraft_Public {
 		$config = self::normalise_offers_atts( $atts, $instance_id );
 
 		if ( ! empty( $config['grid_css'] ) ) {
-			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+			wp_add_inline_style( 'menucraft-public', $config['grid_css'] );
 		}
 
 		$offers    = $this->collect_offers( $config );
@@ -970,8 +970,8 @@ class MenuCraft_Public {
 		 */
 		$source = apply_filters( 'menucraft_group_shortcode_source', $source, $source_type, $source_ref );
 
-		wp_enqueue_style( $this->plugin_name . '-public' );
-		wp_enqueue_script( $this->plugin_name . '-public' );
+		wp_enqueue_style( 'menucraft-public' );
+		wp_enqueue_script( 'menucraft-public' );
 
 		self::$instance_counter++;
 		$instance_id = 'menucraft-group-' . self::$instance_counter;
@@ -979,7 +979,7 @@ class MenuCraft_Public {
 		$config = self::normalise_group_atts( $atts, $instance_id );
 
 		if ( ! empty( $config['grid_css'] ) ) {
-			wp_add_inline_style( $this->plugin_name . '-public', $config['grid_css'] );
+			wp_add_inline_style( 'menucraft-public', $config['grid_css'] );
 		}
 
 		$items     = $source ? self::collect_group_items( $source_type, (int) $source['id'] ) : array();
